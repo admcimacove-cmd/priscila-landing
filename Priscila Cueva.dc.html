@@ -147,7 +147,9 @@
     <div style="flex:2 1 380px;">
       <div style="font-size:11px;letter-spacing:0.3em;color:#cda86a;text-transform:uppercase;margin-bottom:16px;">{{ t.aboutEyebrow }}</div>
       <h2 style="font-family:'Playfair Display',serif;font-weight:600;font-size:clamp(24px,3vw,38px);margin:0 0 22px 0;color:#f5efe4;">{{ t.aboutTitle }}</h2>
-      <p style="font-size:clamp(15px,1.1vw,17px);line-height:1.75;color:#c6bcaa;max-width:600px;">{{ t.aboutBody }}</p>
+      <sc-for list="{{ t.aboutBody }}" as="para" hint-placeholder-count="4">
+        <p style="font-size:clamp(15px,1.05vw,17px);line-height:1.8;color:#c6bcaa;max-width:620px;margin:0 0 18px 0;">{{ para }}</p>
+      </sc-for>
     </div>
   </section>
 
@@ -252,8 +254,13 @@ class Component extends DCLogic {
       tailoredTitle: 'Una solución diseñada alrededor de tu realidad',
       tailoredBody: 'Cada negocio tiene servicios, clientes, horarios, riesgos, necesidades y procesos diferentes. Por eso cada solución se diseña a la medida, no como una plantilla genérica.',
       aboutEyebrow: 'Sobre mí',
-      aboutTitle: 'Conoce a Priscila',
-      aboutBody: 'Soy Priscila Cueva. Combino visión empresarial, experiencia en salud, estrategia digital y creatividad para transformar ideas en experiencias que las personas puedan comprender, usar y recordar. Mi enfoque une tecnología y atención humana para que cada solución tenga propósito, estructura y personalidad.',
+      aboutTitle: 'Sobre mí',
+      aboutBody: [
+        'Soy Priscila Cueva, fundadora y CEO de CimaCove, una empresa familiar con sede en Estados Unidos que nace con una visión clara: integrar estrategia, tecnología e innovación para ayudar a profesionales y empresas a crecer en el entorno digital.',
+        'Mi formación de posgrado en gerencia y gestión sanitaria, complementada con conocimientos en inteligencia artificial, y mi trayectoria en el sector salud me permitieron reconocer un desafío que también afecta a muchos otros sectores: valiosas oportunidades se pierden cuando un negocio no puede responder a tiempo, dar seguimiento adecuado o guiar al cliente hacia una decisión.',
+        'Por eso nace CimaCove: para desarrollar soluciones digitales que automaticen procesos, mejoren la experiencia del cliente y ayuden a convertir más oportunidades en resultados reales.',
+        'Digitalizar un negocio no es solamente tener presencia en internet. Es construir un sistema estratégico, eficiente y humano que pueda presentar tus servicios, responder y acompañar a tus clientes, incluso cuando tú no puedes hacerlo personalmente.'
+      ],
       faqTitle: 'Preguntas frecuentes',
       closingTitle: 'Tu idea puede convertirse en una experiencia que trabaje a favor de tu negocio.',
       closingBtn: 'Descubrir mi mejor opción',
@@ -298,8 +305,13 @@ class Component extends DCLogic {
       tailoredTitle: 'A solution designed around your reality',
       tailoredBody: 'Every business has different services, customers, schedules, risks, needs, and processes. That is why each solution is designed to fit, not a generic template.',
       aboutEyebrow: 'About',
-      aboutTitle: 'Meet Priscila',
-      aboutBody: "I'm Priscila Cueva. I combine business vision, healthcare experience, digital strategy, and creativity to transform ideas into experiences people can understand, use, and remember. My approach brings technology and human attention together so every solution has purpose, structure, and personality.",
+      aboutTitle: 'About Me',
+      aboutBody: [
+        'I’m Priscila Cueva, founder and CEO of CimaCove, a family-owned company based in the United States, created with a clear vision: to bring together strategy, technology, and innovation to help professionals and businesses grow in the digital world.',
+        'My postgraduate education in healthcare leadership and management, complemented by knowledge of artificial intelligence, together with my background in the healthcare sector, helped me recognize a challenge that affects many other industries as well: valuable opportunities are lost when a business cannot respond promptly, follow up effectively, or guide a potential customer toward a decision.',
+        'That is why CimaCove was created: to develop digital solutions that automate processes, improve the customer experience, and help turn more opportunities into real results.',
+        'Digitizing a business is not simply about having an online presence. It means building a strategic, efficient, and human-centered system that can present your services, respond, and support your customers—even when you cannot do it personally.'
+      ],
       faqTitle: 'Frequently asked questions',
       closingTitle: 'Your idea can become an experience that works for your business.',
       closingBtn: 'Discover my best option',
