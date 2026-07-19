@@ -1,0 +1,132 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-07-18T00:00:00.000Z",
+  "title": "Design System: Priscila Cueva — Landing Page",
+  "extensions": {
+    "colorMeta": {
+      "ebano-calido": { "role": "neutral", "displayName": "Ébano Cálido", "canonical": "#0b0a08", "tonalRamp": ["#000000", "#0b0a08", "#161310", "#221d17", "#332a20", "#4a3d2e", "#685640", "#8a7355"] },
+      "ebano-profundo": { "role": "neutral", "displayName": "Ébano Profundo", "canonical": "#111009", "tonalRamp": ["#000000", "#0e0d08", "#191610", "#26211a", "#383024", "#4f4234", "#6c5c47", "#8f7c60"] },
+      "oro-envejecido": { "role": "primary", "displayName": "Oro Envejecido", "canonical": "#cda86a", "tonalRamp": ["#3d2e12", "#5c451c", "#7c5d28", "#9c7638", "#b8904e", "#cda86a", "#ddc08c", "#efe0c0"] },
+      "oro-brillante": { "role": "primary", "displayName": "Oro Brillante", "canonical": "#e8c07f", "tonalRamp": ["#4a3312", "#6b491c", "#8d6028", "#af7938", "#cb9752", "#e8c07f", "#f0d3a3", "#f8e8ca"] },
+      "oro-titulo": { "role": "primary", "displayName": "Oro Título", "canonical": "#f2d9ad", "tonalRamp": ["#5c4a24", "#7d6635", "#9f8348", "#c1a15f", "#dcbe80", "#f2d9ad", "#f8e8ca", "#fcf4e6"] },
+      "marfil-calido": { "role": "neutral", "displayName": "Marfil Cálido", "canonical": "#f2ece1", "tonalRamp": ["#4a4438", "#655d4c", "#847a63", "#a89c80", "#c9bda0", "#e3d8c3", "#f2ece1", "#faf8f3"] },
+      "texto-atenuado": { "role": "neutral", "displayName": "Texto Atenuado", "canonical": "#c6bcaa", "tonalRamp": ["#2a251d", "#453d30", "#635746", "#847460", "#a5937a", "#c6bcaa", "#ded6c8", "#efeae1"] },
+      "texto-tenue": { "role": "neutral", "displayName": "Texto Tenue", "canonical": "#8a7f6d", "tonalRamp": ["#1e1a14", "#332c22", "#4a4032", "#635543", "#7d6c57", "#8a7f6d", "#a99e8c", "#c9c0b2"] },
+      "whatsapp-verde": { "role": "tertiary", "displayName": "Verde WhatsApp", "canonical": "#3f8f6b", "tonalRamp": ["#12261d", "#1e4633", "#2a6549", "#357a58", "#3f8f6b", "#5aab86", "#82c4a7", "#b3ddc9"] },
+      "focus-azul": { "role": "tertiary", "displayName": "Azul de Foco", "canonical": "#6f93c9", "tonalRamp": ["#1c2c47", "#2d4468", "#3f5c89", "#5578ab", "#6f93c9", "#8fadd8", "#b3c8e6", "#d8e2f2"] }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Display", "purpose": "Titular del hero (h1) únicamente." },
+      "headline": { "displayName": "Headline", "purpose": "Título de cada sección (h2)." },
+      "title": { "displayName": "Title", "purpose": "Título del panel lateral de servicio (h3)." },
+      "body": { "displayName": "Body", "purpose": "Párrafos largos, máximo 65–75ch por línea." },
+      "label": { "displayName": "Label", "purpose": "Eyebrows en mayúscula, toggle de idioma, badges de estado." }
+    },
+    "shadows": [
+      { "name": "pill-glow-rest", "value": "0 0 8px rgba(216,168,78,0.18)", "purpose": "Estado por defecto de las píldoras de servicio." },
+      { "name": "pill-glow-selected", "value": "0 0 14px rgba(216,168,78,0.45)", "purpose": "Píldora de servicio seleccionada." },
+      { "name": "panel-float-desktop", "value": "-20px 0 60px rgba(0,0,0,0.5)", "purpose": "Panel lateral de detalle de servicio, desktop." },
+      { "name": "panel-float-mobile", "value": "0 -20px 60px rgba(0,0,0,0.5)", "purpose": "Panel de detalle de servicio, mobile (desde abajo)." },
+      { "name": "portrait-drop", "value": "0 30px 60px -20px rgba(0,0,0,0.6)", "purpose": "Sombra profunda bajo la foto de 'Sobre mí'." }
+    ],
+    "motion": [
+      { "name": "ease-panel", "value": "cubic-bezier(.22,.9,.3,1)", "purpose": "Entrada/salida del panel lateral de detalle." },
+      { "name": "ease-standard", "value": "ease", "purpose": "Transiciones de hover/focus en botones y píldoras (opacity, transform, background)." }
+    ],
+    "breakpoints": [
+      { "name": "mobile", "value": "780px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button (outline)",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "CTA por defecto del hero ('Explorar servicios').",
+      "html": "<button class=\"ds-btn-primary\">Explorar servicios ↓</button>",
+      "css": ".ds-btn-primary { background: transparent; border: 1px solid #cda86a; color: #f0e4cc; padding: 14px 28px; font-size: 14px; letter-spacing: 0.08em; border-radius: 2px; font-family: 'Manrope', sans-serif; font-weight: 600; cursor: pointer; transition: all .3s ease; } .ds-btn-primary:hover { background: #cda86a; color: #0b0a08; } .ds-btn-primary:focus-visible { outline: 2px solid #6f93c9; outline-offset: 2px; }"
+    },
+    {
+      "name": "Filled Button (closing CTA)",
+      "kind": "button",
+      "refersTo": "button-filled",
+      "description": "Único botón dorado sólido, reservado para el cierre de página.",
+      "html": "<button class=\"ds-btn-filled\">Descubrir mi mejor opción</button>",
+      "css": ".ds-btn-filled { background: #cda86a; border: none; color: #0b0a08; padding: 16px 36px; font-size: 14px; letter-spacing: 0.06em; border-radius: 2px; font-family: 'Manrope', sans-serif; font-weight: 700; cursor: pointer; transition: background .3s ease; } .ds-btn-filled:hover { background: #e0bb80; } .ds-btn-filled:focus-visible { outline: 2px solid #6f93c9; outline-offset: 2px; }"
+    },
+    {
+      "name": "WhatsApp Button",
+      "kind": "button",
+      "refersTo": "button-whatsapp",
+      "description": "Único botón verde del sistema — el paso final de conversión dentro del panel de servicio.",
+      "html": "<a class=\"ds-btn-whatsapp\" href=\"#\">Continuar por WhatsApp</a>",
+      "css": ".ds-btn-whatsapp { display: block; text-align: center; background: #3f8f6b; color: #0b0a08; padding: 14px; border-radius: 2px; font-family: 'Manrope', sans-serif; font-weight: 700; font-size: 14px; text-decoration: none; transition: background .3s ease; } .ds-btn-whatsapp:hover { background: #4ba57e; } .ds-btn-whatsapp:focus-visible { outline: 2px solid #6f93c9; outline-offset: 2px; }"
+    },
+    {
+      "name": "Service Pill",
+      "kind": "chip",
+      "refersTo": "pill-service",
+      "description": "Píldora de opción de servicio ascendente sobre el hero; estado seleccionado vs. no seleccionado.",
+      "html": "<button class=\"ds-pill\" aria-pressed=\"false\"><span class=\"ds-pill-num\">01</span> — <span class=\"ds-pill-title\">Automatización Inteligente</span></button>",
+      "css": ".ds-pill { width: 220px; height: 40px; text-align: center; background: linear-gradient(135deg, #241a12 0%, #3a2617 55%, #6b4426 100%); border: 1px solid #D8A84E; border-radius: 20px; cursor: pointer; font-family: 'Manrope', sans-serif; font-size: 12.5px; font-weight: 600; letter-spacing: 0.02em; box-shadow: 0 0 8px rgba(216,168,78,0.18); transition: opacity .4s ease, transform .4s ease, border-color .3s ease, box-shadow .3s ease; } .ds-pill[aria-pressed='true'] { border-color: #f2c775; transform: scale(1.04); box-shadow: 0 0 14px rgba(216,168,78,0.45); } .ds-pill-num { color: #D8A84E; } .ds-pill-title { color: #F8EED8; } .ds-pill:focus-visible { outline: 2px solid #6f93c9; outline-offset: 2px; }"
+    },
+    {
+      "name": "Resource Card",
+      "kind": "card",
+      "refersTo": "card-resource",
+      "description": "Tarjeta informativa dentro del panel lateral (p. ej. estado de recursos/Hotmart).",
+      "html": "<div class=\"ds-card-resource\"><div class=\"ds-card-resource-title\">Landing Premium con Inteligencia Artificial</div><p class=\"ds-card-resource-desc\">Una guía práctica con metodología, prompts y pasos de implementación.</p><span class=\"ds-card-resource-badge\">Próximamente</span></div>",
+      "css": ".ds-card-resource { border: 1px solid #3a3122; border-radius: 4px; padding: 18px; background: #17140d; } .ds-card-resource-title { font-family: 'Playfair Display', serif; font-size: 15px; color: #f2d9ad; margin-bottom: 8px; } .ds-card-resource-desc { font-family: 'Manrope', sans-serif; font-size: 13px; line-height: 1.6; color: #c6bcaa; margin: 0 0 14px 0; } .ds-card-resource-badge { display: inline-block; font-family: 'Manrope', sans-serif; font-size: 11px; letter-spacing: 0.1em; color: #e8c07f; border: 1px solid #cda86a; border-radius: 20px; padding: 5px 12px; }"
+    },
+    {
+      "name": "Language Toggle",
+      "kind": "nav",
+      "refersTo": "nav-lang-toggle",
+      "description": "Selector ES/EN fijo en la barra de navegación.",
+      "html": "<div class=\"ds-lang-toggle\"><button class=\"ds-lang-btn ds-lang-btn--active\" aria-pressed=\"true\">ES</button><span class=\"ds-lang-sep\">|</span><button class=\"ds-lang-btn\" aria-pressed=\"false\">EN</button></div>",
+      "css": ".ds-lang-toggle { display: flex; gap: 6px; align-items: center; } .ds-lang-btn { background: none; border: none; font-family: 'Manrope', sans-serif; font-size: 13px; letter-spacing: 0.1em; font-weight: 700; padding: 4px; cursor: pointer; color: #8a7f6d; } .ds-lang-btn--active { color: #cda86a; } .ds-lang-sep { color: #584f43; } .ds-lang-btn:focus-visible { outline: 2px solid #6f93c9; outline-offset: 2px; }"
+    },
+    {
+      "name": "FAQ Accordion Item",
+      "kind": "custom",
+      "refersTo": "faq-item",
+      "description": "Pregunta/respuesta expandible en la sección de FAQ.",
+      "html": "<div class=\"ds-faq-item\"><button class=\"ds-faq-question\" aria-expanded=\"false\"><span>¿Los servicios se personalizan?</span><span class=\"ds-faq-chevron\">＋</span></button><div class=\"ds-faq-answer\"><p>Sí, cada solución se adapta a las necesidades, procesos y clientes de tu negocio.</p></div></div>",
+      "css": ".ds-faq-item { border-bottom: 1px solid #241f16; } .ds-faq-question { width: 100%; background: none; border: none; text-align: left; padding: 20px 0; display: flex; justify-content: space-between; align-items: center; cursor: pointer; color: #f0e9db; font-family: 'Manrope', sans-serif; font-size: 15px; font-weight: 600; gap: 20px; } .ds-faq-chevron { color: #cda86a; font-size: 18px; transition: transform .25s ease; } .ds-faq-question[aria-expanded='true'] .ds-faq-chevron { transform: rotate(45deg); } .ds-faq-answer { max-height: 0; overflow: hidden; transition: max-height .35s ease; } .ds-faq-answer p { margin: 0 0 20px 0; font-size: 14.5px; line-height: 1.65; color: #b9ac97; } .ds-faq-question:focus-visible { outline: 2px solid #6f93c9; outline-offset: 2px; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "La Hora Dorada (The Golden Hour)",
+    "overview": "La página vive en el momento justo antes de que el sol se ponga: casi todo es sombra cálida, y lo que sí recibe luz — el dorado envejecido — se usa con moderación porque es precioso, no decorativo. Nada aquí grita para conseguir atención; el sistema entero está construido para que un visitante sienta que entró a una conversación en confianza, no a una vitrina de ventas. La tipografía editorial (Playfair Display) y la calidez del dorado sobre casi-negro comunican sofisticación humana y estratégica — nunca fría, nunca urgente. El sistema rechaza explícitamente las plantillas SaaS genéricas, las landings tipo 'gurú' con urgencia falsa o countdowns, y cualquier estética de sitio corporativo impersonal. Cada superficie debe sentirse hecha a medida — igual que la promesa de negocio detrás de ella.",
+    "keyCharacteristics": [
+      "Fondo casi negro (#0b0a08) como lienzo constante; el dorado aparece solo donde importa.",
+      "Serif editorial (Playfair Display) para todo titular; sans humanista (Manrope) para todo lo demás.",
+      "Sin sombras grises tradicionales — la profundidad se comunica con brillo (glow) dorado, no con box-shadow oscuro.",
+      "Botones de esquina casi recta (2px) para acciones serias; píldoras totalmente redondeadas (20px) para opciones exploratorias.",
+      "Un único acento saturado (verde WhatsApp) reservado exclusivamente para el paso de conversión final."
+    ],
+    "rules": [
+      { "name": "La Regla del Único Verde", "body": "El verde WhatsApp aparece en un solo lugar: el botón de continuar la conversación tras solicitar un servicio. Si aparece en cualquier otro contexto, deja de significar 'acción de conversión' y pierde su fuerza.", "section": "colors" },
+      { "name": "La Regla de la Escasez Dorada", "body": "El dorado envejecido nunca cubre una superficie grande. Vive en bordes de 1px, texto de acento y brillos sutiles — nunca como fondo sólido de una sección completa.", "section": "colors" },
+      { "name": "La Regla del Itálico Reservado", "body": "El itálico de Playfair Display se usa solo para el nombre 'Priscila Cueva' como firma personal — nunca como recurso de énfasis en el copy general.", "section": "typography" },
+      { "name": "La Regla del Brillo, No la Sombra", "body": "La jerarquía visual entre elementos interactivos se comunica con intensidad de glow dorado, no con sombras grises apiladas. Una sombra gris tradicional en un botón o píldora es un error.", "section": "elevation" }
+    ],
+    "dos": [
+      "Do mantener el fondo casi negro (#0b0a08 / #111009) como base en el 90%+ de cada vista; el dorado se reserva para acentos.",
+      "Do usar Playfair Display exclusivamente en titulares (h1–h3 y firma de nombre); Manrope para todo lo demás.",
+      "Do comunicar estado interactivo con intensidad de glow dorado (box-shadow con rgba(216,168,78,...)), no con sombras grises.",
+      "Do usar el verde WhatsApp (#3f8f6b) únicamente en el botón de conversión final — es la señal de 'este es el siguiente paso'.",
+      "Do usar el anillo de foco azul (#6f93c9) en todo elemento interactivo para accesibilidad de teclado (WCAG AA).",
+      "Do mantener los botones de acción principal en esquina casi recta (2px) y las píldoras de opción en radius 20px — la distinción de forma es intencional."
+    ],
+    "donts": [
+      "Don't usar tarjetas iconográficas repetidas, gradientes vistosos de fondo completo, ni ningún look intercambiable de plantilla SaaS.",
+      "Don't introducir countdowns, testimonios exagerados o urgencia falsa — no hay presión de precio ni tácticas agresivas en ninguna sección.",
+      "Don't dejar que el sitio se sienta como un sitio corporativo frío o impersonal — siempre debe leerse como una persona real ofreciendo un proceso a medida.",
+      "Don't usar border-left o border-right de color como acento decorativo en tarjetas o callouts.",
+      "Don't aplicar gradiente sobre texto (background-clip: text) para énfasis — el énfasis viene de peso o tamaño tipográfico, nunca de gradiente.",
+      "Don't usar el dorado como color de fondo sólido en una sección completa — rompe la Regla de la Escasez Dorada.",
+      "Don't usar el verde WhatsApp fuera del botón de conversión — diluye su significado como señal única."
+    ]
+  }
+}
