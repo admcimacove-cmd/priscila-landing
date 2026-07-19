@@ -83,8 +83,21 @@
 
     <sc-if value="{{ isMobile }}" hint-placeholder-val="{{ false }}">
       <div style="position:relative;width:100%;height:64vh;overflow:hidden;">
-        <img src="uploads/priscila-hero-base.png.png" alt="Priscila Cueva" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:48% 22%;" />
+        <sc-if value="{{ showMobileVideo }}" hint-placeholder-val="{{ false }}">
+          <video ref="{{ videoRef }}" onTimeUpdate="{{ onVideoTimeUpdate }}" onError="{{ onMobileVideoError }}" poster="uploads/priscila-hero-base.png.png" autoplay="{{ true }}" muted="{{ true }}" playsinline="{{ true }}" webkit-playsinline="{{ true }}" loop="{{ true }}" preload="metadata" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:48% 22%;">
+            <source src="uploads/Woman_making_subtle_gesture_202607181915-78d8325d.mp4" type="video/mp4" />
+          </video>
+        </sc-if>
+        <sc-if value="{{ showMobileImage }}" hint-placeholder-val="{{ true }}">
+          <img src="uploads/priscila-hero-base.png.png" alt="Priscila Cueva" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:48% 22%;" />
+        </sc-if>
+        <audio ref="{{ audioRef }}" preload="metadata" loop="{{ true }}" style="display:none;">
+          <source src="uploads/Executive_Authority_Web_30s.mp3" type="audio/mpeg" />
+        </audio>
         <div style="position:absolute;inset:0;background:linear-gradient(0deg, rgba(9,7,5,0.96) 0%, rgba(9,7,5,0.42) 46%, rgba(9,7,5,0.05) 68%);"></div>
+        <button onClick="{{ toggleSound }}" aria-pressed="{{ soundOn }}" style="position:absolute;top:16px;right:16px;z-index:4;display:flex;align-items:center;gap:6px;background:rgba(11,10,8,0.55);border:1px solid rgba(205,168,106,0.45);color:#e7dfd0;padding:8px 12px;border-radius:20px;cursor:pointer;font-family:'Manrope',sans-serif;font-size:11px;letter-spacing:0.03em;" style-focus="{{ focusRing }}">
+          <span>{{ soundIcon }}</span><span>{{ soundLabel }}</span>
+        </button>
         <div style="position:absolute;left:20px;right:20px;bottom:22px;z-index:3;">
           <div style="display:flex;align-items:center;gap:8px;margin-bottom:14px;">
             <span style="width:24px;height:24px;border-radius:50%;border:1px solid #cda86a;display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:10px;color:#e8c07f;flex-shrink:0;">PC</span>
@@ -96,7 +109,7 @@
           <button onClick="{{ activate }}" style="background:transparent;border:1px solid #cda86a;color:#f0e4cc;padding:12px 22px;font-size:13px;letter-spacing:0.06em;border-radius:2px;cursor:pointer;font-family:'Manrope',sans-serif;font-weight:600;width:100%;" style-focus="{{ focusRing }}">{{ t.cta }} ↓</button>
         </div>
       </div>
-      <div style="display:flex;flex-direction:column;gap:8px;padding:16px 20px;background:#0e0c08;">
+      <div style="{{ cardsContainerStyle }}">
         <sc-for list="{{ servicesUp }}" as="svc" hint-placeholder-count="4">
           <button aria-pressed="{{ svc.selected }}" onClick="{{ svc.onSelect }}" style="{{ svc.mobileStyle }}" style-focus="{{ focusRing }}"><span style="color:#D8A84E;">{{ svc.num }}</span> — <span style="color:#F8EED8;">{{ svc.title }}</span></button>
         </sc-for>
@@ -324,7 +337,7 @@ class Component extends DCLogic {
     }
   };
 
-  state = { lang: 'es', heroPhase: 'initial', selectedIndex: null, panelOpen: false, requested: false, isMobile: false, reducedMotion: false, openFaq: null, servicesClosedByUser: false, volume: 0.32, cardStage: 0, manualHidden: false, orbStage: 0 };
+  state = { lang: 'es', heroPhase: 'initial', selectedIndex: null, panelOpen: false, requested: false, isMobile: false, reducedMotion: false, openFaq: null, servicesClosedByUser: false, volume: 0.32, cardStage: 0, manualHidden: false, orbStage: 0, mobileVideoFailed: false };
 
   constructor(props) {
     super(props);
@@ -362,6 +375,19 @@ class Component extends DCLogic {
     document.removeEventListener('click', this.onDocClick, true);
     if (this.heroTimer) clearTimeout(this.heroTimer);
   }
+  // Mobile-only safety net: the mobile <video> mounts AFTER the first paint
+  // (only once componentDidMount resolves isMobile), and unlike desktop's
+  // video — present from the very first render — a video element inserted
+  // later doesn't reliably honor the `autoplay` attribute alone in every
+  // browser. Calling .play() explicitly (same pattern already used by
+  // toggleSound() elsewhere in this file) is a no-op when already playing,
+  // so this is safe to run on every update. Strictly scoped to
+  // `isMobile` — never touches or affects desktop's video or behavior.
+  componentDidUpdate() {
+    if (!this.state.isMobile) return;
+    const v = this.videoRef.current;
+    if (v && v.paused) v.play().catch(() => {});
+  }
 
   // Cards are driven purely by the video's real currentTime (timeupdate), each loop of the video re-triggers the sequence.
   cardsVisible = () => (this.state.reducedMotion ? true : this.state.cardStage > 0) && !this.state.manualHidden;
@@ -392,6 +418,10 @@ class Component extends DCLogic {
       if (nextCard === 0) patch.manualHidden = false; // fresh loop: let capsules reappear next cue
       this.setState(patch);
     }
+  };
+  // Mobile-only fallback: if the hero video errors out, keep the static poster image and never touch desktop's video.
+  onMobileVideoError = () => {
+    this.setState({ mobileVideoFailed: true });
   };
   // Ascending pill menu: the only tech element now — no orb/halo/lines. Suspended above the open palm, never touching it.
   orbVals(s, isMobile) {
@@ -452,6 +482,8 @@ class Component extends DCLogic {
     const services = t.services.map((svc, i) => {
       const selected = s.selectedIndex === i;
       const dim = s.selectedIndex !== null && !selected;
+      // Same readiness gate used by the desktop capsules — now shared with the mobile capsule list so both stay in sync with the one video.
+      const ready = (s.reducedMotion ? true : i < s.cardStage) && !s.manualHidden;
       let cardStyle;
       if (isMobile) {
         cardStyle = {
@@ -460,7 +492,6 @@ class Component extends DCLogic {
           transition: 'all .35s ease', opacity: dim ? 0.55 : 1
         };
       } else {
-        const ready = (s.reducedMotion ? true : i < s.cardStage) && !s.manualHidden;
         cardStyle = {
           width: '220px', height: '40px', textAlign: 'center',
           background: 'linear-gradient(135deg, #241a12 0%, #3a2617 55%, #6b4426 100%)', backdropFilter: 'blur(5px)',
@@ -478,7 +509,15 @@ class Component extends DCLogic {
         isResources: !!svc.isResources, isServicePanel: !svc.isResources,
         selected, isFirst: i === 0, isSecond: i === 1, isThird: i === 2, isFourth: i === 3,
         descDisplay: '-webkit-box',
-        mobileStyle: { width: '100%', height: '42px', textAlign: 'center', background: 'linear-gradient(135deg, #241a12 0%, #3a2617 55%, #6b4426 100%)', border: `1px solid ${selected ? '#f2c775' : '#D8A84E'}`, borderRadius: '20px', color: '#F8EED8', fontFamily: "'Manrope',sans-serif", fontSize: '13px', fontWeight: 600, cursor: 'pointer', boxShadow: '0 0 8px rgba(216,168,78,0.18)' },
+        mobileStyle: {
+          width: '100%', height: '42px', textAlign: 'center', background: 'linear-gradient(135deg, #241a12 0%, #3a2617 55%, #6b4426 100%)',
+          border: `1px solid ${selected ? '#f2c775' : '#D8A84E'}`, borderRadius: '20px', color: '#F8EED8', fontFamily: "'Manrope',sans-serif", fontSize: '13px', fontWeight: 600, cursor: 'pointer',
+          boxShadow: '0 0 8px rgba(216,168,78,0.18)',
+          opacity: ready ? (dim ? 0.55 : 1) : 0,
+          transform: ready ? 'translateY(0)' : 'translateY(10px)',
+          transition: 'opacity .4s ease, transform .4s ease, border-color .3s ease',
+          pointerEvents: ready ? 'auto' : 'none'
+        },
         cardStyle, cardHover: isMobile ? { borderColor: '#cda86a' } : { borderColor: '#cda86a' },
         onSelect: () => this.selectService(i),
         onKey: (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); this.selectService(i); } }
@@ -511,6 +550,12 @@ class Component extends DCLogic {
         answerWrapStyle: { maxHeight: open ? '400px' : '0px', overflow: 'hidden', transition: 'max-height .35s ease' }
       };
     });
+
+    // Mobile hero media fallback: prefers-reduced-motion, Save-Data, or a video error all fall back to the
+    // existing static poster image. Desktop's video is completely untouched by this check.
+    const dataSaverOn = typeof navigator !== 'undefined' && !!(navigator.connection && navigator.connection.saveData);
+    const showMobileVideo = isMobile && !s.reducedMotion && !dataSaverOn && !s.mobileVideoFailed;
+    const showMobileImage = isMobile && !showMobileVideo;
 
     const hasSelected = s.selectedIndex !== null && s.panelOpen;
     const selected = s.selectedIndex !== null ? services[s.selectedIndex] : { num: '', title: '', full: '', bullets: [], limitations: '' };
@@ -548,6 +593,7 @@ class Component extends DCLogic {
       servicesUp: services,
       closeAllCards: this.closeAllCards,
       videoRef: this.videoRef, onVideoTimeUpdate: this.onVideoTimeUpdate, cardsGroupRef: this.cardsGroupRef,
+      onMobileVideoError: this.onMobileVideoError, showMobileVideo, showMobileImage,
       audioRef: this.audioRef, toggleSound: this.toggleSound, soundOn: s.soundOn,
       soundIcon: s.soundOn ? '🔊' : '🔈',
       soundLabel: s.soundOn ? (s.lang === 'es' ? 'Sonido activado' : 'Sound on') : (s.lang === 'es' ? 'Activar sonido' : 'Enable sound'),
@@ -556,7 +602,7 @@ class Component extends DCLogic {
       energyLineStyle: { position: 'absolute', left: '8%', top: '52%', width: this.cardsVisible() ? '22%' : '0%', height: '1.5px', background: 'linear-gradient(270deg,#cda86a,#6f93c9)', transition: 'width 1s ease .3s', animation: this.cardsVisible() && !s.reducedMotion ? 'pulseLine 2.4s ease-in-out infinite' : 'none', zIndex: 3 },
       ...this.orbVals(s, isMobile),
       cardsContainerStyle: isMobile
-        ? { position: 'relative', padding: this.cardsVisible() ? '20px 16px' : '0px 16px', maxHeight: this.cardsVisible() ? '1200px' : '0px', overflow: 'hidden', opacity: this.cardsVisible() ? 1 : 0, transition: 'max-height .6s ease, opacity .5s ease, padding .6s ease', background: '#0e0c08' }
+        ? { position: 'relative', display: 'flex', flexDirection: 'column', gap: '8px', padding: this.cardsVisible() ? '16px 20px' : '0px 20px', maxHeight: this.cardsVisible() ? '1200px' : '0px', overflow: 'hidden', opacity: this.cardsVisible() ? 1 : 0, transition: 'max-height .6s ease, opacity .5s ease, padding .6s ease', background: '#0e0c08' }
         : { position: 'absolute', left: '4%', top: '36%', width: 'min(520px,44vw)', pointerEvents: 'none' },
       cardsGridStyle: { display: 'grid', gridTemplateColumns: '1fr 1fr', gap: isMobile ? '10px' : '12px', pointerEvents: this.cardsVisible() ? 'auto' : 'none' },
       hasSelected, selected, waLink, generalWaLink, notRequested: !s.requested, requested: s.requested,
