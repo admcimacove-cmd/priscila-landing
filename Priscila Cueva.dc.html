@@ -157,7 +157,7 @@
 
   <section style="padding:clamp(70px,10vw,130px) clamp(24px,6vw,80px);background:linear-gradient(160deg,#151109 0%,#0b0a08 70%);text-align:center;border-top:1px solid #241f16;">
     <h2 style="font-family:'Playfair Display',serif;font-weight:600;font-size:clamp(24px,3.4vw,42px);max-width:760px;margin:0 auto 34px auto;color:#f5efe4;line-height:1.3;">{{ t.closingTitle }}</h2>
-    <button onClick="{{ scrollToHero }}" style="background:#cda86a;border:none;color:#0b0a08;padding:16px 36px;font-size:14px;letter-spacing:0.06em;border-radius:2px;cursor:pointer;font-family:'Manrope',sans-serif;font-weight:700;" style-hover="{{ closingBtnHover }}" style-focus="{{ focusRing }}">{{ t.closingBtn }}</button>
+    <a href="{{ generalWaLink }}" target="_blank" rel="noopener noreferrer" style="display:inline-block;text-decoration:none;background:#cda86a;border:none;color:#0b0a08;padding:16px 36px;font-size:14px;letter-spacing:0.06em;border-radius:2px;cursor:pointer;font-family:'Manrope',sans-serif;font-weight:700;" style-hover="{{ closingBtnHover }}" style-focus="{{ focusRing }}">{{ t.closingBtn }}</a>
   </section>
 
   <footer style="padding:32px clamp(24px,6vw,80px);background:#0b0a08;border-top:1px solid #241f16;display:flex;flex-wrap:wrap;gap:12px;justify-content:space-between;align-items:center;">
@@ -268,7 +268,8 @@ class Component extends DCLogic {
         ['¿Los precios aparecen en la página?', 'No. Los precios se conversan directamente según cada proyecto.'],
         ['¿Puedo comenzar por una landing y agregar automatización después?', 'Sí, puedes iniciar con un servicio e incorporar otros más adelante.']
       ],
-      waMsg: (title) => `Hola, me interesa el servicio: ${title}. Idioma: Español. Fuente: landing page.`
+      waMsg: (title) => `Hola, me interesa el servicio: ${title}. Idioma: Español. Fuente: landing page.`,
+      generalWaMsg: 'Hola, Priscila. Llegué desde tu página web y todavía no sé qué servicio necesito. ¿Podrías orientarme?'
     },
     en: {
       cta: 'Explore services',
@@ -313,7 +314,8 @@ class Component extends DCLogic {
         ['Are prices shown on the page?', 'No. Pricing is discussed directly for each project.'],
         ['Can I start with a landing page and add automation later?', 'Yes, you can start with one service and add others later.']
       ],
-      waMsg: (title) => `Hi, I'm interested in: ${title}. Language: English. Source: landing page.`
+      waMsg: (title) => `Hi, I'm interested in: ${title}. Language: English. Source: landing page.`,
+      generalWaMsg: "Hi Priscila. I came from your website and I'm not sure which service I need yet. Could you guide me?"
     }
   };
 
@@ -488,6 +490,7 @@ class Component extends DCLogic {
     const hasSelected = s.selectedIndex !== null && s.panelOpen;
     const selected = s.selectedIndex !== null ? services[s.selectedIndex] : { num: '', title: '', full: '', bullets: [], limitations: '' };
     const waLink = s.selectedIndex !== null ? `https://wa.me/16027720124?text=${encodeURIComponent(t.waMsg(t.services[s.selectedIndex].title))}` : '#';
+    const generalWaLink = `https://wa.me/16027720124?text=${encodeURIComponent(t.generalWaMsg)}`;
 
     const panelStyle = isMobile ? {
       position: 'fixed', left: 0, right: 0, bottom: 0, height: '82vh', maxHeight: '82vh', background: '#0f0d09',
@@ -531,7 +534,7 @@ class Component extends DCLogic {
         ? { position: 'relative', padding: this.cardsVisible() ? '20px 16px' : '0px 16px', maxHeight: this.cardsVisible() ? '1200px' : '0px', overflow: 'hidden', opacity: this.cardsVisible() ? 1 : 0, transition: 'max-height .6s ease, opacity .5s ease, padding .6s ease', background: '#0e0c08' }
         : { position: 'absolute', left: '4%', top: '36%', width: 'min(520px,44vw)', pointerEvents: 'none' },
       cardsGridStyle: { display: 'grid', gridTemplateColumns: '1fr 1fr', gap: isMobile ? '10px' : '12px', pointerEvents: this.cardsVisible() ? 'auto' : 'none' },
-      hasSelected, selected, waLink, notRequested: !s.requested, requested: s.requested,
+      hasSelected, selected, waLink, generalWaLink, notRequested: !s.requested, requested: s.requested,
       hotmartStatusLabel: this.hotmart.storeUrl ? t.hotmartCta : t.comingSoon,
       panelSelectedTitle: selected.title,
       panelStyle,
