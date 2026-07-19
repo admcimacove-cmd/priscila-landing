@@ -165,12 +165,17 @@
     <span style="font-size:12px;color:#665c4c;">{{ t.footerNote }}</span>
   </footer>
 
-  <div style="{{ backdropStyle }}" onClick="{{ closePanel }}"></div>
+  <div style="{{ backdropStyle }}"></div>
 
   <div style="{{ panelStyle }}" role="dialog" aria-label="{{ panelSelectedTitle }}">
     <sc-if value="{{ hasSelected }}" hint-placeholder-val="{{ false }}">
       <button onClick="{{ closePanel }}" aria-label="{{ t.close }}" style="position:absolute;top:18px;right:18px;background:none;border:1px solid #3a3122;color:#e7dfd0;width:34px;height:34px;border-radius:50%;cursor:pointer;font-size:16px;line-height:1;" style-focus="{{ focusRing }}">✕</button>
       <div style="padding:clamp(28px,4vw,44px);height:100%;overflow-y:auto;">
+        <div style="{{ explorerTabsWrapStyle }}">
+          <sc-for list="{{ explorerTabs }}" as="tab" hint-placeholder-count="4">
+            <button onClick="{{ tab.onSelect }}" aria-pressed="{{ tab.active }}" aria-label="{{ tab.title }}" style="{{ tab.style }}" style-focus="{{ focusRing }}">{{ tab.num }}</button>
+          </sc-for>
+        </div>
         <div style="font-size:11px;color:#cda86a;letter-spacing:0.2em;margin-bottom:10px;">{{ selected.num }}</div>
         <h3 style="font-family:'Playfair Display',serif;font-weight:600;font-size:clamp(20px,2.2vw,28px);margin:0 0 16px 0;color:#f5efe4;padding-right:40px;">{{ selected.title }}</h3>
         <p style="font-size:14.5px;line-height:1.7;color:#c6bcaa;margin:0 0 22px 0;">{{ selected.full }}</p>
@@ -340,6 +345,7 @@ class Component extends DCLogic {
     };
     document.addEventListener('keydown', this.onKeydown);
     this.onDocClick = (e) => {
+      if (this.state.panelOpen) return; // explorer open: outside clicks never touch the hand-capsule automation or the panel
       if (!this.cardsVisible()) return;
       const grp = this.cardsGroupRef.current;
       if (grp && !grp.contains(e.target)) this.closeAllCards();
@@ -360,14 +366,15 @@ class Component extends DCLogic {
   // Cards are driven purely by the video's real currentTime (timeupdate), each loop of the video re-triggers the sequence.
   cardsVisible = () => (this.state.reducedMotion ? true : this.state.cardStage > 0) && !this.state.manualHidden;
 
+  // "Explorar servicios" always opens the permanent explorer panel, independent of the hand-capsule automation
+  // and independent of whether the capsules are currently visible.
   activate = () => {
-    if (this.cardsVisible()) {
-      this.setState({ manualHidden: true, selectedIndex: null, panelOpen: false, requested: false });
-    } else {
-      this.setState({ manualHidden: false, orbStage: 2, cardStage: this.state.cardStage > 0 ? this.state.cardStage : 4 });
-    }
+    this.setState(s => ({ panelOpen: true, selectedIndex: s.selectedIndex !== null ? s.selectedIndex : 0, requested: false }));
   };
   onVideoTimeUpdate = (e) => {
+    // While the explorer panel is open, ignore capsule automation entirely: the video and audio keep playing
+    // untouched, but no loop or timing cue may ever change or close an open panel.
+    if (this.state.panelOpen) return;
     const ct = e.target.currentTime;
     const s = this.state;
     let nextOrb = 0, nextCard = 0;
@@ -380,9 +387,9 @@ class Component extends DCLogic {
       else if (ct >= 3.35) nextCard = 1;
     }
     if (nextCard > 0) nextOrb = 2; // cards imply the orb has already fully formed
-    if (nextOrb !== s.orbStage || nextCard !== s.cardStage || (nextCard === 0 && (s.manualHidden || s.selectedIndex !== null))) {
+    if (nextOrb !== s.orbStage || nextCard !== s.cardStage) {
       const patch = { orbStage: nextOrb, cardStage: nextCard };
-      if (nextCard === 0) { patch.manualHidden = false; patch.selectedIndex = null; patch.panelOpen = false; patch.requested = false; }
+      if (nextCard === 0) patch.manualHidden = false; // fresh loop: let capsules reappear next cue
       this.setState(patch);
     }
   };
@@ -423,12 +430,13 @@ class Component extends DCLogic {
     if (a) a.volume = v;
   };
   setLang = (l) => this.setState({ lang: l });
+  // Selecting a service — from a hand capsule or from the in-panel tab list — always opens/updates the explorer.
   selectService = (i) => {
-    if (!this.cardsVisible()) return;
     this.setState({ selectedIndex: i, panelOpen: true, requested: false });
   };
   closePanel = () => this.setState({ panelOpen: false, requested: false, selectedIndex: null });
-  closeAllCards = () => this.setState({ manualHidden: true, panelOpen: false, requested: false, selectedIndex: null });
+  // Hiding the hand capsules never touches the explorer panel — the two are fully independent now.
+  closeAllCards = () => this.setState({ manualHidden: true });
   requestService = () => this.setState({ requested: true });
   toggleFaq = (i) => this.setState(s => ({ openFaq: s.openFaq === i ? null : i }));
   scrollToHero = () => { const el = document.getElementById('hero'); if (el) el.scrollIntoView({ behavior: this.state.reducedMotion ? 'auto' : 'smooth' }); this.activate(); };
@@ -476,6 +484,23 @@ class Component extends DCLogic {
         onKey: (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); this.selectService(i); } }
       };
     });
+
+    // Compact in-panel selector reusing the same `services` data — not a duplicate of the hand capsules,
+    // it lives inside the permanent explorer so the visitor can switch service without closing the panel.
+    const explorerTabs = services.map((svc, i) => ({
+      num: svc.num,
+      title: svc.title,
+      active: svc.selected,
+      onSelect: () => this.selectService(i),
+      style: {
+        background: svc.selected ? '#1c1710' : 'transparent',
+        border: `1px solid ${svc.selected ? '#cda86a' : '#3a3122'}`,
+        color: svc.selected ? '#f2d9ad' : '#8a7f6d',
+        borderRadius: '20px', padding: '7px 13px', fontSize: '12px', fontWeight: 700,
+        fontFamily: "'Manrope',sans-serif", letterSpacing: '0.03em', cursor: 'pointer',
+        transition: 'all .25s ease'
+      }
+    }));
 
     const faqItems = t.faq.map(([q, a], i) => {
       const open = s.openFaq === i;
@@ -535,6 +560,8 @@ class Component extends DCLogic {
         : { position: 'absolute', left: '4%', top: '36%', width: 'min(520px,44vw)', pointerEvents: 'none' },
       cardsGridStyle: { display: 'grid', gridTemplateColumns: '1fr 1fr', gap: isMobile ? '10px' : '12px', pointerEvents: this.cardsVisible() ? 'auto' : 'none' },
       hasSelected, selected, waLink, generalWaLink, notRequested: !s.requested, requested: s.requested,
+      explorerTabs,
+      explorerTabsWrapStyle: { display: 'flex', gap: '8px', flexWrap: 'wrap', position: 'sticky', top: '0', zIndex: 2, background: '#0f0d09', paddingBottom: '16px', paddingRight: '44px', marginBottom: '2px' },
       hotmartStatusLabel: this.hotmart.storeUrl ? t.hotmartCta : t.comingSoon,
       panelSelectedTitle: selected.title,
       panelStyle,
