@@ -1,0 +1,9 @@
+{
+  "name": "priscila-cueva-landing",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Landing page de Priscila Cueva — build reproducible para Cloudflare Pages.",
+  "scripts": {
+    "build": "node scripts/build.mjs"
+  }
+}
