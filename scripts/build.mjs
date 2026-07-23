@@ -11,6 +11,7 @@ const distDir = path.join(root, "dist");
 const SOURCE_HTML = "Priscila Cueva.dc.html";
 const SOURCE_SCRIPT = "support.js";
 const SOURCE_UPLOADS = "uploads";
+const SOURCE_HEADERS = "_headers";
 
 function log(message) {
   console.log(`[build] ${message}`);
@@ -50,5 +51,12 @@ const uploadsDest = path.join(distDir, SOURCE_UPLOADS);
 requireSource(uploadsSrc, `${SOURCE_UPLOADS}/`);
 cpSync(uploadsSrc, uploadsDest, { recursive: true });
 log(`Copied "${SOURCE_UPLOADS}/" -> dist/${SOURCE_UPLOADS}/`);
+
+// 5. Copy Cloudflare Pages security headers, unmodified
+const headersSrc = path.join(root, SOURCE_HEADERS);
+const headersDest = path.join(distDir, SOURCE_HEADERS);
+requireSource(headersSrc, SOURCE_HEADERS);
+cpSync(headersSrc, headersDest);
+log(`Copied "${SOURCE_HEADERS}" -> dist/${SOURCE_HEADERS}`);
 
 log("Build complete.");

@@ -1,1 +1,20 @@
 dist/
+
+# Secrets / credentials
+.env
+.env.*
+!.env.example
+credentials*
+secrets*
+*.pem
+*.key
+*.p12
+*.pfx
+*.crt
+
+# Dependencies
+node_modules/
+
+# OS junk
+.DS_Store
+Thumbs.db
