@@ -35,8 +35,8 @@
 
     <sc-if value="{{ notMobile }}" hint-placeholder-val="{{ true }}">
       <div style="position:relative;width:100%;height:100vh;overflow:hidden;">
-        <video ref="{{ videoRef }}" onTimeUpdate="{{ onVideoTimeUpdate }}" poster="uploads/priscila-hero-base.png.png" autoplay="{{ true }}" muted="{{ true }}" playsinline="{{ true }}" loop="{{ true }}" preload="auto" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:38% 34%;">
-          <source src="uploads/Woman_making_subtle_gesture_202607181915-78d8325d.mp4" type="video/mp4" />
+        <video ref="{{ videoRef }}" onTimeUpdate="{{ onVideoTimeUpdate }}" poster="uploads/woman-making-new-poster.jpg" autoPlay="{{ true }}" muted="{{ true }}" playsInline="{{ true }}" webkit-playsinline="true" loop="{{ true }}" preload="auto" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:56% 30%;">
+          <source src="uploads/woman_making_new.mp4" type="video/mp4" />
         </video>
         <audio ref="{{ audioRef }}" preload="auto" style="display:none;">
           <source src="uploads/Executive_Authority_Web_30s.mp3" type="audio/mpeg" />
@@ -67,7 +67,7 @@
           <sc-if value="{{ cardsVisibleNow }}" hint-placeholder-val="{{ false }}">
             <button onClick="{{ closeAllCards }}" aria-label="{{ t.closeServices }}" style="width:28px;height:28px;border-radius:50%;background:rgba(11,10,8,0.6);border:1px solid rgba(205,168,106,0.5);color:#e7dfd0;font-size:13px;cursor:pointer;pointer-events:auto;align-self:center;margin-bottom:10px;" style-focus="{{ focusRing }}">×</button>
           </sc-if>
-          <sc-for list="{{ servicesUp }}" as="svc" hint-placeholder-count="4">
+          <sc-for list="{{ heroCapsules }}" as="svc" hint-placeholder-count="3">
             <button
               aria-pressed="{{ svc.selected }}"
               onClick="{{ svc.onSelect }}"
@@ -84,12 +84,12 @@
     <sc-if value="{{ isMobile }}" hint-placeholder-val="{{ false }}">
       <div style="position:relative;width:100%;height:64vh;overflow:hidden;">
         <sc-if value="{{ showMobileVideo }}" hint-placeholder-val="{{ false }}">
-          <video ref="{{ videoRef }}" onTimeUpdate="{{ onVideoTimeUpdate }}" onError="{{ onMobileVideoError }}" poster="uploads/priscila-hero-base.png.png" autoplay="{{ true }}" muted="{{ true }}" playsinline="{{ true }}" webkit-playsinline="{{ true }}" loop="{{ true }}" preload="metadata" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:48% 22%;">
-            <source src="uploads/Woman_making_subtle_gesture_202607181915-78d8325d.mp4" type="video/mp4" />
+          <video ref="{{ videoRef }}" onTimeUpdate="{{ onVideoTimeUpdate }}" onError="{{ onMobileVideoError }}" poster="uploads/woman-making-new-poster.jpg" autoPlay="{{ true }}" muted="{{ true }}" playsInline="{{ true }}" webkit-playsinline="true" loop="{{ true }}" preload="metadata" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:46% 30%;">
+            <source src="uploads/woman_making_new.mp4" type="video/mp4" />
           </video>
         </sc-if>
         <sc-if value="{{ showMobileImage }}" hint-placeholder-val="{{ true }}">
-          <img src="uploads/priscila-hero-base.png.png" alt="Priscila Cueva" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:48% 22%;" />
+          <img src="uploads/woman-making-new-poster.jpg" alt="Priscila Cueva" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:46% 30%;" />
         </sc-if>
         <audio ref="{{ audioRef }}" preload="metadata" loop="{{ true }}" style="display:none;">
           <source src="uploads/Executive_Authority_Web_30s.mp3" type="audio/mpeg" />
@@ -110,7 +110,7 @@
         </div>
       </div>
       <div style="{{ cardsContainerStyle }}">
-        <sc-for list="{{ servicesUp }}" as="svc" hint-placeholder-count="4">
+        <sc-for list="{{ heroCapsules }}" as="svc" hint-placeholder-count="3">
           <button aria-pressed="{{ svc.selected }}" onClick="{{ svc.onSelect }}" style="{{ svc.mobileStyle }}" style-focus="{{ focusRing }}"><span style="color:#D8A84E;">{{ svc.num }}</span> — <span style="color:#F8EED8;">{{ svc.title }}</span></button>
         </sc-for>
       </div>
@@ -138,19 +138,40 @@
     </div>
   </section>
 
-  <section style="padding:clamp(60px,8vw,110px) clamp(24px,6vw,80px);background:#111009;display:flex;flex-wrap:wrap;gap:clamp(32px,5vw,64px);align-items:center;border-top:1px solid #241f16;">
-    <div style="flex:1 1 260px;max-width:340px;">
-      <div style="width:100%;aspect-ratio:4/5;border-radius:4px;overflow:hidden;border:1px solid #3a3122;box-shadow:0 30px 60px -20px rgba(0,0,0,0.6);">
-        <img src="uploads/priscila-hero-base.png.png" alt="Priscila Cueva" style="width:100%;height:100%;object-fit:cover;object-position:60% 20%;" />
+  <section ref="{{ aboutSectionRef }}" style="position:relative;width:100%;overflow:hidden;background:#0b0a08;border-top:1px solid #241f16;">
+    <sc-if value="{{ notMobile }}" hint-placeholder-val="{{ true }}">
+      <div style="position:relative;width:100%;min-height:100vh;overflow:hidden;">
+        <video ref="{{ aboutVideoRef }}" muted="{{ true }}" loop="{{ true }}" playsInline="{{ true }}" webkit-playsinline="true" preload="none" poster="uploads/about-me-poster.jpg" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:40% 22%;">
+          <source src="uploads/about me.mp4" type="video/mp4" />
+        </video>
+        <div style="position:absolute;inset:0;width:42%;left:auto;right:0;background:linear-gradient(260deg, rgba(9,7,5,0.97) 0%, rgba(9,7,5,0.85) 55%, rgba(9,7,5,0.4) 85%, rgba(9,7,5,0) 100%);"></div>
+        <div style="position:absolute;inset:0;background:linear-gradient(0deg, rgba(9,7,5,0.5) 0%, transparent 20%, transparent 80%, rgba(9,7,5,0.35) 100%);"></div>
+        <div style="position:relative;z-index:2;min-height:100vh;display:flex;align-items:center;">
+          <div style="margin-left:auto;width:min(42%,540px);padding:clamp(60px,8vw,110px) clamp(24px,6vw,64px);box-sizing:border-box;">
+            <div style="font-size:11px;letter-spacing:0.3em;color:#cda86a;text-transform:uppercase;margin-bottom:16px;">{{ t.aboutEyebrow }}</div>
+            <h2 style="font-family:'Playfair Display',serif;font-weight:600;font-size:clamp(24px,3vw,38px);margin:0 0 22px 0;color:#f5efe4;">{{ t.aboutTitle }}</h2>
+            <sc-for list="{{ t.aboutBody }}" as="para" hint-placeholder-count="4">
+              <p style="font-size:clamp(15px,1.05vw,17px);line-height:1.8;color:#c6bcaa;margin:0 0 18px 0;">{{ para }}</p>
+            </sc-for>
+          </div>
+        </div>
       </div>
-    </div>
-    <div style="flex:2 1 380px;">
-      <div style="font-size:11px;letter-spacing:0.3em;color:#cda86a;text-transform:uppercase;margin-bottom:16px;">{{ t.aboutEyebrow }}</div>
-      <h2 style="font-family:'Playfair Display',serif;font-weight:600;font-size:clamp(24px,3vw,38px);margin:0 0 22px 0;color:#f5efe4;">{{ t.aboutTitle }}</h2>
-      <sc-for list="{{ t.aboutBody }}" as="para" hint-placeholder-count="4">
-        <p style="font-size:clamp(15px,1.05vw,17px);line-height:1.8;color:#c6bcaa;max-width:620px;margin:0 0 18px 0;">{{ para }}</p>
-      </sc-for>
-    </div>
+    </sc-if>
+    <sc-if value="{{ isMobile }}" hint-placeholder-val="{{ false }}">
+      <div style="position:relative;width:100%;height:56vh;overflow:hidden;">
+        <video ref="{{ aboutVideoRef }}" muted="{{ true }}" loop="{{ true }}" playsInline="{{ true }}" webkit-playsinline="true" preload="none" poster="uploads/about-me-poster.jpg" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:42% 18%;">
+          <source src="uploads/about me.mp4" type="video/mp4" />
+        </video>
+        <div style="position:absolute;inset:0;background:linear-gradient(0deg, rgba(9,7,5,0.55) 0%, transparent 55%);"></div>
+      </div>
+      <div style="padding:clamp(32px,8vw,48px) 20px;background:#111009;">
+        <div style="font-size:11px;letter-spacing:0.3em;color:#cda86a;text-transform:uppercase;margin-bottom:16px;">{{ t.aboutEyebrow }}</div>
+        <h2 style="font-family:'Playfair Display',serif;font-weight:600;font-size:clamp(24px,3vw,38px);margin:0 0 22px 0;color:#f5efe4;">{{ t.aboutTitle }}</h2>
+        <sc-for list="{{ t.aboutBody }}" as="para" hint-placeholder-count="4">
+          <p style="font-size:15px;line-height:1.75;color:#c6bcaa;margin:0 0 18px 0;">{{ para }}</p>
+        </sc-for>
+      </div>
+    </sc-if>
   </section>
 
   <section style="padding:clamp(60px,8vw,110px) clamp(24px,6vw,80px);background:#0b0a08;">
@@ -332,8 +353,8 @@ class Component extends DCLogic {
       steps: ['We learn about your business', 'We identify the right solution', 'We design and verify the experience', 'We implement with human support'],
       services: [
         { num: '01', title: 'Intelligent Business Automation', short: 'Smart workflows that organize and support your customers.', full: 'We design intelligent workflows that help your business respond, organize, qualify opportunities, and guide customers more efficiently without losing human control.', bullets: ['Initial responses', 'Language detection', 'Answers using approved information', 'Opportunity classification', 'Organized data collection', 'FAQs', 'Human handoff', 'Follow-up', 'Future CRM or matrix', 'Appointment requests', 'Authorized reminders', 'Future integrations evaluated'], limitations: 'In healthcare, presented only as administrative support. It does not provide diagnosis, clinical triage, treatment, or automatic regulatory compliance.' },
-        { num: '02', title: 'Website and Landing Page Design', short: 'Clear digital experiences that turn interest into action.', full: 'We create strategic, visual, and responsive digital experiences that present your brand clearly and turn interest into meaningful action.', bullets: ['Landing pages', 'Business pages', 'Bilingual design', 'Mobile experience', 'Calls to action', 'WhatsApp integration', 'Content architecture', 'Technical SEO readiness', 'Performance optimization', 'Custom design'], limitations: "We don't guarantee top search rankings or specific sales figures. Hosting, domain, and maintenance are not included." },
-        { num: '03', title: 'UGC and Digital Content Creation', short: 'Authentic content that connects with your audience.', full: 'We transform ideas, products, and experiences into authentic content that communicates, connects, and strengthens a brand\'s digital presence.', bullets: ['Creative concepting', 'Scripts', 'Hooks', 'UGC videos', 'Vertical content', 'Creative photography', 'Brand messaging', 'Editing', 'Bilingual content', 'Adaptation for TikTok, Instagram, and Facebook'], limitations: 'Deliverable quantities, timelines, revisions, and usage rights are defined case by case.' },
+        { num: '02', title: 'Website & Landing Page Design', short: 'Clear digital experiences that turn interest into action.', full: 'We create strategic, visual, and responsive digital experiences that present your brand clearly and turn interest into meaningful action.', bullets: ['Landing pages', 'Business pages', 'Bilingual design', 'Mobile experience', 'Calls to action', 'WhatsApp integration', 'Content architecture', 'Technical SEO readiness', 'Performance optimization', 'Custom design'], limitations: "We don't guarantee top search rankings or specific sales figures. Hosting, domain, and maintenance are not included." },
+        { num: '03', title: 'UGC & Digital Creative Content', short: 'Authentic content that connects with your audience.', full: 'We transform ideas, products, and experiences into authentic content that communicates, connects, and strengthens a brand\'s digital presence.', bullets: ['Creative concepting', 'Scripts', 'Hooks', 'UGC videos', 'Vertical content', 'Creative photography', 'Brand messaging', 'Editing', 'Bilingual content', 'Adaptation for TikTok, Instagram, and Facebook'], limitations: 'Deliverable quantities, timelines, revisions, and usage rights are defined case by case.' },
         { num: '04', id: 'resources', title: 'Courses & Resources', short: 'Guides, templates, and practical training.', full: 'Guides, courses, templates, and practical resources built from real processes.', bullets: [], limitations: '', isResources: true }
       ],
       faq: [
@@ -356,6 +377,8 @@ class Component extends DCLogic {
     this.videoRef = React.createRef();
     this.audioRef = React.createRef();
     this.cardsGroupRef = React.createRef();
+    this.aboutVideoRef = React.createRef();
+    this.aboutSectionRef = React.createRef();
   }
 
   componentDidMount() {
@@ -379,12 +402,29 @@ class Component extends DCLogic {
     // Never assume audio is already playing on mount — always start muted-off/false until a real play() resolves.
     this.onVis = () => { const a = this.audioRef.current; if (!a) return; if (document.hidden) a.pause(); else if (this.state.soundOn) a.play().catch(() => {}); };
     document.addEventListener('visibilitychange', this.onVis);
+    // Lazy-load the About video: it stays unloaded (preload="none", no autoplay attribute) until this
+    // section is about to scroll into view, so it never competes with the hero video for bandwidth on
+    // first paint. Muted, so it never competes with the hero's audio either. Observer disconnects after
+    // the first intersection — a one-time trigger, not a recurring listener.
+    this.aboutObserver = null;
+    if (typeof IntersectionObserver !== 'undefined' && this.aboutSectionRef.current) {
+      this.aboutObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          const v = this.aboutVideoRef.current;
+          if (v) v.play().catch(() => {});
+          this.aboutObserver.disconnect();
+        });
+      }, { rootMargin: '300px 0px' });
+      this.aboutObserver.observe(this.aboutSectionRef.current);
+    }
   }
   componentWillUnmount() {
     document.removeEventListener('visibilitychange', this.onVis);
     window.removeEventListener('resize', this.updateViewport);
     document.removeEventListener('keydown', this.onKeydown);
     document.removeEventListener('click', this.onDocClick, true);
+    if (this.aboutObserver) this.aboutObserver.disconnect();
     if (this.heroTimer) clearTimeout(this.heroTimer);
   }
   // Mobile-only safety net: the mobile <video> mounts AFTER the first paint
@@ -409,24 +449,24 @@ class Component extends DCLogic {
   activate = () => {
     this.setState(s => ({ panelOpen: true, selectedIndex: s.selectedIndex !== null ? s.selectedIndex : 0, requested: false }));
   };
+  // Capsule timing measured directly from uploads/woman_making_new.mp4 (real duration 8.04s) by sampling
+  // frames every ~0.15-0.35s and inspecting the hand: it rests near her chin until ~1.8s, lifts and opens
+  // through ~1.8-3.0s, is fully settled and held from ~3.2s, and holds until a hard cut (to a different,
+  // standing shot) begins between 5.90s and 6.07s — so capsules hide at 5.85s to stay clear of that cut.
   onVideoTimeUpdate = (e) => {
     // While the explorer panel is open, ignore capsule automation entirely: the video and audio keep playing
     // untouched, but no loop or timing cue may ever change or close an open panel.
     if (this.state.panelOpen) return;
     const ct = e.target.currentTime;
     const s = this.state;
-    let nextOrb = 0, nextCard = 0;
-    if (ct >= 7.2) { nextOrb = 0; nextCard = 0; }
-    else if (ct >= 3.10) {
-      nextOrb = ct >= 3.22 ? 2 : 1;
-      if (ct >= 4.04) nextCard = 4;
-      else if (ct >= 3.81) nextCard = 3;
-      else if (ct >= 3.58) nextCard = 2;
-      else if (ct >= 3.35) nextCard = 1;
+    let nextCard = 0;
+    if (ct >= 1.8 && ct < 5.85) {
+      if (ct >= 2.9) nextCard = 3;
+      else if (ct >= 2.5) nextCard = 2;
+      else if (ct >= 2.1) nextCard = 1;
     }
-    if (nextCard > 0) nextOrb = 2; // cards imply the orb has already fully formed
-    if (nextOrb !== s.orbStage || nextCard !== s.cardStage) {
-      const patch = { orbStage: nextOrb, cardStage: nextCard };
+    if (nextCard !== s.cardStage) {
+      const patch = { cardStage: nextCard };
       if (nextCard === 0) patch.manualHidden = false; // fresh loop: let capsules reappear next cue
       this.setState(patch);
     }
@@ -435,12 +475,14 @@ class Component extends DCLogic {
   onMobileVideoError = () => {
     this.setState({ mobileVideoFailed: true });
   };
-  // Ascending pill menu: the only tech element now — no orb/halo/lines. Suspended above the open palm, never touching it.
+  // Ascending pill menu: the only tech element now — no orb/halo/lines.
   orbVals(s, isMobile) {
-    // --hand-anchor-x/--hand-anchor-y: tuned to the palm's final position in the video (desktop).
-    const anchorX = 17, anchorY = 57;
+    // Anchored from the viewport's right edge (not a raw video-frame %) so the capsules stay inside a
+    // safe area regardless of how object-fit:cover crops woman_making_new.mp4 at different desktop
+    // widths. In the source frame her open palm settles at roughly 68% width / 42% height with clean
+    // window/sky space to its right — this keeps the capsules in that space, clear of her face/hand.
     return {
-      pillColumnStyle: { position: 'absolute', left: anchorX + '%', top: anchorY + '%', transform: 'translate(-50%,-100%)', marginTop: '-40px', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px', zIndex: 6 }
+      pillColumnStyle: { position: 'absolute', right: 'clamp(32px, 7vw, 130px)', top: '30%', display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: '10px', zIndex: 6 }
     };
   }
   onAudioEnded = () => {
@@ -505,7 +547,7 @@ class Component extends DCLogic {
         };
       } else {
         cardStyle = {
-          width: '220px', height: '40px', textAlign: 'center',
+          width: 'clamp(168px, 15vw, 220px)', height: 'clamp(36px, 3.2vw, 40px)', textAlign: 'center',
           background: 'linear-gradient(135deg, #241a12 0%, #3a2617 55%, #6b4426 100%)', backdropFilter: 'blur(5px)',
           border: `1px solid ${selected ? '#f2c775' : '#D8A84E'}`, borderRadius: '20px',
           cursor: 'pointer', color: '#F8EED8', fontFamily: "'Manrope',sans-serif", fontSize: '12.5px', fontWeight: 600, letterSpacing: '0.02em',
@@ -603,9 +645,13 @@ class Component extends DCLogic {
       waHover: { background: '#4ba57e' },
       cardsVisibleNow: this.cardsVisible(),
       servicesUp: services,
+      // The hero gesture only ever presents the 3 real, definitive services — "Cursos & Recursos" stays
+      // reachable through the permanent explorer's tab list (explorerTabs, below), which is untouched.
+      heroCapsules: services.slice(0, 3),
       closeAllCards: this.closeAllCards,
       videoRef: this.videoRef, onVideoTimeUpdate: this.onVideoTimeUpdate, cardsGroupRef: this.cardsGroupRef,
       onMobileVideoError: this.onMobileVideoError, showMobileVideo, showMobileImage,
+      aboutVideoRef: this.aboutVideoRef, aboutSectionRef: this.aboutSectionRef,
       audioRef: this.audioRef, toggleSound: this.toggleSound, soundOn: s.soundOn,
       soundIcon: s.soundOn ? '🔊' : '🔈',
       soundLabel: s.soundOn ? (s.lang === 'es' ? 'Sonido activado' : 'Sound on') : (s.lang === 'es' ? 'Activar sonido' : 'Enable sound'),
