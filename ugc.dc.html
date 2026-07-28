@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Priscila Cueva — Portafolio UGC / UGC Portfolio</title>
+<script src="/support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="preconnect" href="https://fonts.googleapis.com"></link>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet"></link>
+  <meta name="description" content="Portafolio UGC de Priscila Cueva — contenido premium para marcas. / Priscila Cueva's UGC portfolio — premium content for brands." />
+  <style>
+    *{box-sizing:border-box;}
+    body{margin:0;background:#0b0a08;}
+    ::selection{background:#cda86a;color:#0b0a08;}
+  </style>
+</helmet>
+<div style="font-family:'Manrope',sans-serif;background:#0b0a08;color:#f2ece1;width:100%;overflow-x:hidden;min-height:100vh;">
+
+  <nav style="position:fixed;top:0;left:0;right:0;z-index:50;display:flex;justify-content:space-between;align-items:center;padding:20px clamp(20px,4vw,48px);background:linear-gradient(180deg, rgba(9,7,5,0.85), transparent);">
+    <a href="/" style="display:flex;align-items:center;gap:8px;text-decoration:none;color:#c6bcaa;font-size:13px;letter-spacing:0.04em;font-family:'Manrope',sans-serif;" style-focus="{{ focusRing }}">
+      <span aria-hidden="true">←</span><span>{{ t.backToMain }}</span>
+    </a>
+    <div style="display:flex;gap:6px;align-items:center;">
+      <button aria-pressed="{{ isEs }}" onClick="{{ setLangEs }}" style="{{ btnEsStyle }}" style-focus="{{ focusRing }}">ES</button>
+      <span style="color:#584f43;">|</span>
+      <button aria-pressed="{{ isEn }}" onClick="{{ setLangEn }}" style="{{ btnEnStyle }}" style-focus="{{ focusRing }}">EN</button>
+    </div>
+  </nav>
+
+  <section style="position:relative;width:100%;padding:clamp(120px,16vw,180px) clamp(24px,6vw,80px) clamp(60px,8vw,90px) clamp(24px,6vw,80px);background:#0b0a08;text-align:center;">
+    <div style="max-width:720px;margin:0 auto;">
+      <span style="width:34px;height:34px;border-radius:50%;border:1px solid #cda86a;display:inline-flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:13px;color:#e8c07f;margin-bottom:18px;">PC</span>
+      <div style="font-family:'Playfair Display',serif;font-size:18px;font-style:italic;color:#f2d9ad;margin-bottom:20px;">Priscila Cueva</div>
+      <div style="font-size:11px;letter-spacing:0.3em;color:#cda86a;text-transform:uppercase;margin-bottom:20px;">{{ t.portfolioEyebrow }}</div>
+      <h1 style="font-family:'Playfair Display',serif;font-weight:600;font-size:clamp(26px,4vw,44px);line-height:1.28;margin:0 0 22px 0;color:#f7f1e6;text-wrap:balance;">{{ t.heroTitle }}</h1>
+      <p style="font-size:clamp(15px,1.1vw,17px);line-height:1.75;color:#cfc6b8;margin:0;text-wrap:pretty;">{{ t.heroSub }}</p>
+    </div>
+  </section>
+
+  <section style="padding:clamp(40px,6vw,64px) clamp(24px,6vw,80px);background:#111009;border-top:1px solid #241f16;border-bottom:1px solid #241f16;">
+    <p style="max-width:680px;margin:0 auto;font-size:clamp(14.5px,1.05vw,16px);line-height:1.8;color:#c6bcaa;text-align:center;">{{ t.positioningBody }}</p>
+  </section>
+
+  <section style="padding:clamp(70px,9vw,110px) clamp(24px,6vw,80px);background:#0b0a08;">
+    <div style="max-width:980px;margin:0 auto;">
+      <div style="text-align:center;margin-bottom:clamp(36px,5vw,56px);">
+        <div style="font-size:11px;letter-spacing:0.3em;color:#cda86a;text-transform:uppercase;margin-bottom:14px;">{{ t.campaignEyebrow }}</div>
+        <h2 style="font-family:'Playfair Display',serif;font-weight:600;font-size:clamp(22px,2.8vw,34px);margin:0;color:#f5efe4;">{{ t.campaignTitle }}</h2>
+      </div>
+
+      <div style="display:flex;flex-direction:column;align-items:center;gap:clamp(24px,3vw,36px);">
+        <div style="width:100%;max-width:480px;border-radius:4px;overflow:hidden;border:1px solid #3a3122;box-shadow:0 30px 60px -20px rgba(0,0,0,0.6);">
+          <img src="/uploads/ugc-portfolio/beauty-skincare-hero.png" alt="{{ t.campaignImageAlt }}" style="display:block;width:100%;height:auto;" />
+        </div>
+        <div style="max-width:520px;text-align:center;">
+          <div style="display:inline-block;font-size:11px;letter-spacing:0.16em;color:#f2d9ad;text-transform:uppercase;border:1px solid #cda86a;border-radius:20px;padding:6px 14px;margin-bottom:18px;">{{ t.campaignCategory }}</div>
+          <p style="font-size:clamp(14.5px,1.05vw,16px);line-height:1.75;color:#c6bcaa;margin:0 0 14px 0;">{{ t.campaignDescription }}</p>
+          <span style="font-size:12px;letter-spacing:0.06em;color:#8a7f6d;">{{ t.campaignFormat }}</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding:clamp(70px,10vw,130px) clamp(24px,6vw,80px);background:linear-gradient(160deg,#151109 0%,#0b0a08 70%);text-align:center;border-top:1px solid #241f16;">
+    <h2 style="font-family:'Playfair Display',serif;font-weight:600;font-size:clamp(24px,3.4vw,42px);max-width:640px;margin:0 auto 34px auto;color:#f5efe4;line-height:1.3;">{{ t.closingTitle }}</h2>
+    <a href="{{ waLink }}" target="_blank" rel="noopener noreferrer" style="display:inline-block;text-decoration:none;background:#3f8f6b;border:none;color:#0b0a08;padding:16px 36px;font-size:14px;letter-spacing:0.06em;border-radius:2px;cursor:pointer;font-family:'Manrope',sans-serif;font-weight:700;" style-hover="{{ waHover }}" style-focus="{{ focusRing }}">{{ t.closingBtn }}</a>
+  </section>
+
+  <footer style="padding:32px clamp(24px,6vw,80px);background:#0b0a08;border-top:1px solid #241f16;display:flex;flex-wrap:wrap;gap:12px;justify-content:space-between;align-items:center;">
+    <span style="font-family:'Playfair Display',serif;font-size:13px;letter-spacing:0.2em;color:#8a7f6d;">PRISCILA CUEVA</span>
+    <a href="/" style="font-size:12px;color:#665c4c;text-decoration:none;" style-focus="{{ focusRing }}">{{ t.backToMain }}</a>
+  </footer>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  copy = {
+    es: {
+      backToMain: 'Volver al sitio principal',
+      portfolioEyebrow: 'Portafolio UGC',
+      heroTitle: 'Contenido UGC premium, pensado para tu marca.',
+      heroSub: 'Creo contenido auténtico y dirigido para marcas que quieren conectar con su audiencia sin perder autenticidad — estrategia, dirección creativa y presencia humana en cada pieza.',
+      positioningBody: 'Soy Priscila Cueva — estratega digital y creadora de contenido. Este portafolio muestra cómo dirijo y produzco piezas de campaña para distintas categorías de producto, siempre con identidad real y calidad comercial.',
+      campaignEyebrow: 'Campaña publicada',
+      campaignTitle: 'Beauty / Skincare',
+      campaignCategory: 'Beauty · Skincare',
+      campaignImageAlt: 'Priscila Cueva sosteniendo un sérum premium — concepto de campaña Beauty/Skincare',
+      campaignDescription: 'Concepto de campaña: cómo integraría un sérum premium en una rutina real de cuidado facial — luz natural, ritual, primera impresión.',
+      campaignFormat: 'Imagen · formato 3:4',
+      closingTitle: '¿Creamos algo para tu marca?',
+      closingBtn: 'Escribir por WhatsApp',
+      waMsg: 'Hola, Priscila. Vi tu portafolio UGC y me gustaría conversar sobre una colaboración de marca.'
+    },
+    en: {
+      backToMain: 'Back to main site',
+      portfolioEyebrow: 'UGC Portfolio',
+      heroTitle: 'Premium UGC content, made for your brand.',
+      heroSub: "I create authentic, brand-directed content for companies that want to connect with their audience without losing authenticity — strategy, creative direction, and a human presence in every piece.",
+      positioningBody: "I'm Priscila Cueva — digital strategist and content creator. This portfolio shows how I direct and produce campaign pieces across different product categories, always with real identity and commercial-grade quality.",
+      campaignEyebrow: 'Published campaign',
+      campaignTitle: 'Beauty / Skincare',
+      campaignCategory: 'Beauty · Skincare',
+      campaignImageAlt: 'Priscila Cueva holding a premium serum — Beauty/Skincare campaign concept',
+      campaignDescription: "Campaign concept: how I'd integrate a premium serum into a real skincare routine — natural light, ritual, first impression.",
+      campaignFormat: 'Image · 3:4 format',
+      closingTitle: "Let's create something for your brand.",
+      closingBtn: 'Message on WhatsApp',
+      waMsg: "Hi Priscila, I saw your UGC portfolio and would like to talk about a brand collaboration."
+    }
+  };
+
+  state = { lang: 'es' };
+
+  setLang = (l) => this.setState({ lang: l });
+
+  renderVals() {
+    const s = this.state;
+    const t = this.copy[s.lang];
+    const focusRing = { outline: '2px solid #6f93c9', outlineOffset: '2px' };
+    const waLink = `https://wa.me/16027720124?text=${encodeURIComponent(t.waMsg)}`;
+
+    return {
+      isEs: s.lang === 'es', isEn: s.lang === 'en',
+      setLangEs: () => this.setLang('es'), setLangEn: () => this.setLang('en'),
+      btnEsStyle: { background: 'none', border: 'none', color: s.lang === 'es' ? '#cda86a' : '#8a7f6d', fontSize: '13px', letterSpacing: '0.1em', cursor: 'pointer', fontWeight: 700, padding: '4px' },
+      btnEnStyle: { background: 'none', border: 'none', color: s.lang === 'en' ? '#cda86a' : '#8a7f6d', fontSize: '13px', letterSpacing: '0.1em', cursor: 'pointer', fontWeight: 700, padding: '4px' },
+      focusRing,
+      t, waLink,
+      waHover: { background: '#4ba57e' }
+    };
+  }
+}
+</script>
+</body>
+</html>

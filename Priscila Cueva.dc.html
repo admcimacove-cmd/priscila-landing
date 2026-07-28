@@ -202,6 +202,10 @@
         <h3 style="font-family:'Playfair Display',serif;font-weight:600;font-size:clamp(20px,2.2vw,28px);margin:0 0 16px 0;color:#f5efe4;padding-right:40px;">{{ selected.title }}</h3>
         <p style="font-size:14.5px;line-height:1.7;color:#c6bcaa;margin:0 0 22px 0;">{{ selected.full }}</p>
 
+        <sc-if value="{{ selected.isThird }}" hint-placeholder-val="{{ false }}">
+          <a href="/ugc" style="display:inline-block;text-decoration:none;background:transparent;border:1px solid #cda86a;color:#f0e4cc;padding:12px 22px;font-size:13px;letter-spacing:0.06em;border-radius:2px;cursor:pointer;font-family:'Manrope',sans-serif;font-weight:600;margin-bottom:26px;" style-hover="{{ ctaHover }}" style-focus="{{ focusRing }}">{{ t.viewUgcPortfolioBtn }}</a>
+        </sc-if>
+
         <sc-if value="{{ selected.isResources }}" hint-placeholder-val="{{ false }}">
           <div style="border:1px solid #3a3122;border-radius:4px;padding:18px;background:#17140d;margin-bottom:20px;">
             <div style="font-family:'Playfair Display',serif;font-size:15px;color:#f2d9ad;margin-bottom:8px;">{{ t.resourceItemTitle }}</div>
@@ -276,6 +280,7 @@ class Component extends DCLogic {
       processLabel: 'Proceso general',
       limitationsLabel: 'Limitaciones',
       requestBtn: 'Solicitar este servicio',
+      viewUgcPortfolioBtn: 'Ver portafolio UGC',
       confirmText: 'Gracias. Este servicio se atiende de forma manual — conversemos los detalles por WhatsApp.',
       closeAndReturn: 'Cerrar y volver a los servicios',
       closeServices: 'Cerrar servicios',
@@ -327,6 +332,7 @@ class Component extends DCLogic {
       processLabel: 'General process',
       limitationsLabel: 'Limitations',
       requestBtn: 'Request this service',
+      viewUgcPortfolioBtn: 'View UGC Portfolio',
       confirmText: "Thank you. This service is handled manually — let's talk details on WhatsApp.",
       closeAndReturn: 'Close and return to services',
       closeServices: 'Close services',

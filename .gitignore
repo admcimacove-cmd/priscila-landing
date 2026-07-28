@@ -1,5 +1,11 @@
 dist/
 
+# Private identity reference photos and internal UGC production context —
+# never publish real biometric/likeness photos or account details to this
+# public repo.
+identity-reference/
+UGC_MASTER_CONTEXT.md
+
 # Secrets / credentials
 .env
 .env.*

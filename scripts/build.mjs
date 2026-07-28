@@ -9,6 +9,7 @@ const root = path.resolve(__dirname, "..");
 const distDir = path.join(root, "dist");
 
 const SOURCE_HTML = "Priscila Cueva.dc.html";
+const SOURCE_UGC_HTML = "ugc.dc.html";
 const SOURCE_SCRIPT = "support.js";
 const SOURCE_UPLOADS = "uploads";
 const SOURCE_HEADERS = "_headers";
@@ -38,21 +39,30 @@ requireSource(htmlSrc, SOURCE_HTML);
 cpSync(htmlSrc, htmlDest);
 log(`Copied "${SOURCE_HTML}" -> dist/index.html`);
 
-// 3. Copy the runtime script, unmodified
+// 3. Copy the standalone UGC portfolio page as ugc/index.html (clean-URL static routing on Cloudflare Pages)
+const ugcHtmlSrc = path.join(root, SOURCE_UGC_HTML);
+const ugcDir = path.join(distDir, "ugc");
+const ugcHtmlDest = path.join(ugcDir, "index.html");
+requireSource(ugcHtmlSrc, SOURCE_UGC_HTML);
+mkdirSync(ugcDir, { recursive: true });
+cpSync(ugcHtmlSrc, ugcHtmlDest);
+log(`Copied "${SOURCE_UGC_HTML}" -> dist/ugc/index.html`);
+
+// 4. Copy the runtime script, unmodified
 const scriptSrc = path.join(root, SOURCE_SCRIPT);
 const scriptDest = path.join(distDir, SOURCE_SCRIPT);
 requireSource(scriptSrc, SOURCE_SCRIPT);
 cpSync(scriptSrc, scriptDest);
 log(`Copied "${SOURCE_SCRIPT}" -> dist/${SOURCE_SCRIPT}`);
 
-// 4. Copy the uploads/ media folder, unmodified
+// 5. Copy the uploads/ media folder, unmodified
 const uploadsSrc = path.join(root, SOURCE_UPLOADS);
 const uploadsDest = path.join(distDir, SOURCE_UPLOADS);
 requireSource(uploadsSrc, `${SOURCE_UPLOADS}/`);
 cpSync(uploadsSrc, uploadsDest, { recursive: true });
 log(`Copied "${SOURCE_UPLOADS}/" -> dist/${SOURCE_UPLOADS}/`);
 
-// 5. Copy Cloudflare Pages security headers, unmodified
+// 6. Copy Cloudflare Pages security headers, unmodified
 const headersSrc = path.join(root, SOURCE_HEADERS);
 const headersDest = path.join(distDir, SOURCE_HEADERS);
 requireSource(headersSrc, SOURCE_HEADERS);
