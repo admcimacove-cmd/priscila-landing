@@ -16,6 +16,13 @@
     *{box-sizing:border-box;}
     body{margin:0;background:#0b0a08;}
     ::selection{background:#cda86a;color:#0b0a08;}
+    .ugc-filmstrip{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;padding-bottom:4px;scrollbar-width:none;}
+    .ugc-filmstrip::-webkit-scrollbar{display:none;}
+    .ugc-thumb{flex:0 0 220px;scroll-snap-align:start;border-radius:4px;overflow:hidden;border:1px solid #3a3122;cursor:pointer;background:#111009;transition:border-color .3s ease,box-shadow .3s ease;position:relative;}
+    .ugc-thumb:hover,.ugc-thumb:focus-visible{border-color:#cda86a;box-shadow:0 0 16px rgba(205,168,106,0.18);outline:none;}
+    .ugc-thumb img,.ugc-thumb video{display:block;width:100%;height:275px;object-fit:cover;}
+    .ugc-thumb-play{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:36px;height:36px;border-radius:50%;background:rgba(11,10,8,0.6);border:1px solid rgba(205,168,106,0.6);color:#f2d9ad;display:flex;align-items:center;justify-content:center;font-size:13px;pointer-events:none;}
+    .ugc-hero-btn{all:unset;cursor:pointer;display:block;width:100%;}
   </style>
 </helmet>
 <div style="font-family:'Manrope',sans-serif;background:#0b0a08;color:#f2ece1;width:100%;overflow-x:hidden;min-height:100vh;">
@@ -46,34 +53,75 @@
   </section>
 
   <section style="padding:clamp(70px,9vw,110px) clamp(24px,6vw,80px);background:#0b0a08;">
-    <div style="max-width:980px;margin:0 auto;">
-      <div style="text-align:center;margin-bottom:clamp(36px,5vw,56px);">
-        <div style="font-size:11px;letter-spacing:0.3em;color:#cda86a;text-transform:uppercase;margin-bottom:14px;">{{ t.campaignEyebrow }}</div>
-        <h2 style="font-family:'Playfair Display',serif;font-weight:600;font-size:clamp(22px,2.8vw,34px);margin:0;color:#f5efe4;">{{ t.campaignTitle }}</h2>
-      </div>
+    <sc-for list="{{ campaigns }}" as="campaign" hint-placeholder-count="1">
+      <div style="max-width:980px;margin:0 auto clamp(60px,8vw,90px) auto;">
+        <div style="text-align:center;margin-bottom:clamp(36px,5vw,56px);">
+          <div style="font-size:11px;letter-spacing:0.3em;color:#cda86a;text-transform:uppercase;margin-bottom:14px;">{{ t.campaignEyebrow }}</div>
+          <h2 style="font-family:'Playfair Display',serif;font-weight:600;font-size:clamp(22px,2.8vw,34px);margin:0;color:#f5efe4;">{{ campaign.title }}</h2>
+        </div>
 
-      <div style="display:flex;flex-direction:column;align-items:center;gap:clamp(24px,3vw,36px);">
-        <div style="width:100%;max-width:480px;border-radius:4px;overflow:hidden;border:1px solid #3a3122;box-shadow:0 30px 60px -20px rgba(0,0,0,0.6);">
-          <img src="/uploads/ugc-portfolio/beauty-skincare-hero.png" alt="{{ t.campaignImageAlt }}" style="display:block;width:100%;height:auto;" />
-        </div>
-        <div style="max-width:520px;text-align:center;">
-          <div style="display:inline-block;font-size:11px;letter-spacing:0.16em;color:#f2d9ad;text-transform:uppercase;border:1px solid #cda86a;border-radius:20px;padding:6px 14px;margin-bottom:18px;">{{ t.campaignCategory }}</div>
-          <p style="font-size:clamp(14.5px,1.05vw,16px);line-height:1.75;color:#c6bcaa;margin:0 0 14px 0;">{{ t.campaignDescription }}</p>
-          <span style="font-size:12px;letter-spacing:0.06em;color:#8a7f6d;">{{ t.campaignFormat }}</span>
+        <div style="display:flex;flex-direction:column;align-items:center;gap:clamp(24px,3vw,36px);">
+          <div style="width:100%;max-width:480px;border-radius:4px;overflow:hidden;border:1px solid #3a3122;box-shadow:0 30px 60px -20px rgba(0,0,0,0.6);">
+            <button class="ugc-hero-btn" onClick="{{ campaign.heroAsset.onOpen }}" aria-label="{{ campaign.heroAsset.alt }}">
+              <img src="{{ campaign.heroAsset.src }}" alt="{{ campaign.heroAsset.alt }}" style="display:block;width:100%;height:auto;" />
+            </button>
+          </div>
+          <div style="max-width:520px;text-align:center;">
+            <div style="display:inline-block;font-size:11px;letter-spacing:0.16em;color:#f2d9ad;text-transform:uppercase;border:1px solid #cda86a;border-radius:20px;padding:6px 14px;margin-bottom:18px;">{{ campaign.category }}</div>
+            <p style="font-size:clamp(14.5px,1.05vw,16px);line-height:1.75;color:#c6bcaa;margin:0 0 14px 0;">{{ campaign.description }}</p>
+            <span style="font-size:12px;letter-spacing:0.06em;color:#8a7f6d;">{{ campaign.heroAsset.format }}</span>
+          </div>
+
+          <sc-if value="{{ campaign.hasSecondary }}" hint-placeholder-val="{{ false }}">
+            <div style="width:100%;margin-top:8px;">
+              <div class="ugc-filmstrip" onScroll="{{ campaign.onFilmstripScroll }}">
+                <sc-for list="{{ campaign.secondaryAssets }}" as="asset" hint-placeholder-count="0">
+                  <div class="ugc-thumb" tabindex="0" role="button" aria-label="{{ asset.alt }}" onClick="{{ asset.onOpen }}" onKeyDown="{{ asset.onKeyDown }}">
+                    <sc-if value="{{ asset.isVideo }}" hint-placeholder-val="{{ false }}">
+                      <video src="{{ asset.src }}" poster="{{ asset.poster }}" muted="{{ true }}" preload="none"></video>
+                      <span class="ugc-thumb-play" aria-hidden="true">▶</span>
+                    </sc-if>
+                    <sc-if value="{{ asset.isImage }}" hint-placeholder-val="{{ true }}">
+                      <img src="{{ asset.src }}" alt="{{ asset.alt }}" />
+                    </sc-if>
+                  </div>
+                </sc-for>
+              </div>
+              <div style="display:flex;justify-content:center;gap:6px;margin-top:14px;">
+                <sc-for list="{{ campaign.dots }}" as="dot" hint-placeholder-count="0">
+                  <span style="{{ dot.style }}"></span>
+                </sc-for>
+              </div>
+            </div>
+          </sc-if>
         </div>
       </div>
-    </div>
+    </sc-for>
   </section>
 
   <section style="padding:clamp(70px,10vw,130px) clamp(24px,6vw,80px);background:linear-gradient(160deg,#151109 0%,#0b0a08 70%);text-align:center;border-top:1px solid #241f16;">
     <h2 style="font-family:'Playfair Display',serif;font-weight:600;font-size:clamp(24px,3.4vw,42px);max-width:640px;margin:0 auto 34px auto;color:#f5efe4;line-height:1.3;">{{ t.closingTitle }}</h2>
-    <a href="{{ waLink }}" target="_blank" rel="noopener noreferrer" style="display:inline-block;text-decoration:none;background:#3f8f6b;border:none;color:#0b0a08;padding:16px 36px;font-size:14px;letter-spacing:0.06em;border-radius:2px;cursor:pointer;font-family:'Manrope',sans-serif;font-weight:700;" style-hover="{{ waHover }}" style-focus="{{ focusRing }}">{{ t.closingBtn }}</a>
+    <a href="{{ waLink }}" target="_blank" rel="noopener noreferrer" style="display:inline-block;text-decoration:none;background:#cda86a;border:none;color:#0b0a08;padding:16px 36px;font-size:14px;letter-spacing:0.06em;border-radius:2px;cursor:pointer;font-family:'Manrope',sans-serif;font-weight:700;" style-hover="{{ waHover }}" style-focus="{{ focusRing }}">{{ t.closingBtn }}</a>
   </section>
 
   <footer style="padding:32px clamp(24px,6vw,80px);background:#0b0a08;border-top:1px solid #241f16;display:flex;flex-wrap:wrap;gap:12px;justify-content:space-between;align-items:center;">
     <span style="font-family:'Playfair Display',serif;font-size:13px;letter-spacing:0.2em;color:#8a7f6d;">PRISCILA CUEVA</span>
     <a href="/" style="font-size:12px;color:#665c4c;text-decoration:none;" style-focus="{{ focusRing }}">{{ t.backToMain }}</a>
   </footer>
+
+  <sc-if value="{{ hasLightbox }}" hint-placeholder-val="{{ false }}">
+    <div role="dialog" aria-modal="true" aria-label="{{ lightboxAsset.alt }}" onClick="{{ closeLightbox }}" style="position:fixed;inset:0;z-index:80;background:rgba(9,7,5,0.9);display:flex;align-items:center;justify-content:center;padding:clamp(20px,5vw,48px);">
+      <button onClick="{{ closeLightbox }}" aria-label="{{ t.close }}" style="position:absolute;top:18px;right:18px;background:none;border:1px solid #3a3122;color:#e7dfd0;width:36px;height:36px;border-radius:50%;cursor:pointer;font-size:16px;line-height:1;z-index:2;" style-focus="{{ focusRing }}">✕</button>
+      <div onClick="{{ stopPropagation }}" style="max-width:min(90vw,720px);max-height:85vh;">
+        <sc-if value="{{ lightboxIsVideo }}" hint-placeholder-val="{{ false }}">
+          <video ref="{{ lightboxVideoRef }}" src="{{ lightboxAsset.src }}" controls="{{ true }}" playsInline="{{ true }}" style="display:block;max-width:100%;max-height:85vh;border-radius:4px;" />
+        </sc-if>
+        <sc-if value="{{ lightboxIsImage }}" hint-placeholder-val="{{ true }}">
+          <img src="{{ lightboxAsset.src }}" alt="{{ lightboxAsset.alt }}" style="display:block;max-width:100%;max-height:85vh;border-radius:4px;object-fit:contain;" />
+        </sc-if>
+      </div>
+    </div>
+  </sc-if>
 
 </div>
 </x-dc>
@@ -87,14 +135,21 @@ class Component extends DCLogic {
       heroSub: 'Creo contenido auténtico y dirigido para marcas que quieren conectar con su audiencia sin perder autenticidad — estrategia, dirección creativa y presencia humana en cada pieza.',
       positioningBody: 'Soy Priscila Cueva — estratega digital y creadora de contenido. Este portafolio muestra cómo dirijo y produzco piezas de campaña para distintas categorías de producto, siempre con identidad real y calidad comercial.',
       campaignEyebrow: 'Campaña publicada',
-      campaignTitle: 'Beauty / Skincare',
-      campaignCategory: 'Beauty · Skincare',
-      campaignImageAlt: 'Priscila Cueva sosteniendo un sérum premium — concepto de campaña Beauty/Skincare',
-      campaignDescription: 'Concepto de campaña: cómo integraría un sérum premium en una rutina real de cuidado facial — luz natural, ritual, primera impresión.',
-      campaignFormat: 'Imagen · formato 3:4',
       closingTitle: '¿Creamos algo para tu marca?',
       closingBtn: 'Escribir por WhatsApp',
-      waMsg: 'Hola, Priscila. Vi tu portafolio UGC y me gustaría conversar sobre una colaboración de marca.'
+      waMsg: 'Hola, Priscila. Vi tu portafolio UGC y me gustaría conversar sobre una colaboración de marca.',
+      close: 'Cerrar',
+      campaigns: [
+        {
+          id: 'beauty-skincare',
+          category: 'Beauty · Skincare',
+          title: 'Beauty / Skincare',
+          description: 'Concepto de campaña: cómo integraría un sérum premium en una rutina real de cuidado facial — luz natural, ritual, primera impresión.',
+          assets: [
+            { role: 'HERO', type: 'image', src: '/uploads/ugc-portfolio/beauty-skincare-hero.png', alt: 'Priscila Cueva sosteniendo un sérum premium — concepto de campaña Beauty/Skincare', format: 'Imagen · formato 3:4' }
+          ]
+        }
+      ]
     },
     en: {
       backToMain: 'Back to main site',
@@ -103,20 +158,74 @@ class Component extends DCLogic {
       heroSub: "I create authentic, brand-directed content for companies that want to connect with their audience without losing authenticity — strategy, creative direction, and a human presence in every piece.",
       positioningBody: "I'm Priscila Cueva — digital strategist and content creator. This portfolio shows how I direct and produce campaign pieces across different product categories, always with real identity and commercial-grade quality.",
       campaignEyebrow: 'Published campaign',
-      campaignTitle: 'Beauty / Skincare',
-      campaignCategory: 'Beauty · Skincare',
-      campaignImageAlt: 'Priscila Cueva holding a premium serum — Beauty/Skincare campaign concept',
-      campaignDescription: "Campaign concept: how I'd integrate a premium serum into a real skincare routine — natural light, ritual, first impression.",
-      campaignFormat: 'Image · 3:4 format',
       closingTitle: "Let's create something for your brand.",
       closingBtn: 'Message on WhatsApp',
-      waMsg: "Hi Priscila, I saw your UGC portfolio and would like to talk about a brand collaboration."
+      waMsg: "Hi Priscila, I saw your UGC portfolio and would like to talk about a brand collaboration.",
+      close: 'Close',
+      campaigns: [
+        {
+          id: 'beauty-skincare',
+          category: 'Beauty · Skincare',
+          title: 'Beauty / Skincare',
+          description: "Campaign concept: how I'd integrate a premium serum into a real skincare routine — natural light, ritual, first impression.",
+          assets: [
+            { role: 'HERO', type: 'image', src: '/uploads/ugc-portfolio/beauty-skincare-hero.png', alt: 'Priscila Cueva holding a premium serum — Beauty/Skincare campaign concept', format: 'Image · 3:4 format' }
+          ]
+        }
+      ]
     }
   };
 
-  state = { lang: 'es' };
+  THUMB_STEP = 232; // 220px thumb + 12px gap
+
+  state = { lang: 'es', lightboxAsset: null, carouselIndex: {} };
+
+  constructor(props) {
+    super(props);
+    this.lightboxVideoRef = React.createRef();
+  }
+
+  componentDidMount() {
+    this.onKeydown = (e) => {
+      if (e.key !== 'Escape') return;
+      if (this.state.lightboxAsset) this.closeLightbox();
+    };
+    document.addEventListener('keydown', this.onKeydown);
+  }
+
+  componentWillUnmount() {
+    document.removeEventListener('keydown', this.onKeydown);
+  }
+
+  componentDidUpdate() {
+    const a = this.state.lightboxAsset;
+    if (a && a.type === 'video') {
+      if (this.__lastVideoSrc !== a.src) {
+        this.__lastVideoSrc = a.src;
+        const v = this.lightboxVideoRef.current;
+        if (v) { v.currentTime = 0; v.play().catch(() => {}); }
+      }
+    } else {
+      this.__lastVideoSrc = null;
+    }
+  }
 
   setLang = (l) => this.setState({ lang: l });
+
+  openLightbox = (asset) => this.setState({ lightboxAsset: asset });
+
+  closeLightbox = () => {
+    const v = this.lightboxVideoRef.current;
+    if (v) v.pause();
+    this.setState({ lightboxAsset: null });
+  };
+
+  stopPropagation = (e) => { e.stopPropagation(); };
+
+  onFilmstripScroll = (campaignId, el) => {
+    const idx = Math.max(0, Math.round(el.scrollLeft / this.THUMB_STEP));
+    this.setState((s) => ({ carouselIndex: { ...s.carouselIndex, [campaignId]: idx } }));
+  };
 
   renderVals() {
     const s = this.state;
@@ -124,14 +233,56 @@ class Component extends DCLogic {
     const focusRing = { outline: '2px solid #6f93c9', outlineOffset: '2px' };
     const waLink = `https://wa.me/16027720124?text=${encodeURIComponent(t.waMsg)}`;
 
+    const campaigns = t.campaigns.map((c) => {
+      const assets = c.assets || [];
+      const heroAssetRaw = assets[0];
+      const secondaryRaw = assets.slice(1);
+      const activeIdx = s.carouselIndex[c.id] || 0;
+
+      const decorate = (asset) => ({
+        ...asset,
+        isVideo: asset.type === 'video',
+        isImage: asset.type !== 'video',
+        onOpen: () => this.openLightbox(asset),
+        onKeyDown: (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); this.openLightbox(asset); } }
+      });
+
+      const secondaryAssets = secondaryRaw.map(decorate);
+
+      return {
+        ...c,
+        heroAsset: heroAssetRaw ? decorate(heroAssetRaw) : { src: '', alt: '', format: '', onOpen: () => {} },
+        secondaryAssets,
+        hasSecondary: secondaryAssets.length > 0,
+        onFilmstripScroll: (e) => this.onFilmstripScroll(c.id, e.target),
+        dots: secondaryAssets.map((_, i) => ({
+          style: {
+            display: 'inline-block', width: '6px', height: '6px', borderRadius: '50%',
+            background: i === activeIdx ? '#cda86a' : 'transparent',
+            border: `1px solid ${i === activeIdx ? '#cda86a' : '#3a3122'}`,
+            transition: 'background .25s ease, border-color .25s ease'
+          }
+        }))
+      };
+    });
+
+    const lightboxAsset = s.lightboxAsset || { type: 'image', src: '', alt: '' };
+
     return {
       isEs: s.lang === 'es', isEn: s.lang === 'en',
       setLangEs: () => this.setLang('es'), setLangEn: () => this.setLang('en'),
       btnEsStyle: { background: 'none', border: 'none', color: s.lang === 'es' ? '#cda86a' : '#8a7f6d', fontSize: '13px', letterSpacing: '0.1em', cursor: 'pointer', fontWeight: 700, padding: '4px' },
       btnEnStyle: { background: 'none', border: 'none', color: s.lang === 'en' ? '#cda86a' : '#8a7f6d', fontSize: '13px', letterSpacing: '0.1em', cursor: 'pointer', fontWeight: 700, padding: '4px' },
       focusRing,
-      t, waLink,
-      waHover: { background: '#4ba57e' }
+      t, waLink, campaigns,
+      waHover: { background: '#e0bb80' },
+      hasLightbox: !!s.lightboxAsset,
+      lightboxAsset,
+      lightboxIsVideo: lightboxAsset.type === 'video',
+      lightboxIsImage: lightboxAsset.type !== 'video',
+      lightboxVideoRef: this.lightboxVideoRef,
+      closeLightbox: this.closeLightbox,
+      stopPropagation: this.stopPropagation
     };
   }
 }
