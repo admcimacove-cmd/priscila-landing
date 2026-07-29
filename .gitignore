@@ -5,6 +5,8 @@ dist/
 # public repo.
 identity-reference/
 UGC_MASTER_CONTEXT.md
+product-reference/
+.scratch-review/
 
 # Secrets / credentials
 .env
