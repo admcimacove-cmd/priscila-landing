@@ -45,7 +45,7 @@
 
     <sc-if value="{{ notMobile }}" hint-placeholder-val="{{ true }}">
       <div style="position:relative;width:100%;height:100vh;overflow:hidden;">
-        <video ref="{{ videoRef }}" poster="uploads/woman-making-new-poster.jpg" autoPlay="{{ true }}" muted="{{ true }}" playsInline="{{ true }}" webkit-playsinline="true" loop="{{ true }}" preload="auto" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:56% 30%;">
+        <video ref="{{ videoRef }}" poster="uploads/woman-making-new-poster.jpg" autoPlay="{{ true }}" muted="{{ true }}" playsInline="{{ true }}" webkit-playsinline="true" loop="{{ true }}" preload="auto" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:56% 30%;pointer-events:none;">
           <source src="uploads/woman_making_new.mp4" type="video/mp4" />
         </video>
         <audio ref="{{ audioRef }}" preload="auto" style="display:none;">
@@ -78,7 +78,7 @@
     <sc-if value="{{ isMobile }}" hint-placeholder-val="{{ false }}">
       <div style="position:relative;width:100%;height:64vh;overflow:hidden;">
         <sc-if value="{{ showMobileVideo }}" hint-placeholder-val="{{ false }}">
-          <video ref="{{ videoRef }}" onError="{{ onMobileVideoError }}" poster="uploads/woman-making-new-poster.jpg" autoPlay="{{ true }}" muted="{{ true }}" playsInline="{{ true }}" webkit-playsinline="true" loop="{{ true }}" preload="metadata" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:46% 30%;">
+          <video ref="{{ videoRef }}" onError="{{ onMobileVideoError }}" poster="uploads/woman-making-new-poster.jpg" autoPlay="{{ true }}" muted="{{ true }}" playsInline="{{ true }}" webkit-playsinline="true" loop="{{ true }}" preload="metadata" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:46% 30%;pointer-events:none;">
             <source src="uploads/woman_making_new.mp4" type="video/mp4" />
           </video>
         </sc-if>
@@ -444,6 +444,10 @@ class Component extends DCLogic {
     if (on) {
       const vol = this.state.volume || 0.32;
       if (v) { try { v.currentTime = 0; v.play().catch(() => {}); } catch (e) {} }
+      // Single-audio-source guarantee: the About video never has its own audio track, but re-assert
+      // muted here defensively so the Hero's music is always the only audio source on screen.
+      const aboutV = this.aboutVideoRef.current;
+      if (aboutV) aboutV.muted = true;
       if (a) {
         a.muted = false;
         a.volume = vol;
