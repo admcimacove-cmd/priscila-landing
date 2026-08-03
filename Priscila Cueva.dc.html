@@ -207,10 +207,27 @@
         </sc-if>
 
         <sc-if value="{{ selected.isResources }}" hint-placeholder-val="{{ false }}">
-          <div style="border:1px solid #3a3122;border-radius:4px;padding:18px;background:#17140d;margin-bottom:20px;">
-            <div style="font-family:'Playfair Display',serif;font-size:15px;color:#f2d9ad;margin-bottom:8px;">{{ t.resourceItemTitle }}</div>
-            <p style="font-size:13px;line-height:1.6;color:#c6bcaa;margin:0 0 14px 0;">{{ t.resourceItemDesc }}</p>
-            <span style="display:inline-block;font-size:11px;letter-spacing:0.1em;color:#e8c07f;border:1px solid #cda86a;border-radius:20px;padding:5px 12px;">{{ hotmartStatusLabel }}</span>
+          <div style="display:grid;grid-template-columns:{{ resourcesGridCols }};gap:16px;margin-bottom:20px;">
+            <sc-for list="{{ resourceCards }}" as="card" hint-placeholder-count="2">
+              <div style="border:1px solid #3a3122;border-radius:6px;background:#17140d;display:flex;flex-direction:column;overflow:hidden;">
+                <div style="{{ card.coverStyle }}">
+                  <sc-if value="{{ !card.hasCover }}" hint-placeholder-val="{{ true }}">
+                    <span style="font-family:'Manrope',sans-serif;font-size:11px;letter-spacing:0.08em;color:#8a7f6d;text-transform:uppercase;">{{ card.coverLabel }}</span>
+                  </sc-if>
+                </div>
+                <div style="padding:16px;display:flex;flex-direction:column;flex:1;">
+                  <span style="display:inline-block;align-self:flex-start;font-size:10.5px;letter-spacing:0.08em;color:#cda86a;border:1px solid #3a3122;border-radius:20px;padding:4px 10px;text-transform:uppercase;margin-bottom:10px;">{{ card.type }}</span>
+                  <div style="font-family:'Playfair Display',serif;font-size:15px;color:#f2d9ad;margin:0 0 8px 0;">{{ card.title }}</div>
+                  <p style="font-size:12.5px;line-height:1.6;color:#c6bcaa;margin:0 0 18px 0;flex:1;">{{ card.description }}</p>
+                  <sc-if value="{{ card.isActive }}" hint-placeholder-val="{{ false }}">
+                    <a href="{{ card.hotmartUrl }}" target="_blank" rel="noopener noreferrer" style="display:block;text-align:center;text-decoration:none;background:#cda86a;color:#0b0a08;padding:11px;border-radius:2px;font-weight:700;font-size:12.5px;letter-spacing:0.03em;font-family:'Manrope',sans-serif;" style-hover="{{ closingBtnHover }}" style-focus="{{ focusRing }}">{{ card.btnLabel }}</a>
+                  </sc-if>
+                  <sc-if value="{{ !card.isActive }}" hint-placeholder-val="{{ true }}">
+                    <button type="button" disabled="{{ true }}" aria-disabled="{{ true }}" style="display:block;width:100%;text-align:center;background:transparent;border:1px solid #3a3122;color:#8a7f6d;padding:11px;border-radius:2px;font-weight:600;font-size:12.5px;letter-spacing:0.03em;font-family:'Manrope',sans-serif;cursor:not-allowed;opacity:0.75;">{{ card.btnLabel }}</button>
+                  </sc-if>
+                </div>
+              </div>
+            </sc-for>
           </div>
         </sc-if>
 
@@ -253,8 +270,41 @@
 </x-dc>
 <script type="text/x-dc" data-dc-script>
 class Component extends DCLogic {
-  // Central Hotmart config: while storeUrl is empty the resources panel only shows "coming soon".
-  hotmart = { storeUrl: '', products: [], status: 'coming_soon' };
+  // Digital resources catalog — single reusable data source for the "Recursos digitales" / "Digital Resources"
+  // panel. Add a new resource by adding an object here; the template (sc-for below) never needs to change.
+  // status: 'pending' -> card shows a disabled "coming soon" button, no href, hotmartUrl never reaches the DOM.
+  // status: 'active'  -> button becomes a real link to hotmartUrl (target="_blank", rel="noopener noreferrer").
+  // access: 'paid' -> button reads "Ver en Hotmart" / "View on Hotmart". access: 'free' -> "Obtener recurso" / "Get Resource".
+  resources = [
+    {
+      id: 'sistema-trabajo-inteligente',
+      titleES: 'Sistema de Trabajo Inteligente',
+      titleEN: 'Smart Work System',
+      descriptionES: 'Convierte tu experiencia, habilidades y herramientas de IA en un sistema profesional para buscar empleo y avanzar en tu carrera.',
+      descriptionEN: 'Turn your experience, skills, and AI tools into a professional system to find a job and grow your career.',
+      typeES: 'Guía',
+      typeEN: 'Guide',
+      image: null,
+      hotmartUrl: 'https://go.hotmart.com/E107008260I',
+      status: 'pending',
+      access: 'paid',
+      featured: true
+    },
+    {
+      id: 'mapa-real-de-la-ia',
+      titleES: 'Mapa Real de la IA',
+      titleEN: 'The Real AI Map',
+      descriptionES: 'Guía para entender herramientas, grupos, costos y conexiones sin promesas falsas.',
+      descriptionEN: 'A guide to understanding tools, groups, costs, and connections — no false promises.',
+      typeES: 'Guía',
+      typeEN: 'Guide',
+      image: null,
+      hotmartUrl: 'https://go.hotmart.com/U107008520T',
+      status: 'pending',
+      access: 'paid',
+      featured: true
+    }
+  ];
   copy = {
     es: {
       cta: 'Explorar servicios',
@@ -286,16 +336,16 @@ class Component extends DCLogic {
       closeServices: 'Cerrar servicios',
       waBtn: 'Continuar por WhatsApp',
       close: 'Cerrar',
-      resourceItemTitle: 'Landing Premium con Inteligencia Artificial',
-      resourceItemDesc: 'Una guía práctica con metodología, prompts, decisiones, errores, correcciones y pasos de implementación.',
-      comingSoon: 'Próximamente',
-      hotmartCta: 'Ver recursos en Hotmart',
+      pendingCoverLabel: 'Portada pendiente',
+      pendingBtnLabel: 'Disponible próximamente',
+      viewOnHotmartBtn: 'Ver en Hotmart',
+      getResourceBtn: 'Obtener recurso',
       steps: ['Conocemos tu negocio', 'Identificamos la solución adecuada', 'Diseñamos y verificamos la experiencia', 'Implementamos con acompañamiento humano'],
       services: [
         { num: '01', title: 'Automatización Inteligente para Negocios', short: 'Flujos inteligentes que organizan y acompañan a tus clientes.', full: 'Diseñamos flujos inteligentes que ayudan a tu negocio a responder, organizar, calificar oportunidades y acompañar al cliente con mayor eficiencia, sin perder el control humano.', bullets: ['Atención inicial', 'Identificación del idioma', 'Respuestas con información aprobada', 'Clasificación de oportunidades', 'Recopilación organizada de datos', 'Preguntas frecuentes', 'Transferencia humana', 'Seguimiento', 'CRM o matriz futura', 'Solicitudes de citas', 'Recordatorios autorizados', 'Integraciones futuras evaluadas'], limitations: 'En salud, se presenta únicamente como apoyo administrativo. No sustituye diagnóstico, triaje clínico, tratamiento ni cumplimiento normativo automático.' },
         { num: '02', title: 'Diseño de Páginas Web y Landing Pages', short: 'Experiencias digitales claras que convierten interés en acción.', full: 'Creamos experiencias digitales estratégicas, visuales y adaptables que presentan tu marca con claridad y convierten el interés en una acción concreta.', bullets: ['Landing pages', 'Páginas empresariales', 'Diseño bilingüe', 'Experiencia móvil', 'Llamados a la acción', 'Integración con WhatsApp', 'Arquitectura de contenido', 'Preparación técnica para SEO', 'Optimización de rendimiento', 'Diseño personalizado'], limitations: 'No garantizamos primera posición en buscadores ni ventas específicas. Hosting, dominio y mantenimiento no están incluidos.' },
         { num: '03', title: 'Creación de Contenido UGC y Creativo Digital', short: 'Contenido auténtico que conecta con tu audiencia.', full: 'Transformamos ideas, productos y experiencias en contenido auténtico que comunica, conecta y fortalece la presencia digital de una marca.', bullets: ['Conceptualización creativa', 'Guiones', 'Hooks', 'Videos UGC', 'Contenido vertical', 'Fotografía creativa', 'Mensajes de marca', 'Edición', 'Contenido bilingüe', 'Adaptación para TikTok, Instagram y Facebook'], limitations: 'La cantidad de piezas, tiempos, revisiones y derechos de uso se definen caso por caso.' },
-        { num: '04', id: 'resources', title: 'Cursos & Recursos', short: 'Guías, plantillas y formación práctica.', full: 'Guías, cursos, plantillas y recursos prácticos creados a partir de procesos reales.', bullets: [], limitations: '', isResources: true }
+        { num: '04', id: 'resources', title: 'Recursos digitales', short: 'Guías, plantillas y formación práctica.', full: 'Recursos creados para ayudarte a digitalizar, organizar y hacer crecer tu negocio con estrategias prácticas, tecnología e inteligencia artificial. Explora nuestras guías, plantillas y herramientas, y elige la que mejor se adapte a tus objetivos.', bullets: [], limitations: '', isResources: true }
       ],
       faq: [
         ['¿Los servicios se personalizan?', 'Sí, cada solución se adapta a las necesidades, procesos y clientes de tu negocio.'],
@@ -338,16 +388,16 @@ class Component extends DCLogic {
       closeServices: 'Close services',
       waBtn: 'Continue on WhatsApp',
       close: 'Close',
-      resourceItemTitle: 'Premium AI-Built Landing Page',
-      resourceItemDesc: 'A practical guide with methodology, prompts, decisions, mistakes, fixes, and implementation steps.',
-      comingSoon: 'Coming soon',
-      hotmartCta: 'View resources on Hotmart',
+      pendingCoverLabel: 'Cover Coming Soon',
+      pendingBtnLabel: 'Coming Soon',
+      viewOnHotmartBtn: 'View on Hotmart',
+      getResourceBtn: 'Get Resource',
       steps: ['We learn about your business', 'We identify the right solution', 'We design and verify the experience', 'We implement with human support'],
       services: [
         { num: '01', title: 'Intelligent Business Automation', short: 'Smart workflows that organize and support your customers.', full: 'We design intelligent workflows that help your business respond, organize, qualify opportunities, and guide customers more efficiently without losing human control.', bullets: ['Initial responses', 'Language detection', 'Answers using approved information', 'Opportunity classification', 'Organized data collection', 'FAQs', 'Human handoff', 'Follow-up', 'Future CRM or matrix', 'Appointment requests', 'Authorized reminders', 'Future integrations evaluated'], limitations: 'In healthcare, presented only as administrative support. It does not provide diagnosis, clinical triage, treatment, or automatic regulatory compliance.' },
         { num: '02', title: 'Website & Landing Page Design', short: 'Clear digital experiences that turn interest into action.', full: 'We create strategic, visual, and responsive digital experiences that present your brand clearly and turn interest into meaningful action.', bullets: ['Landing pages', 'Business pages', 'Bilingual design', 'Mobile experience', 'Calls to action', 'WhatsApp integration', 'Content architecture', 'Technical SEO readiness', 'Performance optimization', 'Custom design'], limitations: "We don't guarantee top search rankings or specific sales figures. Hosting, domain, and maintenance are not included." },
         { num: '03', title: 'UGC & Digital Creative Content', short: 'Authentic content that connects with your audience.', full: 'We transform ideas, products, and experiences into authentic content that communicates, connects, and strengthens a brand\'s digital presence.', bullets: ['Creative concepting', 'Scripts', 'Hooks', 'UGC videos', 'Vertical content', 'Creative photography', 'Brand messaging', 'Editing', 'Bilingual content', 'Adaptation for TikTok, Instagram, and Facebook'], limitations: 'Deliverable quantities, timelines, revisions, and usage rights are defined case by case.' },
-        { num: '04', id: 'resources', title: 'Courses & Resources', short: 'Guides, templates, and practical training.', full: 'Guides, courses, templates, and practical resources built from real processes.', bullets: [], limitations: '', isResources: true }
+        { num: '04', id: 'resources', title: 'Digital Resources', short: 'Guides, templates, and practical training.', full: 'Resources created to help you digitize, organize, and grow your business through practical strategies, technology, and artificial intelligence. Explore our guides, templates, and tools, and choose the one that best supports your goals.', bullets: [], limitations: '', isResources: true }
       ],
       faq: [
         ['Are the services customized?', 'Yes, every solution is adapted to your business needs, processes, and customers.'],
@@ -510,6 +560,35 @@ class Component extends DCLogic {
       }
     }));
 
+    // View-model for the resource cards — sorts featured first, localizes copy by current language,
+    // and resolves the action button (link vs disabled) purely from `status`/`access`, matching the
+    // sc-if pairs in the template (isActive / !isActive).
+    const resourceCards = [...this.resources]
+      .sort((a, b) => (b.featured === true ? 1 : 0) - (a.featured === true ? 1 : 0))
+      .map((r) => {
+        const isActive = r.status === 'active';
+        const isFree = r.access === 'free';
+        const hasCover = !!r.image;
+        return {
+          id: r.id,
+          title: s.lang === 'es' ? r.titleES : r.titleEN,
+          description: s.lang === 'es' ? r.descriptionES : r.descriptionEN,
+          type: s.lang === 'es' ? r.typeES : r.typeEN,
+          hasCover,
+          // Cover image is applied as a CSS background (never a raw <img src>) so the browser's HTML
+          // preload scanner never eagerly fetches a literal, unresolved `{{ }}` URL on first paint —
+          // this is why every other media element in this file also uses a hardcoded literal src.
+          coverStyle: hasCover
+            ? { width: '100%', height: '120px', backgroundImage: `url(${r.image})`, backgroundSize: 'cover', backgroundPosition: 'center' }
+            : { width: '100%', height: '120px', display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'linear-gradient(160deg,#1c1710 0%,#111009 100%)', borderBottom: '1px dashed #3a3122' },
+          coverLabel: t.pendingCoverLabel,
+          isActive,
+          hotmartUrl: isActive ? r.hotmartUrl : '',
+          btnLabel: isActive ? (isFree ? t.getResourceBtn : t.viewOnHotmartBtn) : t.pendingBtnLabel
+        };
+      });
+    const resourcesGridCols = isMobile ? '1fr' : '1fr 1fr';
+
     const faqItems = t.faq.map(([q, a], i) => {
       const open = s.openFaq === i;
       return {
@@ -548,7 +627,7 @@ class Component extends DCLogic {
       btnEsStyle: { background: 'none', border: 'none', color: s.lang === 'es' ? '#cda86a' : '#8a7f6d', fontSize: '13px', letterSpacing: '0.1em', cursor: 'pointer', fontWeight: 700, padding: '4px' },
       btnEnStyle: { background: 'none', border: 'none', color: s.lang === 'en' ? '#cda86a' : '#8a7f6d', fontSize: '13px', letterSpacing: '0.1em', cursor: 'pointer', fontWeight: 700, padding: '4px' },
       focusRing,
-      t, howSteps, faqItems, services,
+      t, howSteps, faqItems, services, resourceCards, resourcesGridCols,
       notMobile: !isMobile, isMobile,
       kenburnsAnim: s.reducedMotion ? 'none' : 'kenburns 32s ease-in-out infinite',
       activate: this.activate,
@@ -569,7 +648,6 @@ class Component extends DCLogic {
       hasSelected, selected, waLink, generalWaLink, notRequested: !s.requested, requested: s.requested,
       explorerTabs,
       explorerTabsWrapStyle: { display: 'flex', gap: '8px', flexWrap: 'wrap', position: 'sticky', top: '0', zIndex: 2, background: '#0f0d09', paddingBottom: '16px', paddingRight: '44px', marginBottom: '2px' },
-      hotmartStatusLabel: this.hotmart.storeUrl ? t.hotmartCta : t.comingSoon,
       panelSelectedTitle: selected.title,
       panelStyle,
       backdropStyle: { position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.55)', opacity: hasSelected ? 1 : 0, pointerEvents: hasSelected ? 'auto' : 'none', transition: 'opacity .35s ease', zIndex: 55 },
