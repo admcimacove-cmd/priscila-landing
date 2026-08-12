@@ -182,6 +182,84 @@
     <a href="{{ generalWaLink }}" target="_blank" rel="noopener noreferrer" style="display:inline-block;text-decoration:none;background:#cda86a;border:none;color:#0b0a08;padding:16px 36px;font-size:14px;letter-spacing:0.06em;border-radius:2px;cursor:pointer;font-family:'Manrope',sans-serif;font-weight:700;" style-hover="{{ closingBtnHover }}" style-focus="{{ focusRing }}">{{ t.closingBtn }}</a>
   </section>
 
+  <!-- Fase D-real.8 — priscila.cimacove.com contact/lead form. An ADDITIONAL
+       channel alongside WhatsApp above, never a replacement — WhatsApp stays
+       the primary CTA per DESIGN.md/CLAUDE.md. Submits to CimaCove Connect's
+       existing /api/web-lead endpoint, source="priscila_landing_web_form" so
+       these leads are distinguishable from cimacove.com's in D1. SMS consent
+       checkbox is optional, unchecked by default, and the form submits fine
+       without it — consent is only recorded server-side when strictly true. -->
+  <section id="contact-form" style="padding:clamp(60px,8vw,110px) clamp(24px,6vw,80px);background:#111009;border-top:1px solid #241f16;">
+    <div style="max-width:560px;margin:0 auto;">
+      <h2 style="font-family:'Playfair Display',serif;font-weight:600;font-size:clamp(22px,2.6vw,32px);color:#f5efe4;margin:0 0 10px 0;text-align:center;">{{ t.contactFormTitle }}</h2>
+      <p style="font-size:14.5px;line-height:1.7;color:#8a7f6d;margin:0 0 34px 0;text-align:center;">{{ t.contactFormIntro }}</p>
+
+      <div style="margin-bottom:18px;">
+        <label style="display:block;font-family:'Manrope',sans-serif;font-size:12px;font-weight:700;letter-spacing:0.04em;color:#cda86a;margin-bottom:8px;">{{ t.contactFormNameLabel }}</label>
+        <input type="text" value="{{ leadName }}" onChange="{{ onLeadNameChange }}" style="width:100%;box-sizing:border-box;padding:12px 14px;background:#17140d;border:1px solid #3a3122;border-radius:4px;color:#f0e4cc;font-family:'Manrope',sans-serif;font-size:14px;" style-focus="{{ focusRing }}" />
+        <sc-if value="{{ hasLeadNameError }}" hint-placeholder-val="{{ false }}">
+          <div style="color:#d98787;font-size:12px;margin-top:6px;">{{ leadNameError }}</div>
+        </sc-if>
+      </div>
+
+      <div style="margin-bottom:18px;">
+        <label style="display:block;font-family:'Manrope',sans-serif;font-size:12px;font-weight:700;letter-spacing:0.04em;color:#cda86a;margin-bottom:8px;">{{ t.contactFormPhoneLabel }}</label>
+        <input type="tel" value="{{ leadPhone }}" onChange="{{ onLeadPhoneChange }}" style="width:100%;box-sizing:border-box;padding:12px 14px;background:#17140d;border:1px solid #3a3122;border-radius:4px;color:#f0e4cc;font-family:'Manrope',sans-serif;font-size:14px;" style-focus="{{ focusRing }}" />
+        <sc-if value="{{ hasLeadPhoneError }}" hint-placeholder-val="{{ false }}">
+          <div style="color:#d98787;font-size:12px;margin-top:6px;">{{ leadPhoneError }}</div>
+        </sc-if>
+      </div>
+
+      <div style="margin-bottom:18px;">
+        <label style="display:block;font-family:'Manrope',sans-serif;font-size:12px;font-weight:700;letter-spacing:0.04em;color:#cda86a;margin-bottom:8px;">{{ t.contactFormEmailLabel }}</label>
+        <input type="email" value="{{ leadEmail }}" onChange="{{ onLeadEmailChange }}" style="width:100%;box-sizing:border-box;padding:12px 14px;background:#17140d;border:1px solid #3a3122;border-radius:4px;color:#f0e4cc;font-family:'Manrope',sans-serif;font-size:14px;" style-focus="{{ focusRing }}" />
+        <sc-if value="{{ hasLeadEmailError }}" hint-placeholder-val="{{ false }}">
+          <div style="color:#d98787;font-size:12px;margin-top:6px;">{{ leadEmailError }}</div>
+        </sc-if>
+      </div>
+
+      <div style="margin-bottom:18px;">
+        <label style="display:block;font-family:'Manrope',sans-serif;font-size:12px;font-weight:700;letter-spacing:0.04em;color:#cda86a;margin-bottom:8px;">{{ t.contactFormServiceLabel }}</label>
+        <select value="{{ leadService }}" onChange="{{ onLeadServiceChange }}" style="width:100%;box-sizing:border-box;padding:12px 14px;background:#17140d;border:1px solid #3a3122;border-radius:4px;color:#f0e4cc;font-family:'Manrope',sans-serif;font-size:14px;" style-focus="{{ focusRing }}">
+          <sc-for list="{{ leadServiceOptions }}" as="opt" hint-placeholder-count="6">
+            <option value="{{ opt.value }}">{{ opt.label }}</option>
+          </sc-for>
+        </select>
+      </div>
+
+      <div style="margin-bottom:22px;">
+        <label style="display:block;font-family:'Manrope',sans-serif;font-size:12px;font-weight:700;letter-spacing:0.04em;color:#cda86a;margin-bottom:8px;">{{ t.contactFormMessageLabel }}</label>
+        <textarea value="{{ leadMessage }}" onChange="{{ onLeadMessageChange }}" rows="4" style="width:100%;box-sizing:border-box;padding:12px 14px;background:#17140d;border:1px solid #3a3122;border-radius:4px;color:#f0e4cc;font-family:'Manrope',sans-serif;font-size:14px;resize:vertical;"></textarea>
+      </div>
+
+      <!-- SMS consent — separate from any other agreement, unchecked by default,
+           never required. The prefix/link/"and"/link/period are five separate
+           template bindings/elements (never one block of interpolated text
+           containing raw link markup) so the links can never be swallowed by a
+           text-only render path, regardless of the underlying template engine. -->
+      <div style="margin-bottom:26px;padding:16px;background:#17140d;border:1px solid #3a3122;border-radius:6px;">
+        <label style="display:flex;align-items:flex-start;gap:10px;cursor:pointer;">
+          <input type="checkbox" checked="{{ leadSmsConsent }}" onChange="{{ onLeadSmsConsentChange }}" style="margin-top:3px;width:16px;height:16px;flex-shrink:0;accent-color:#cda86a;" style-focus="{{ focusRing }}" />
+          <span style="font-size:12.5px;line-height:1.65;color:#8a7f6d;">
+            <span>{{ t.contactFormSmsConsentPrefix }}</span>
+            <a href="https://cimacove.com/privacy-policy.html" target="_blank" rel="noopener noreferrer" style="color:#cda86a;">{{ t.contactFormPrivacyLink }}</a>
+            <span>{{ t.contactFormSmsConsentAnd }}</span>
+            <a href="https://cimacove.com/terms-and-conditions.html" target="_blank" rel="noopener noreferrer" style="color:#cda86a;">{{ t.contactFormTermsLink }}</a>.
+          </span>
+        </label>
+      </div>
+
+      <button onClick="{{ submitLead }}" disabled="{{ submitBtnDisabled }}" style="display:block;width:100%;text-decoration:none;background:#cda86a;border:none;color:#0b0a08;padding:15px 32px;font-size:14px;letter-spacing:0.06em;border-radius:2px;cursor:pointer;font-family:'Manrope',sans-serif;font-weight:700;" style-hover="{{ closingBtnHover }}" style-focus="{{ focusRing }}">{{ submitBtnLabel }}</button>
+
+      <sc-if value="{{ leadSuccess }}" hint-placeholder-val="{{ false }}">
+        <div style="margin-top:18px;padding:14px 16px;background:rgba(75,165,126,0.12);border:1px solid #4ba57e;border-radius:6px;color:#a9d9c1;font-size:13.5px;">{{ t.contactFormSuccess }}</div>
+      </sc-if>
+      <sc-if value="{{ leadError }}" hint-placeholder-val="{{ false }}">
+        <div style="margin-top:18px;padding:14px 16px;background:rgba(217,135,135,0.12);border:1px solid #d98787;border-radius:6px;color:#e8bcbc;font-size:13.5px;">{{ t.contactFormError }}</div>
+      </sc-if>
+    </div>
+  </section>
+
   <footer style="padding:32px clamp(24px,6vw,80px);background:#0b0a08;border-top:1px solid #241f16;display:flex;flex-wrap:wrap;gap:12px;justify-content:space-between;align-items:center;">
     <span style="font-family:'Playfair Display',serif;font-size:13px;letter-spacing:0.2em;color:#8a7f6d;">PRISCILA CUEVA</span>
     <span style="font-size:12px;color:#665c4c;">{{ t.footerNote }}</span>
@@ -370,7 +448,30 @@ class Component extends DCLogic {
         ['¿Puedo comenzar por una landing y agregar automatización después?', 'Sí, puedes iniciar con un servicio e incorporar otros más adelante.']
       ],
       waMsg: (title) => `Hola, me interesa el servicio: ${title}. Idioma: Español. Fuente: landing page.`,
-      generalWaMsg: 'Hola, Priscila. Llegué desde tu página web y todavía no sé qué servicio necesito. ¿Podrías orientarme?'
+      generalWaMsg: 'Hola, Priscila. Llegué desde tu página web y todavía no sé qué servicio necesito. ¿Podrías orientarme?',
+      contactFormTitle: 'Escríbeme un mensaje',
+      contactFormIntro: '¿Prefieres escribir en lugar de WhatsApp? Cuéntame sobre tu proyecto y te responderé personalmente.',
+      contactFormNameLabel: 'Nombre',
+      contactFormEmailLabel: 'Correo electrónico',
+      contactFormPhoneLabel: 'Teléfono',
+      contactFormServiceLabel: 'Servicio de interés',
+      contactFormServiceOptionDefault: 'Selecciona una opción',
+      contactFormServiceOptionWebsite: 'Sitio web / Landing page',
+      contactFormServiceOptionAutomation: 'Automatización inteligente',
+      contactFormServiceOptionUgc: 'Contenido UGC',
+      contactFormServiceOptionResources: 'Recursos digitales',
+      contactFormServiceOptionOther: 'Otro',
+      contactFormMessageLabel: 'Mensaje (opcional)',
+      contactFormSmsConsentPrefix: 'Acepto recibir mensajes de texto de CimaCove LLC relacionados con mis consultas, cotizaciones, servicios solicitados, programación, confirmaciones, atención al cliente y actualizaciones de servicios o proyectos. La frecuencia de los mensajes puede variar. Pueden aplicarse tarifas de mensajes y datos. Responde STOP para cancelar o HELP para recibir ayuda. El consentimiento no es condición para realizar una compra o contratar un servicio. Consulta nuestra',
+      contactFormSmsConsentAnd: 'y',
+      contactFormPrivacyLink: 'Política de Privacidad',
+      contactFormTermsLink: 'Términos y Condiciones',
+      contactFormSubmit: 'Enviar mensaje',
+      contactFormSubmitting: 'Enviando…',
+      contactFormSuccess: 'Gracias — tu mensaje fue enviado. Te contactaré personalmente pronto.',
+      contactFormError: 'No pudimos enviar tu mensaje. Intenta de nuevo o escríbeme directamente por WhatsApp.',
+      contactFormErrorValidation: 'Revisa los campos marcados e intenta de nuevo.',
+      contactFormRequired: 'Este campo es obligatorio.'
     },
     en: {
       cta: 'Explore services',
@@ -422,11 +523,41 @@ class Component extends DCLogic {
         ['Can I start with a landing page and add automation later?', 'Yes, you can start with one service and add others later.']
       ],
       waMsg: (title) => `Hi, I'm interested in: ${title}. Language: English. Source: landing page.`,
-      generalWaMsg: "Hi Priscila. I came from your website and I'm not sure which service I need yet. Could you guide me?"
+      generalWaMsg: "Hi Priscila. I came from your website and I'm not sure which service I need yet. Could you guide me?",
+      contactFormTitle: 'Send me a message',
+      contactFormIntro: "Prefer to write instead of WhatsApp? Tell me about your project and I'll get back to you personally.",
+      contactFormNameLabel: 'Name',
+      contactFormEmailLabel: 'Email',
+      contactFormPhoneLabel: 'Phone',
+      contactFormServiceLabel: 'Service of interest',
+      contactFormServiceOptionDefault: 'Select an option',
+      contactFormServiceOptionWebsite: 'Website / Landing page',
+      contactFormServiceOptionAutomation: 'Intelligent automation',
+      contactFormServiceOptionUgc: 'UGC content',
+      contactFormServiceOptionResources: 'Digital resources',
+      contactFormServiceOptionOther: 'Other',
+      contactFormMessageLabel: 'Message (optional)',
+      contactFormSmsConsentPrefix: 'I agree to receive text messages from CimaCove LLC regarding my inquiries, quotes, requested services, scheduling, confirmations, customer support, and service or project updates. Message frequency varies. Message and data rates may apply. Reply STOP to opt out or HELP for help. Consent is not a condition of purchase. See our',
+      contactFormSmsConsentAnd: 'and',
+      contactFormPrivacyLink: 'Privacy Policy',
+      contactFormTermsLink: 'Terms & Conditions',
+      contactFormSubmit: 'Send message',
+      contactFormSubmitting: 'Sending…',
+      contactFormSuccess: "Thanks — your message was sent. I'll get back to you personally soon.",
+      contactFormError: "We couldn't send your message. Please try again or message me directly on WhatsApp.",
+      contactFormErrorValidation: 'Please check the highlighted fields and try again.',
+      contactFormRequired: 'This field is required.'
     }
   };
 
-  state = { lang: 'es', heroPhase: 'initial', selectedIndex: null, panelOpen: false, requested: false, isMobile: false, reducedMotion: false, openFaq: null, servicesClosedByUser: false, volume: 0.32, mobileVideoFailed: false };
+  state = {
+    lang: 'es', heroPhase: 'initial', selectedIndex: null, panelOpen: false, requested: false, isMobile: false, reducedMotion: false, openFaq: null, servicesClosedByUser: false, volume: 0.32, mobileVideoFailed: false,
+    // Fase D-real.8 — priscila.cimacove.com contact/lead form. `leadSmsConsent`
+    // starts false and is never pre-checked; `leadStatus` drives the
+    // idle/sending/success/error UI (see renderVals() below).
+    leadName: '', leadPhone: '', leadEmail: '', leadService: '', leadMessage: '', leadSmsConsent: false,
+    leadStatus: 'idle', leadFieldErrors: {}
+  };
 
   constructor(props) {
     super(props);
@@ -537,6 +668,52 @@ class Component extends DCLogic {
   requestService = () => this.setState({ requested: true });
   toggleFaq = (i) => this.setState(s => ({ openFaq: s.openFaq === i ? null : i }));
   scrollToHero = () => { const el = document.getElementById('hero'); if (el) el.scrollIntoView({ behavior: this.state.reducedMotion ? 'auto' : 'smooth' }); this.activate(); };
+
+  // Fase D-real.8 — priscila.cimacove.com contact/lead form. A generic
+  // field setter (mirrors setLang's single-purpose style but avoids one
+  // method per field) reused by every text/select input; the checkbox uses
+  // its own setter so its value is always a strict boolean, never a string.
+  setLeadField = (field) => (e) => this.setState({ [field]: e.target.value });
+  setLeadSmsConsent = (e) => this.setState({ leadSmsConsent: e.target.checked === true });
+  submitLead = async (e) => {
+    if (e && e.preventDefault) e.preventDefault();
+    const s = this.state;
+    this.setState({ leadStatus: 'sending', leadFieldErrors: {} });
+    try {
+      const res = await fetch('https://connect.cimacove.com/api/web-lead', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          website: '', // honeypot — always blank from a real visitor
+          customerName: s.leadName,
+          customerPhone: s.leadPhone,
+          customerEmail: s.leadEmail,
+          message: s.leadMessage,
+          // Strictly the checkbox's real boolean state — never inferred,
+          // never defaulted to true.
+          smsConsent: s.leadSmsConsent === true,
+          service: s.leadService || undefined,
+          // Distinguishes this landing's leads from cimacove.com's in D1 —
+          // the backend validates this against a fixed allow-list server-side.
+          source: 'priscila_landing_web_form',
+          language: s.lang,
+        }),
+      });
+      const json = await res.json().catch(() => null);
+      if (res.ok && json && json.ok) {
+        this.setState({
+          leadStatus: 'success',
+          leadName: '', leadPhone: '', leadEmail: '', leadService: '', leadMessage: '', leadSmsConsent: false,
+        });
+      } else if (res.status === 422 && json && json.error && json.error.fields) {
+        this.setState({ leadStatus: 'error', leadFieldErrors: json.error.fields });
+      } else {
+        this.setState({ leadStatus: 'error', leadFieldErrors: {} });
+      }
+    } catch (err) {
+      this.setState({ leadStatus: 'error', leadFieldErrors: {} });
+    }
+  };
 
   renderVals() {
     const s = this.state;
@@ -666,7 +843,35 @@ class Component extends DCLogic {
       panelStyle,
       backdropStyle: { position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.55)', opacity: hasSelected ? 1 : 0, pointerEvents: hasSelected ? 'auto' : 'none', transition: 'opacity .35s ease', zIndex: 55 },
       closePanel: this.closePanel, requestService: this.requestService,
-      scrollToHero: this.scrollToHero
+      scrollToHero: this.scrollToHero,
+
+      // Fase D-real.8 — priscila.cimacove.com contact/lead form render values.
+      leadName: s.leadName, leadPhone: s.leadPhone, leadEmail: s.leadEmail, leadMessage: s.leadMessage, leadService: s.leadService,
+      leadSmsConsent: s.leadSmsConsent,
+      onLeadNameChange: this.setLeadField('leadName'),
+      onLeadPhoneChange: this.setLeadField('leadPhone'),
+      onLeadEmailChange: this.setLeadField('leadEmail'),
+      onLeadMessageChange: this.setLeadField('leadMessage'),
+      onLeadServiceChange: this.setLeadField('leadService'),
+      onLeadSmsConsentChange: this.setLeadSmsConsent,
+      submitLead: this.submitLead,
+      leadServiceOptions: [
+        { value: '', label: t.contactFormServiceOptionDefault },
+        { value: 'website_landing', label: t.contactFormServiceOptionWebsite },
+        { value: 'intelligent_automation', label: t.contactFormServiceOptionAutomation },
+        { value: 'ugc_content', label: t.contactFormServiceOptionUgc },
+        { value: 'digital_resources', label: t.contactFormServiceOptionResources },
+        { value: 'other', label: t.contactFormServiceOptionOther }
+      ],
+      leadIdle: s.leadStatus === 'idle', leadSending: s.leadStatus === 'sending', leadSuccess: s.leadStatus === 'success', leadError: s.leadStatus === 'error',
+      leadNameError: s.leadFieldErrors.customerName || '',
+      leadPhoneError: s.leadFieldErrors.customerPhone || '',
+      leadEmailError: s.leadFieldErrors.customerEmail || '',
+      hasLeadNameError: !!s.leadFieldErrors.customerName,
+      hasLeadPhoneError: !!s.leadFieldErrors.customerPhone,
+      hasLeadEmailError: !!s.leadFieldErrors.customerEmail,
+      submitBtnLabel: s.leadStatus === 'sending' ? t.contactFormSubmitting : t.contactFormSubmit,
+      submitBtnDisabled: s.leadStatus === 'sending'
     };
   }
 }
