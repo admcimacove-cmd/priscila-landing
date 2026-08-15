@@ -1,8 +1,65 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Priscila by CimaCove — Desarrollo Digital Estratégico</title>
+<meta name="description" content="Diseñamos ecosistemas digitales que conectan tu presencia, tus ventas y tu operación: landing pages, aplicaciones, automatización y sistemas inteligentes.">
+<link rel="canonical" href="https://priscila.cimacove.com/">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://priscila.cimacove.com/">
+<meta property="og:title" content="Priscila by CimaCove — Desarrollo Digital Estratégico">
+<meta property="og:description" content="Diseñamos ecosistemas digitales que conectan tu presencia, tus ventas y tu operación.">
+<meta property="og:locale" content="es_ES">
+<meta property="og:locale:alternate" content="en_US">
+<!-- One primary service ("Desarrollo Digital Estratégico") whose four capabilities are
+     components of that single offer — deliberately NOT four separate Service entities,
+     so search engines never read them as four independent products or businesses.
+     "Recursos digitales" stays a separate, genuinely independent offer. -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  "name": "Priscila by CimaCove",
+  "url": "https://priscila.cimacove.com/",
+  "parentOrganization": { "@type": "Organization", "name": "CimaCove LLC" },
+  "areaServed": "Worldwide",
+  "availableLanguage": ["es", "en"],
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "Servicios",
+    "itemListElement": [
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Desarrollo Digital Estratégico",
+          "description": "Ecosistemas digitales que conectan presencia, ventas y operación.",
+          "hasOfferCatalog": {
+            "@type": "OfferCatalog",
+            "name": "Capacidades de Desarrollo Digital Estratégico",
+            "itemListElement": [
+              { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Presencia y conversión" } },
+              { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Automatización y operación" } },
+              { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Aplicaciones, plataformas y control" } },
+              { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Posicionamiento digital para creadores" } }
+            ]
+          }
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Cursos y recursos digitales",
+          "description": "Guías, plantillas y formación práctica."
+        }
+      }
+    ]
+  }
+}
+</script>
+<script src="./vendor-map.js"></script>
 <script src="./support.js"></script>
 </head>
 <body>
@@ -11,9 +68,249 @@
   <link rel="preconnect" href="https://fonts.googleapis.com"></link>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet"></link>
   <style>
+    /* Centralized design tokens. The pre-existing inline styles keep their literal hex values
+       (they are the same colors, named here for the first time); every NEW surface added in this
+       iteration reads from these variables instead of hardcoding a color again.
+       Rose gold is an ACCENT ONLY — hairline borders, hover, discrete glow, index numerals,
+       separators. It is never used as a large surface or background. */
+    :root{
+      --obsidian:#0b0a08;
+      --surface:#111009;
+      --surface-raised:#17140d;
+      --champagne:#cda86a;
+      --champagne-bright:#e8c07f;
+      --ivory:#f5efe4;
+      --ivory-warm:#f2ece1;
+      --text-secondary:#c6bcaa;
+      --text-muted:#8a7f6d;
+      --rose-gold:#dda893;
+      --rose-gold-line:rgba(221,168,147,0.34);
+      --rose-gold-glow:rgba(221,168,147,0.13);
+      --border:#3a3122;
+      --border-subtle:#241f16;
+      --focus-ring:#6f93c9;
+    }
     *{box-sizing:border-box;}
     body{margin:0;background:#0b0a08;}
     ::selection{background:#cda86a;color:#0b0a08;}
+    .skip-link{position:absolute;left:-9999px;top:0;z-index:100;background:var(--champagne);color:var(--obsidian);padding:12px 20px;font-family:'Manrope',sans-serif;font-size:14px;font-weight:700;border-radius:0 0 4px 0;text-decoration:none;}
+    .skip-link:focus{left:0;}
+
+    /* ---- Editorial capability sequence ------------------------------------------------
+       Static images only: no carousel, no autoplay, no demo video, no parallax, no scroll
+       hijacking, no horizontal scroll. Desktop is a full-bleed two-column band with the
+       image running to the viewport edge and alternating sides; mobile is a plain vertical
+       flow, image above text. Text is never baked into the image and never laid over it. */
+    .cap{border-top:1px solid var(--border-subtle);background:var(--obsidian);}
+    .cap-grid{display:grid;grid-template-columns:1fr;align-items:center;}
+    .cap-media{position:relative;width:100%;aspect-ratio:3/2;overflow:hidden;background:var(--surface);}
+    .cap-media img{display:block;width:100%;height:100%;object-fit:cover;object-position:center;}
+    /* Gradient scrim keeps the ivory/champagne text legible where the band meets the copy
+       column, without covering the image's own subject. */
+    .cap-media::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(0deg,rgba(9,7,5,0.72) 0%,rgba(9,7,5,0.12) 42%,rgba(9,7,5,0) 70%);}
+    .cap-tag{position:absolute;left:14px;bottom:12px;z-index:2;font-family:'Manrope',sans-serif;font-size:10px;letter-spacing:0.16em;text-transform:uppercase;color:var(--rose-gold);background:rgba(11,10,8,0.72);border:1px solid var(--rose-gold-line);border-radius:20px;padding:5px 11px;}
+    .cap-body{padding:clamp(34px,7vw,60px) clamp(22px,6vw,64px);}
+    .cap-index{font-family:'Playfair Display',serif;font-size:13px;letter-spacing:0.22em;color:var(--rose-gold);margin-bottom:14px;}
+    .cap-title{font-family:'Playfair Display',serif;font-weight:600;font-size:clamp(23px,3vw,36px);line-height:1.22;margin:0 0 16px 0;color:var(--ivory);text-wrap:balance;}
+    .cap-lead{font-size:clamp(14.5px,1.05vw,16.5px);line-height:1.75;color:var(--text-secondary);margin:0 0 22px 0;max-width:56ch;text-wrap:pretty;}
+    .cap-list{list-style:none;margin:0 0 26px 0;padding:0;display:flex;flex-wrap:wrap;gap:8px;}
+    .cap-list li{font-size:12.5px;color:#e7dfd0;border:1px solid var(--border);border-radius:20px;padding:6px 12px;background:var(--surface-raised);}
+    /* Hairline rose-gold separator — accent, not surface. */
+    .cap-rule{height:1px;border:0;margin:0 0 22px 0;background:linear-gradient(90deg,var(--rose-gold-line) 0%,rgba(205,168,106,0.22) 45%,transparent 100%);}
+    .cap-cta{display:inline-block;text-decoration:none;background:transparent;border:1px solid var(--champagne);color:#f0e4cc;padding:13px 26px;font-size:13.5px;letter-spacing:0.06em;border-radius:2px;font-family:'Manrope',sans-serif;font-weight:600;transition:background .3s ease,color .3s ease,box-shadow .3s ease;min-height:44px;}
+    .cap-cta:hover{background:var(--champagne);color:var(--obsidian);box-shadow:0 0 20px var(--rose-gold-glow);}
+    .cap-cta:focus-visible{outline:2px solid var(--focus-ring);outline-offset:2px;}
+
+    /* ---- Demo metrics ---------------------------------------------------------------- */
+    .metrics{display:flex;flex-wrap:wrap;gap:10px;margin:0 0 20px 0;padding:0;list-style:none;}
+    /* min-width is sized to the longest label ("Oportunidades" / "Seguimientos") at this
+       letter-spacing, so a metric label never has to break mid-word on a narrow phone. */
+    .metric{flex:1 1 126px;min-width:126px;background:var(--surface-raised);border:1px solid var(--border);border-top:1px solid var(--rose-gold-line);border-radius:6px;padding:13px 14px;}
+    .metric-val{font-family:'Playfair Display',serif;font-size:clamp(20px,2.2vw,26px);color:var(--champagne-bright);line-height:1.1;}
+    .metric-key{display:block;margin-top:5px;font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-muted);}
+    .metrics-note{display:inline-flex;align-items:center;gap:7px;font-size:10.5px;letter-spacing:0.14em;text-transform:uppercase;color:var(--rose-gold);border:1px solid var(--rose-gold-line);border-radius:20px;padding:5px 11px;margin:0 0 26px 0;}
+
+    /* =====================================================================================
+       DEPTH & INTERACTION LAYER
+       All motion is CSS + a small rAF-driven pointer delegate. No library, no dependency,
+       no WebGL. The images themselves stay completely static — only their containers move.
+       Nothing here touches the hero video's element, ref, state or lifecycle.
+       ===================================================================================== */
+
+    /* "Explorar las soluciones" glides to the capability sequence — CSS only, no JS,
+       no scroll hijacking, and honoured as an instant jump under reduced motion. */
+    html{scroll-behavior:smooth;}
+    @media (prefers-reduced-motion: reduce){ html{scroll-behavior:auto;} }
+
+    /* ---- Ambient atmosphere: kills flat pure black without adding any asset ---- */
+    .atmo{position:relative;isolation:isolate;}
+    .atmo::before{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;
+      background:
+        radial-gradient(62% 48% at 16% 8%, rgba(205,168,106,0.075) 0%, transparent 63%),
+        radial-gradient(50% 42% at 90% 82%, rgba(221,168,147,0.055) 0%, transparent 66%),
+        radial-gradient(80% 60% at 50% 50%, rgba(28,23,16,0.55) 0%, transparent 75%);}
+    /* Near-imperceptible weave, pure CSS — no image file. */
+    .atmo::after{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;
+      background-image:repeating-linear-gradient(115deg, rgba(255,255,255,0.013) 0 1px, transparent 1px 3px);}
+    .atmo > *{position:relative;z-index:1;}
+
+    /* ---- Scroll reveal. Content is visible by DEFAULT; the hidden state only exists once
+           JS has confirmed it can reveal it again (html.fx-on). If JS never runs, or motion
+           is reduced, everything simply stays visible. ---- */
+    .fx-on [data-reveal]{opacity:0;transform:translateY(16px);filter:blur(5px);
+      transition:opacity .7s ease, transform .7s cubic-bezier(.22,.9,.3,1), filter .7s ease;
+      transition-delay:var(--rd,0ms);}
+    /* The revealed flag is an attribute rather than a class. Both were verified to survive a
+       language switch on this build, so this is defensive, not a fix for a live bug: the
+       reveal is one-way (the observer unobserves on first hit), so if a future refactor ever
+       did rewrite className from the template, already-revealed content would be stuck
+       invisible with no second chance. An attribute React never set cannot be rewritten. */
+    .fx-on [data-reveal][data-revealed]{opacity:1;transform:none;filter:none;}
+
+    /* ---- 3D tilt cards (pointer devices only) ---- */
+    [data-fx-tilt]{position:relative;}
+    [data-fx-tilt]::before{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;opacity:0;
+      transition:opacity .45s ease;
+      background:radial-gradient(240px circle at var(--mx,50%) var(--my,50%), rgba(221,168,147,0.17), rgba(205,168,106,0.07) 44%, transparent 72%);}
+    @media (hover: hover) and (pointer: fine){
+      [data-fx-tilt]{transform-style:preserve-3d;
+        transition:transform .55s cubic-bezier(.22,.9,.3,1), box-shadow .45s ease, border-color .45s ease;}
+      [data-fx-tilt].is-tilting{transition:transform .1s linear, box-shadow .3s ease, border-color .3s ease;
+        transform:perspective(1000px) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg)) translate3d(0,-7px,0) scale(1.015);
+        border-color:var(--rose-gold-line);
+        box-shadow:0 26px 54px -26px rgba(0,0,0,0.92), 0 0 28px -6px var(--rose-gold-glow);}
+      [data-fx-tilt].is-tilting::before{opacity:1;}
+      /* Layer separation — numeral, title and body sit on different planes. */
+      [data-fx-tilt] .fx-z1,[data-fx-tilt] .fx-z2,[data-fx-tilt] .fx-z3{transition:transform .55s cubic-bezier(.22,.9,.3,1);}
+      [data-fx-tilt].is-tilting .fx-z1{transform:translateZ(26px);}
+      [data-fx-tilt].is-tilting .fx-z2{transform:translateZ(16px);}
+      [data-fx-tilt].is-tilting .fx-z3{transform:translateZ(8px);}
+    }
+    /* Keyboard parity: focus-visible gets the same elevation and lighting, minus the tilt. */
+    [data-fx-tilt]:focus-visible{outline:2px solid var(--focus-ring);outline-offset:3px;
+      transform:translateY(-6px) scale(1.012);border-color:var(--rose-gold-line);
+      box-shadow:0 24px 50px -26px rgba(0,0,0,0.92), 0 0 26px -8px var(--rose-gold-glow);}
+    [data-fx-tilt]:focus-visible::before{opacity:1;--mx:50%;--my:0%;}
+
+    /* ---- Capsules / chips: lift, warm border, champagne light sweep ---- */
+    .fx-capsule{position:relative;overflow:hidden;
+      transition:transform .35s cubic-bezier(.22,.9,.3,1), border-color .35s ease, background-color .35s ease, box-shadow .35s ease;}
+    .fx-capsule::after{content:"";position:absolute;top:0;left:-70%;width:48%;height:100%;pointer-events:none;
+      background:linear-gradient(105deg, transparent, rgba(240,220,180,0.14), transparent);
+      transform:skewX(-18deg);transition:left .65s ease;}
+    .fx-capsule:hover,.fx-capsule:focus-visible{transform:translateY(-3px);border-color:var(--rose-gold-line);
+      background-color:#1b1710;box-shadow:0 10px 26px -14px rgba(0,0,0,0.85);}
+    .fx-capsule:hover::after,.fx-capsule:focus-visible::after{left:118%;}
+    .fx-capsule:focus-visible{outline:2px solid var(--focus-ring);outline-offset:2px;}
+
+    /* ---- Static image containers: multi-layer frame, warm backlight, internal parallax ---- */
+    .cap-media{box-shadow:inset 0 0 0 1px rgba(205,168,106,0.13), 0 30px 72px -42px rgba(0,0,0,0.95);}
+    .cap-media img{transition:transform .75s cubic-bezier(.22,.9,.3,1);}
+    .cap-media::after{transition:opacity .5s ease;}
+    .cap-tag{transition:transform .45s cubic-bezier(.22,.9,.3,1), border-color .45s ease, color .45s ease;}
+    @media (hover: hover) and (pointer: fine){
+      /* Zoom stays under 1.03 and the shift is a few px — the image is never distorted or cropped away. */
+      .cap-media.is-hover img{transform:scale(1.03) translate3d(var(--px,0px), var(--py,0px), 0);}
+      .cap-media.is-hover::after{opacity:.88;}
+      .cap-media.is-hover .cap-tag{transform:translateY(-4px);border-color:var(--rose-gold);}
+    }
+
+    /* ---- WhatsApp CTAs ---- */
+    .btn-wa{display:inline-flex;align-items:center;justify-content:center;gap:10px;
+      background:#25D366;color:#06251a;border:1px solid #25D366;padding:13px 24px;border-radius:999px;
+      font-family:'Manrope',sans-serif;font-weight:700;font-size:14px;letter-spacing:0.02em;text-decoration:none;
+      min-height:48px;box-shadow:0 14px 30px -16px rgba(37,211,102,0.6);
+      transition:transform .3s cubic-bezier(.22,.9,.3,1), box-shadow .3s ease, background-color .3s ease;}
+    .btn-wa:hover{background:#2ee477;transform:translateY(-2px);box-shadow:0 20px 38px -16px rgba(37,211,102,0.7);}
+    .btn-wa:focus-visible{outline:2px solid var(--focus-ring);outline-offset:3px;}
+    .btn-wa svg{width:20px;height:20px;flex-shrink:0;}
+    .btn-ghost{display:inline-flex;align-items:center;justify-content:center;gap:8px;background:transparent;
+      border:1px solid var(--border);color:var(--text-secondary);padding:13px 24px;border-radius:999px;
+      font-family:'Manrope',sans-serif;font-weight:600;font-size:13.5px;text-decoration:none;min-height:48px;
+      transition:transform .3s cubic-bezier(.22,.9,.3,1), border-color .3s ease, color .3s ease, box-shadow .3s ease;}
+    .btn-ghost:hover{border-color:var(--champagne);color:#f0e4cc;transform:translateY(-2px);box-shadow:0 0 22px -10px var(--rose-gold-glow);}
+    .btn-ghost:focus-visible{outline:2px solid var(--focus-ring);outline-offset:3px;}
+
+    /* ---- Single floating WhatsApp button. z-index 40 keeps it under the services backdrop
+           (55) and panel (60), so an open panel always covers it. ---- */
+    .wa-fab{position:fixed;right:clamp(14px,2.4vw,26px);
+      bottom:calc(clamp(14px,2.4vw,26px) + env(safe-area-inset-bottom, 0px));
+      z-index:40;display:inline-flex;align-items:center;justify-content:center;gap:9px;
+      min-height:52px;min-width:52px;padding:0 20px;background:#25D366;color:#06251a;border-radius:999px;
+      font-family:'Manrope',sans-serif;font-weight:700;font-size:14px;text-decoration:none;
+      box-shadow:0 16px 36px -12px rgba(0,0,0,0.8), inset 0 0 0 1px rgba(255,255,255,0.08);
+      transition:transform .3s cubic-bezier(.22,.9,.3,1), background-color .3s ease, box-shadow .3s ease;}
+    .wa-fab:hover{background:#2ee477;transform:translateY(-3px);}
+    .wa-fab:focus-visible{outline:2px solid var(--focus-ring);outline-offset:3px;}
+    .wa-fab svg{width:24px;height:24px;flex-shrink:0;}
+    @media (max-width:779px){
+      .wa-fab{padding:0;width:56px;min-width:56px;height:56px;}
+      .wa-fab-label{display:none;}
+    }
+    /* Reserve room under the last content so the floating button never sits on top of it. */
+    .site-footer{padding-bottom:calc(38px + 74px + env(safe-area-inset-bottom, 0px)) !important;}
+    @media (min-width:780px){
+      .site-footer{padding-bottom:calc(38px + 40px + env(safe-area-inset-bottom, 0px)) !important;}
+    }
+
+    /* ---- "Desarrollo Digital Estratégico": balanced intro column + capability grid.
+           Height is driven by content — no min-height:100vh, no dead space. ---- */
+    .dde{padding:clamp(54px,7vw,94px) clamp(20px,5vw,64px) clamp(46px,6vw,78px);
+      background:var(--obsidian);border-top:1px solid var(--border-subtle);}
+    .dde-inner{max-width:1300px;margin:0 auto;display:grid;grid-template-columns:1fr;
+      gap:clamp(30px,4vw,54px);align-items:start;}
+    @media (min-width:1000px){
+      .dde-inner{grid-template-columns:minmax(0,40%) minmax(0,1fr);gap:clamp(40px,4.5vw,76px);}
+    }
+    .dde-eyebrow{font-size:11px;letter-spacing:0.3em;color:var(--champagne);text-transform:uppercase;margin-bottom:18px;}
+    .dde-title{font-family:'Playfair Display',serif;font-weight:600;font-size:clamp(25px,3.1vw,40px);
+      line-height:1.2;color:var(--ivory);margin:0 0 20px 0;text-wrap:balance;}
+    .dde-lead{font-size:clamp(14.5px,1.05vw,16.5px);line-height:1.78;color:var(--text-secondary);
+      margin:0 0 28px 0;max-width:52ch;text-wrap:pretty;}
+    .dde-actions{display:flex;flex-wrap:wrap;gap:12px;}
+    .dde-grid{display:grid;grid-template-columns:1fr;gap:clamp(14px,1.6vw,20px);}
+    @media (min-width:620px){ .dde-grid{grid-template-columns:1fr 1fr;} }
+    .dde-card{position:relative;display:block;text-align:left;
+      background:linear-gradient(158deg,#17140d 0%,#110f09 62%,#0d0c08 100%);
+      border:1px solid var(--border);border-radius:12px;padding:clamp(20px,2.2vw,27px);
+      box-shadow:0 14px 34px -20px rgba(0,0,0,0.85);}
+    .dde-card-num{display:block;font-family:'Playfair Display',serif;font-size:13px;letter-spacing:0.2em;
+      color:var(--rose-gold);margin-bottom:12px;}
+    .dde-card-title{font-family:'Playfair Display',serif;font-weight:600;font-size:clamp(16.5px,1.45vw,19px);
+      line-height:1.32;color:var(--ivory);margin:0 0 10px 0;text-wrap:balance;}
+    .dde-card-text{font-size:13.5px;line-height:1.68;color:var(--text-secondary);margin:0;text-wrap:pretty;}
+
+    /* ---- Reduced motion: keep every border, shadow, contrast and hierarchy; drop all movement. ---- */
+    @media (prefers-reduced-motion: reduce){
+      [data-fx-tilt],[data-fx-tilt].is-tilting,[data-fx-tilt]:focus-visible,
+      .fx-capsule,.fx-capsule:hover,.fx-capsule:focus-visible,
+      .btn-wa,.btn-wa:hover,.btn-ghost,.btn-ghost:hover,.wa-fab,.wa-fab:hover,
+      .cap-media img,.cap-media.is-hover img,.cap-tag,.cap-media.is-hover .cap-tag{
+        transform:none !important;transition:none !important;}
+      [data-fx-tilt]::before,.fx-capsule::after{display:none !important;}
+      .fx-on [data-reveal],[data-reveal]{opacity:1 !important;transform:none !important;filter:none !important;}
+    }
+    /* Touch devices: never follow the finger, never interfere with scrolling. */
+    @media (hover: none),(pointer: coarse){
+      [data-fx-tilt]::before{display:none;}
+      .fx-capsule::after{display:none;}
+      [data-fx-tilt]:active{transform:scale(0.995);border-color:var(--rose-gold-line);}
+      .fx-capsule:active{background-color:#1b1710;}
+    }
+
+    @media (min-width:900px){
+      .cap-grid{grid-template-columns:1.05fr 1fr;}
+      .cap-media{aspect-ratio:auto;height:min(78vh,660px);}
+      .cap-media img{object-position:center;}
+      .cap-media::after{background:linear-gradient(90deg,rgba(9,7,5,0) 55%,rgba(9,7,5,0.55) 100%);}
+      .cap-reverse .cap-media{grid-column:2;grid-row:1;}
+      .cap-reverse .cap-body{grid-column:1;grid-row:1;}
+      .cap-reverse .cap-media::after{background:linear-gradient(270deg,rgba(9,7,5,0) 55%,rgba(9,7,5,0.55) 100%);}
+      .cap-tag{left:auto;right:16px;bottom:16px;}
+      .cap-reverse .cap-tag{right:auto;left:16px;}
+      .cap-body{padding:clamp(48px,5vw,84px) clamp(40px,4.5vw,72px);}
+    }
+
     @keyframes kenburns{0%{transform:scale(1.06) translate(0,0);}50%{transform:scale(1.13) translate(-1.2%,-0.8%);}100%{transform:scale(1.06) translate(0,0);}}
     @keyframes floatY{0%,100%{transform:translateY(0);}50%{transform:translateY(-7px);}}
     @keyframes pulseLine{0%,100%{opacity:.35;}50%{opacity:1;}}
@@ -27,35 +324,63 @@
     .process-final:hover{box-shadow:0 0 30px rgba(205,168,106,0.12);}
     @media (prefers-reduced-motion: reduce){
       .process-step,.process-step:hover,.process-step:focus-visible,.process-step:active{transform:none;transition:border-color .35s ease,box-shadow .35s ease;}
+      .cap-cta{transition:none;}
+      *{animation-duration:0.001ms !important;animation-iteration-count:1 !important;}
     }
   </style>
 </helmet>
 <div style="font-family:'Manrope',sans-serif;background:#0b0a08;color:#f2ece1;width:100%;overflow-x:hidden;position:relative;">
 
-  <nav style="{{ navStyle }}">
+  <a href="#main" class="skip-link">{{ t.skipToContent }}</a>
+
+  <nav style="{{ navStyle }}" aria-label="{{ t.navAriaLabel }}">
     <span></span>
     <div style="display:flex;gap:6px;align-items:center;">
-      <button aria-pressed="{{ isEs }}" onClick="{{ setLangEs }}" style="{{ btnEsStyle }}" style-focus="{{ focusRing }}">ES</button>
-      <span style="color:#584f43;">|</span>
-      <button aria-pressed="{{ isEn }}" onClick="{{ setLangEn }}" style="{{ btnEnStyle }}" style-focus="{{ focusRing }}">EN</button>
+      <button aria-pressed="{{ isEs }}" onClick="{{ setLangEs }}" lang="es" style="{{ btnEsStyle }}" style-focus="{{ focusRing }}">ES</button>
+      <span style="color:#584f43;" aria-hidden="true">|</span>
+      <button aria-pressed="{{ isEn }}" onClick="{{ setLangEn }}" lang="en" style="{{ btnEnStyle }}" style-focus="{{ focusRing }}">EN</button>
     </div>
   </nav>
 
+  <main id="main" tabindex="-1" aria-label="{{ t.mainAriaLabel }}" style="display:block;outline:none;">
+
   <section id="hero" style="position:relative;width:100%;min-height:100vh;background:#0b0a08;">
 
+    <!-- HERO MEDIA — DECORATIVE BACKGROUND ONLY.
+         Contract enforced here and in the script below:
+           * muted + loop + autoPlay + playsInline, never `controls`;
+           * pointer-events:none and not inside any button/label/anchor, so it can never
+             receive a click, tap or gesture;
+           * aria-hidden — the <h1>/<p> beside it carry all the meaning;
+           * NO modal, lightbox, fullscreen or native player is reachable from the hero;
+           * it shares no ref, state or listener with the services/panel;
+           * poster still frame is the fallback whenever autoplay is blocked, Save-Data is
+             on, the file errors, or prefers-reduced-motion is set.
+         The only code that ever calls play() on it is onHeroVideoReady (one-shot, bound to
+         the element's own canplay event). See the removed componentDidUpdate for why. -->
     <sc-if value="{{ notMobile }}" hint-placeholder-val="{{ true }}">
       <div style="position:relative;width:100%;height:100vh;overflow:hidden;">
-        <video ref="{{ videoRef }}" poster="uploads/woman-making-new-poster.jpg" autoPlay="{{ true }}" muted="{{ true }}" playsInline="{{ true }}" webkit-playsinline="true" loop="{{ true }}" preload="auto" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:56% 30%;pointer-events:none;">
-          <source src="uploads/woman_making_new.mp4" type="video/mp4" />
-        </video>
-        <audio ref="{{ audioRef }}" preload="auto" style="display:none;">
+        <sc-if value="{{ showHeroVideo }}" hint-placeholder-val="{{ true }}">
+          <video ref="{{ setHeroVideoEl }}" aria-hidden="true" tabindex="-1" poster="uploads/woman-making-new-poster.jpg" autoPlay="{{ true }}" muted="{{ true }}" playsInline="{{ true }}" webkit-playsinline="true" loop="{{ true }}" preload="auto" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:56% 30%;pointer-events:none;">
+            <!-- The web-optimized encode of the same take (5.5 MB) already existed in uploads/ but
+                 was never referenced; the hero was pulling the 25 MB master on every visit,
+                 phones included. Browsers take the first playable <source>, so the master stays
+                 as the fallback and nothing is removed. -->
+            <source src="uploads/woman_making_new.web.mp4" type="video/mp4" />
+            <source src="uploads/woman_making_new.mp4" type="video/mp4" />
+          </video>
+        </sc-if>
+        <sc-if value="{{ showHeroPoster }}" hint-placeholder-val="{{ false }}">
+          <img src="uploads/woman-making-new-poster.jpg" alt="" aria-hidden="true" width="1920" height="1080" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:56% 30%;pointer-events:none;" />
+        </sc-if>
+        <audio ref="{{ audioRef }}" preload="none" loop="{{ true }}" style="display:none;">
           <source src="uploads/Executive_Authority_Web_30s.mp3" type="audio/mpeg" />
         </audio>
         <div style="position:absolute;left:clamp(24px,5vw,80px);bottom:26px;z-index:4;display:flex;align-items:center;gap:10px;">
-          <button onClick="{{ toggleSound }}" aria-pressed="{{ soundOn }}" style="display:flex;align-items:center;gap:8px;background:rgba(11,10,8,0.55);border:1px solid rgba(205,168,106,0.45);color:#e7dfd0;padding:9px 14px;border-radius:20px;cursor:pointer;font-family:'Manrope',sans-serif;font-size:12px;letter-spacing:0.03em;" style-focus="{{ focusRing }}">
+          <button onClick="{{ toggleSound }}" aria-pressed="{{ soundOn }}" style="display:flex;align-items:center;gap:8px;background:rgba(11,10,8,0.55);border:1px solid rgba(205,168,106,0.45);color:#e7dfd0;padding:9px 14px;border-radius:20px;cursor:pointer;font-family:'Manrope',sans-serif;font-size:12px;letter-spacing:0.03em;min-height:44px;" style-focus="{{ focusRing }}">
             <span>{{ soundIcon }}</span><span>{{ soundLabel }}</span>
           </button>
-          <input type="range" min="0.15" max="0.45" step="0.01" value="{{ volume }}" onChange="{{ onVolumeChange }}" aria-label="Volumen" style="width:80px;accent-color:#cda86a;" style-focus="{{ focusRing }}" />
+          <input type="range" min="0.15" max="0.45" step="0.01" value="{{ volume }}" onChange="{{ onVolumeChange }}" aria-label="{{ t.volumeLabel }}" style="width:96px;height:44px;accent-color:#cda86a;cursor:pointer;" style-focus="{{ focusRing }}" />
         </div>
         <div style="position:absolute;inset:0;width:40%;left:auto;right:0;background:linear-gradient(260deg, rgba(9,7,5,0.97) 0%, rgba(9,7,5,0.82) 55%, rgba(9,7,5,0.35) 85%, rgba(9,7,5,0) 100%);"></div>
         <div style="position:absolute;inset:0;background:linear-gradient(0deg, rgba(9,7,5,0.45) 0%, transparent 22%, transparent 78%, rgba(9,7,5,0.3) 100%);"></div>
@@ -78,18 +403,23 @@
     <sc-if value="{{ isMobile }}" hint-placeholder-val="{{ false }}">
       <div style="position:relative;width:100%;height:64vh;overflow:hidden;">
         <sc-if value="{{ showMobileVideo }}" hint-placeholder-val="{{ false }}">
-          <video ref="{{ videoRef }}" onError="{{ onMobileVideoError }}" poster="uploads/woman-making-new-poster.jpg" autoPlay="{{ true }}" muted="{{ true }}" playsInline="{{ true }}" webkit-playsinline="true" loop="{{ true }}" preload="metadata" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:46% 30%;pointer-events:none;">
+          <video ref="{{ setHeroVideoEl }}" aria-hidden="true" tabindex="-1" poster="uploads/woman-making-new-poster.jpg" autoPlay="{{ true }}" muted="{{ true }}" playsInline="{{ true }}" webkit-playsinline="true" loop="{{ true }}" preload="metadata" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:46% 30%;pointer-events:none;">
+            <!-- The web-optimized encode of the same take (5.5 MB) already existed in uploads/ but
+                 was never referenced; the hero was pulling the 25 MB master on every visit,
+                 phones included. Browsers take the first playable <source>, so the master stays
+                 as the fallback and nothing is removed. -->
+            <source src="uploads/woman_making_new.web.mp4" type="video/mp4" />
             <source src="uploads/woman_making_new.mp4" type="video/mp4" />
           </video>
         </sc-if>
         <sc-if value="{{ showMobileImage }}" hint-placeholder-val="{{ true }}">
-          <img src="uploads/woman-making-new-poster.jpg" alt="Priscila Cueva" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:46% 30%;" />
+          <img src="uploads/woman-making-new-poster.jpg" alt="" aria-hidden="true" width="1920" height="1080" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:46% 30%;pointer-events:none;" />
         </sc-if>
-        <audio ref="{{ audioRef }}" preload="metadata" loop="{{ true }}" style="display:none;">
+        <audio ref="{{ audioRef }}" preload="none" loop="{{ true }}" style="display:none;">
           <source src="uploads/Executive_Authority_Web_30s.mp3" type="audio/mpeg" />
         </audio>
         <div style="position:absolute;inset:0;background:linear-gradient(0deg, rgba(9,7,5,0.96) 0%, rgba(9,7,5,0.42) 46%, rgba(9,7,5,0.05) 68%);"></div>
-        <button onClick="{{ toggleSound }}" aria-pressed="{{ soundOn }}" style="position:absolute;top:16px;right:16px;z-index:4;display:flex;align-items:center;gap:6px;background:rgba(11,10,8,0.55);border:1px solid rgba(205,168,106,0.45);color:#e7dfd0;padding:8px 12px;border-radius:20px;cursor:pointer;font-family:'Manrope',sans-serif;font-size:11px;letter-spacing:0.03em;" style-focus="{{ focusRing }}">
+        <button onClick="{{ toggleSound }}" aria-pressed="{{ soundOn }}" style="position:absolute;top:16px;right:16px;z-index:4;display:flex;align-items:center;gap:6px;background:rgba(11,10,8,0.55);border:1px solid rgba(205,168,106,0.45);color:#e7dfd0;padding:8px 12px;border-radius:20px;cursor:pointer;font-family:'Manrope',sans-serif;font-size:11px;letter-spacing:0.03em;min-height:44px;" style-focus="{{ focusRing }}">
           <span>{{ soundIcon }}</span><span>{{ soundLabel }}</span>
         </button>
         <div style="position:absolute;left:20px;right:20px;bottom:22px;z-index:3;">
@@ -107,29 +437,140 @@
 
   </section>
 
-  <section style="padding:clamp(60px,8vw,110px) clamp(24px,6vw,80px);background:#111009;border-top:1px solid #241f16;">
-    <div style="font-size:11px;letter-spacing:0.3em;color:#cda86a;text-transform:uppercase;margin-bottom:16px;">{{ t.howEyebrow }}</div>
-    <h2 style="font-family:'Playfair Display',serif;font-weight:600;font-size:clamp(24px,3vw,38px);margin:0 0 44px 0;color:#f5efe4;max-width:640px;">{{ t.howTitle }}</h2>
+  <section class="atmo" style="padding:clamp(60px,8vw,110px) clamp(24px,6vw,80px);background:#111009;border-top:1px solid #241f16;">
+    <div style="font-size:11px;letter-spacing:0.3em;color:#cda86a;text-transform:uppercase;margin-bottom:16px;" data-reveal>{{ t.howEyebrow }}</div>
+    <h2 style="font-family:'Playfair Display',serif;font-weight:600;font-size:clamp(24px,3vw,38px);margin:0 0 44px 0;color:#f5efe4;max-width:640px;--rd:70ms;" data-reveal>{{ t.howTitle }}</h2>
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:22px;margin-bottom:32px;">
       <sc-for list="{{ howSteps }}" as="step" hint-placeholder-count="4">
-        <div class="process-step" tabindex="0" aria-label="{{ step.n }}. {{ step.text }}">
-          <div class="process-step-num" style="font-family:'Playfair Display',serif;font-size:34px;color:#7b6a4c;margin-bottom:14px;">{{ step.n }}</div>
-          <div style="font-size:15px;color:#e7dfd0;line-height:1.5;font-weight:600;">{{ step.text }}</div>
+        <div class="process-step" data-fx-tilt data-reveal tabindex="0" style="--rd:{{ step.delay }};" aria-label="{{ step.n }}. {{ step.text }}">
+          <div class="process-step-num fx-z1" style="font-family:'Playfair Display',serif;font-size:34px;color:#7b6a4c;margin-bottom:14px;">{{ step.n }}</div>
+          <div class="fx-z3" style="font-size:15px;color:#e7dfd0;line-height:1.5;font-weight:600;">{{ step.text }}</div>
         </div>
       </sc-for>
     </div>
-    <div class="process-final">
+    <div class="process-final" data-reveal>
       <h3 style="font-family:'Playfair Display',serif;font-weight:600;font-size:clamp(20px,2.4vw,30px);margin:0 0 16px 0;color:#f5efe4;">{{ t.tailoredTitle }}</h3>
       <p style="font-size:clamp(15px,1.1vw,17px);line-height:1.75;color:#c6bcaa;max-width:720px;margin:0;">{{ t.tailoredBody }}</p>
     </div>
   </section>
 
+  <!-- ===================== DESARROLLO DIGITAL ESTRATÉGICO =====================
+       The single primary offer. The three former standalone services live inside it as
+       capabilities. Nothing in this section holds state: every CTA is a plain <a href>,
+       so browsing capabilities can never remount the hero video, open the explorer panel,
+       hijack scroll or move focus. Static images only — no carousel, no demo video. -->
+  <!-- Desarrollo Digital Estratégico — the section directly after the hero.
+       Balanced two-track composition: a ~40% introduction column and the four capabilities
+       filling the remaining width, so the right-hand side is never dead black space. Height
+       comes from the content; there is deliberately no min-height:100vh here. -->
+  <section id="desarrollo-digital-estrategico" class="dde atmo">
+    <div class="dde-inner">
+
+      <div class="dde-intro">
+        <div class="dde-eyebrow" data-reveal>{{ t.ddeEyebrow }}</div>
+        <h2 class="dde-title" data-reveal style="--rd:70ms;">{{ t.ddeTitle }}</h2>
+        <p class="dde-lead" data-reveal style="--rd:140ms;">{{ t.ddeLead }}</p>
+        <div class="dde-actions" data-reveal style="--rd:210ms;">
+          <a href="{{ ddeWaLink }}" target="_blank" rel="noopener noreferrer" class="btn-wa">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false">
+              <path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.25-.46-2.38-1.47-.88-.78-1.48-1.75-1.65-2.05-.17-.3-.02-.46.13-.61.14-.14.3-.35.45-.53.15-.18.2-.3.3-.5.1-.2.05-.38-.02-.53-.08-.15-.67-1.62-.92-2.22-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.53.07-.8.38-.28.3-1.05 1.02-1.05 2.5s1.07 2.9 1.22 3.1c.15.2 2.1 3.2 5.08 4.49.71.3 1.27.49 1.7.63.71.23 1.36.2 1.87.12.57-.09 1.76-.72 2.01-1.41.25-.7.25-1.29.17-1.41-.07-.13-.27-.2-.57-.35z"/>
+              <path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.46 1.32 4.96L2 22l5.25-1.38a9.87 9.87 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2zm0 18.02h-.01a8.2 8.2 0 0 1-4.18-1.15l-.3-.18-3.11.82.83-3.04-.2-.31a8.17 8.17 0 0 1-1.25-4.35c0-4.54 3.7-8.23 8.24-8.23 2.2 0 4.27.86 5.82 2.42a8.18 8.18 0 0 1 2.41 5.82c0 4.54-3.69 8.2-8.25 8.2z"/>
+            </svg>
+            <span>{{ t.waCta }}</span>
+          </a>
+          <a href="#capacidades" class="btn-ghost">{{ t.exploreCta }}</a>
+        </div>
+      </div>
+
+      <!-- Four capabilities. tabindex mirrors the existing .process-step pattern in this file so
+           keyboard users reach the same lighting response that a pointer gets. -->
+      <div class="dde-grid">
+        <sc-for list="{{ t.ddeCards }}" as="card" hint-placeholder-count="4">
+          <article class="dde-card" data-fx-tilt data-reveal tabindex="0"
+                   style="--rd:{{ card.delay }};"
+                   aria-label="{{ card.num }}. {{ card.title }}. {{ card.text }}">
+            <span class="dde-card-num fx-z1" aria-hidden="true">{{ card.num }}</span>
+            <h3 class="dde-card-title fx-z2">{{ card.title }}</h3>
+            <p class="dde-card-text fx-z3">{{ card.text }}</p>
+          </article>
+        </sc-for>
+      </div>
+
+    </div>
+  </section>
+
+  <section id="capacidades" aria-labelledby="capabilities-heading" class="atmo" style="background:#0b0a08;scroll-margin-top:72px;">
+    <h2 id="capabilities-heading" style="font-size:11px;letter-spacing:0.3em;color:#cda86a;text-transform:uppercase;font-weight:600;font-family:'Manrope',sans-serif;margin:0;padding:0 clamp(24px,6vw,80px) clamp(24px,3vw,36px);">{{ t.capabilitiesEyebrow }}</h2>
+
+    <sc-for list="{{ capabilityBlocks }}" as="cap" hint-placeholder-count="4">
+      <article class="{{ cap.reverseClass }}" aria-labelledby="cap-title-{{ cap.key }}">
+        <div class="cap-grid">
+          <!-- data-fx-media drives a few-pixel internal parallax on the container only.
+               The image file itself is never modified, regenerated or distorted. -->
+          <div class="cap-media" data-fx-media data-reveal>
+            <!-- Static still. Explicit width/height + aspect-ratio reserve the box before the
+                 bytes arrive, so nothing shifts. Every one of these sits below the first
+                 viewport, hence lazy + async decoding on all four. PNG originals are kept in
+                 the repo and remain the <img src> fallback for any browser without WebP. -->
+            <img src="{{ cap.imgPng }}"
+                 srcset="{{ cap.imgWebpSmall }} 768w, {{ cap.imgWebp }} 1536w"
+                 sizes="(min-width: 900px) 52vw, 100vw"
+                 alt="{{ cap.alt }}"
+                 width="1536" height="1024"
+                 loading="lazy" decoding="async" />
+            <span class="cap-tag">{{ t.visualConceptLabel }}</span>
+          </div>
+          <div class="cap-body">
+            <div class="cap-index" data-reveal>{{ cap.index }}</div>
+            <h3 id="cap-title-{{ cap.key }}" class="cap-title" data-reveal style="--rd:60ms;">{{ cap.title }}</h3>
+            <p class="cap-lead" data-reveal style="--rd:120ms;">{{ cap.lead }}</p>
+            <hr class="cap-rule" />
+            <ul class="cap-list" data-reveal style="--rd:180ms;">
+              <sc-for list="{{ cap.items }}" as="item" hint-placeholder-count="8">
+                <li class="fx-capsule" tabindex="0">{{ item }}</li>
+              </sc-for>
+            </ul>
+
+            <!-- Demo metrics: real HTML/CSS, values read from the central demoMetrics config,
+                 never baked into the image, and always carrying the visible demo-data badge. -->
+            <ul class="metrics" data-reveal style="--rd:240ms;">
+              <sc-for list="{{ cap.metrics }}" as="m" hint-placeholder-count="3">
+                <li class="metric fx-capsule">
+                  <span class="metric-val">{{ m.value }}</span>
+                  <span class="metric-key">{{ m.label }}</span>
+                </li>
+              </sc-for>
+            </ul>
+            <p class="metrics-note"><span aria-hidden="true">◇</span>{{ t.demoDataLabel }}</p>
+
+            <div data-reveal style="--rd:300ms;display:flex;flex-wrap:wrap;gap:12px;align-items:center;">
+              <a href="{{ cap.waHref }}" target="_blank" rel="noopener noreferrer" class="cap-cta">{{ t.ddeCta }}</a>
+              <sc-if value="{{ cap.isCreator }}" hint-placeholder-val="{{ false }}">
+                <a href="/ugc" class="cap-cta" style="border-color:#3a3122;color:#c6bcaa;">{{ t.viewPortfolioExampleBtn }}</a>
+              </sc-if>
+            </div>
+          </div>
+        </div>
+      </article>
+    </sc-for>
+  </section>
+
   <section ref="{{ aboutSectionRef }}" style="position:relative;width:100%;overflow:hidden;background:#0b0a08;border-top:1px solid #241f16;">
     <sc-if value="{{ notMobile }}" hint-placeholder-val="{{ true }}">
       <div style="position:relative;width:100%;min-height:100vh;overflow:hidden;">
-        <video ref="{{ aboutVideoRef }}" muted="{{ true }}" loop="{{ true }}" playsInline="{{ true }}" webkit-playsinline="true" preload="none" poster="uploads/about-me-poster.jpg" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:40% 22%;">
-          <source src="uploads/about me.mp4" type="video/mp4" />
-        </video>
+        <!-- "Sobre mí" media — a SEPARATE element with its own ref (aboutVideoRef), its own
+             one-shot IntersectionObserver and its own poster. It shares nothing with the hero
+             and nothing with the services panel. Always muted, never has controls, never opens
+             a modal or fullscreen. Falls back to the still poster under prefers-reduced-motion. -->
+        <sc-if value="{{ showAboutVideo }}" hint-placeholder-val="{{ true }}">
+          <video ref="{{ aboutVideoRef }}" aria-hidden="true" tabindex="-1" muted="{{ true }}" loop="{{ true }}" playsInline="{{ true }}" webkit-playsinline="true" preload="none" poster="uploads/about-me-poster.jpg" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:40% 22%;pointer-events:none;">
+            <source src="uploads/about-me.web.mp4" type="video/mp4" />
+            <source src="uploads/about me.mp4" type="video/mp4" />
+          </video>
+        </sc-if>
+        <sc-if value="{{ showAboutPoster }}" hint-placeholder-val="{{ false }}">
+          <img src="uploads/about-me-poster.jpg" alt="" aria-hidden="true" width="1920" height="1080" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:40% 22%;pointer-events:none;" />
+        </sc-if>
         <div style="position:absolute;inset:0;width:42%;left:auto;right:0;background:linear-gradient(260deg, rgba(9,7,5,0.97) 0%, rgba(9,7,5,0.85) 55%, rgba(9,7,5,0.4) 85%, rgba(9,7,5,0) 100%);"></div>
         <div style="position:absolute;inset:0;background:linear-gradient(0deg, rgba(9,7,5,0.5) 0%, transparent 20%, transparent 80%, rgba(9,7,5,0.35) 100%);"></div>
         <div style="position:relative;z-index:2;min-height:100vh;display:flex;align-items:center;">
@@ -145,9 +586,15 @@
     </sc-if>
     <sc-if value="{{ isMobile }}" hint-placeholder-val="{{ false }}">
       <div style="position:relative;width:100%;height:56vh;overflow:hidden;">
-        <video ref="{{ aboutVideoRef }}" muted="{{ true }}" loop="{{ true }}" playsInline="{{ true }}" webkit-playsinline="true" preload="none" poster="uploads/about-me-poster.jpg" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:42% 18%;">
-          <source src="uploads/about me.mp4" type="video/mp4" />
-        </video>
+        <sc-if value="{{ showAboutVideo }}" hint-placeholder-val="{{ true }}">
+          <video ref="{{ aboutVideoRef }}" aria-hidden="true" tabindex="-1" muted="{{ true }}" loop="{{ true }}" playsInline="{{ true }}" webkit-playsinline="true" preload="none" poster="uploads/about-me-poster.jpg" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:42% 18%;pointer-events:none;">
+            <source src="uploads/about-me.web.mp4" type="video/mp4" />
+            <source src="uploads/about me.mp4" type="video/mp4" />
+          </video>
+        </sc-if>
+        <sc-if value="{{ showAboutPoster }}" hint-placeholder-val="{{ false }}">
+          <img src="uploads/about-me-poster.jpg" alt="" aria-hidden="true" width="1920" height="1080" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:42% 18%;pointer-events:none;" />
+        </sc-if>
         <div style="position:absolute;inset:0;background:linear-gradient(0deg, rgba(9,7,5,0.55) 0%, transparent 55%);"></div>
       </div>
       <div style="padding:clamp(32px,8vw,48px) 20px;background:#111009;">
@@ -196,31 +643,33 @@
 
       <div style="margin-bottom:18px;">
         <label style="display:block;font-family:'Manrope',sans-serif;font-size:12px;font-weight:700;letter-spacing:0.04em;color:#cda86a;margin-bottom:8px;">{{ t.contactFormNameLabel }}</label>
-        <input type="text" value="{{ leadName }}" onChange="{{ onLeadNameChange }}" style="width:100%;box-sizing:border-box;padding:12px 14px;background:#17140d;border:1px solid #3a3122;border-radius:4px;color:#f0e4cc;font-family:'Manrope',sans-serif;font-size:14px;" style-focus="{{ focusRing }}" />
+        <input type="text" required="{{ true }}" maxLength="{{ 120 }}" aria-label="{{ t.contactFormNameLabel }}" aria-invalid="{{ hasLeadNameError }}" autocomplete="name" value="{{ leadName }}" onChange="{{ onLeadNameChange }}" style="width:100%;box-sizing:border-box;padding:12px 14px;background:#17140d;border:1px solid #3a3122;border-radius:4px;color:#f0e4cc;font-family:'Manrope',sans-serif;font-size:16px;min-height:44px;" style-focus="{{ focusRing }}" />
         <sc-if value="{{ hasLeadNameError }}" hint-placeholder-val="{{ false }}">
-          <div style="color:#d98787;font-size:12px;margin-top:6px;">{{ leadNameError }}</div>
+          <div role="alert" style="color:#e8a5a5;font-size:12.5px;margin-top:6px;">{{ leadNameError }}</div>
         </sc-if>
       </div>
 
       <div style="margin-bottom:18px;">
         <label style="display:block;font-family:'Manrope',sans-serif;font-size:12px;font-weight:700;letter-spacing:0.04em;color:#cda86a;margin-bottom:8px;">{{ t.contactFormPhoneLabel }}</label>
-        <input type="tel" value="{{ leadPhone }}" onChange="{{ onLeadPhoneChange }}" style="width:100%;box-sizing:border-box;padding:12px 14px;background:#17140d;border:1px solid #3a3122;border-radius:4px;color:#f0e4cc;font-family:'Manrope',sans-serif;font-size:14px;" style-focus="{{ focusRing }}" />
+        <!-- Deliberately no `pattern`: a rigid phone regex rejects valid international
+             numbers (+593, +34, extensions, spacing). Length cap only; the server validates. -->
+        <input type="tel" inputMode="tel" maxLength="{{ 32 }}" aria-label="{{ t.contactFormPhoneLabel }}" aria-invalid="{{ hasLeadPhoneError }}" autocomplete="tel" value="{{ leadPhone }}" onChange="{{ onLeadPhoneChange }}" style="width:100%;box-sizing:border-box;padding:12px 14px;background:#17140d;border:1px solid #3a3122;border-radius:4px;color:#f0e4cc;font-family:'Manrope',sans-serif;font-size:16px;min-height:44px;" style-focus="{{ focusRing }}" />
         <sc-if value="{{ hasLeadPhoneError }}" hint-placeholder-val="{{ false }}">
-          <div style="color:#d98787;font-size:12px;margin-top:6px;">{{ leadPhoneError }}</div>
+          <div role="alert" style="color:#e8a5a5;font-size:12.5px;margin-top:6px;">{{ leadPhoneError }}</div>
         </sc-if>
       </div>
 
       <div style="margin-bottom:18px;">
         <label style="display:block;font-family:'Manrope',sans-serif;font-size:12px;font-weight:700;letter-spacing:0.04em;color:#cda86a;margin-bottom:8px;">{{ t.contactFormEmailLabel }}</label>
-        <input type="email" value="{{ leadEmail }}" onChange="{{ onLeadEmailChange }}" style="width:100%;box-sizing:border-box;padding:12px 14px;background:#17140d;border:1px solid #3a3122;border-radius:4px;color:#f0e4cc;font-family:'Manrope',sans-serif;font-size:14px;" style-focus="{{ focusRing }}" />
+        <input type="email" required="{{ true }}" inputMode="email" maxLength="{{ 254 }}" aria-label="{{ t.contactFormEmailLabel }}" aria-invalid="{{ hasLeadEmailError }}" autocomplete="email" value="{{ leadEmail }}" onChange="{{ onLeadEmailChange }}" style="width:100%;box-sizing:border-box;padding:12px 14px;background:#17140d;border:1px solid #3a3122;border-radius:4px;color:#f0e4cc;font-family:'Manrope',sans-serif;font-size:16px;min-height:44px;" style-focus="{{ focusRing }}" />
         <sc-if value="{{ hasLeadEmailError }}" hint-placeholder-val="{{ false }}">
-          <div style="color:#d98787;font-size:12px;margin-top:6px;">{{ leadEmailError }}</div>
+          <div role="alert" style="color:#e8a5a5;font-size:12.5px;margin-top:6px;">{{ leadEmailError }}</div>
         </sc-if>
       </div>
 
       <div style="margin-bottom:18px;">
         <label style="display:block;font-family:'Manrope',sans-serif;font-size:12px;font-weight:700;letter-spacing:0.04em;color:#cda86a;margin-bottom:8px;">{{ t.contactFormServiceLabel }}</label>
-        <select value="{{ leadService }}" onChange="{{ onLeadServiceChange }}" style="width:100%;box-sizing:border-box;padding:12px 14px;background:#17140d;border:1px solid #3a3122;border-radius:4px;color:#f0e4cc;font-family:'Manrope',sans-serif;font-size:14px;" style-focus="{{ focusRing }}">
+        <select aria-label="{{ t.contactFormServiceLabel }}" value="{{ leadService }}" onChange="{{ onLeadServiceChange }}" style="width:100%;box-sizing:border-box;padding:12px 14px;background:#17140d;border:1px solid #3a3122;border-radius:4px;color:#f0e4cc;font-family:'Manrope',sans-serif;font-size:16px;min-height:44px;" style-focus="{{ focusRing }}">
           <sc-for list="{{ leadServiceOptions }}" as="opt" hint-placeholder-count="6">
             <option value="{{ opt.value }}">{{ opt.label }}</option>
           </sc-for>
@@ -229,7 +678,19 @@
 
       <div style="margin-bottom:22px;">
         <label style="display:block;font-family:'Manrope',sans-serif;font-size:12px;font-weight:700;letter-spacing:0.04em;color:#cda86a;margin-bottom:8px;">{{ t.contactFormMessageLabel }}</label>
-        <textarea value="{{ leadMessage }}" onChange="{{ onLeadMessageChange }}" rows="4" style="width:100%;box-sizing:border-box;padding:12px 14px;background:#17140d;border:1px solid #3a3122;border-radius:4px;color:#f0e4cc;font-family:'Manrope',sans-serif;font-size:14px;resize:vertical;"></textarea>
+        <textarea aria-label="{{ t.contactFormMessageLabel }}" maxLength="{{ 2000 }}" value="{{ leadMessage }}" onChange="{{ onLeadMessageChange }}" rows="4" style="width:100%;box-sizing:border-box;padding:12px 14px;background:#17140d;border:1px solid #3a3122;border-radius:4px;color:#f0e4cc;font-family:'Manrope',sans-serif;font-size:16px;resize:vertical;" style-focus="{{ focusRing }}"></textarea>
+      </div>
+
+      <!-- Real honeypot. Previously `website` was hard-coded to '' in submitLead(), which meant
+           it caught nothing: a bot posting straight to the endpoint sends the same empty value.
+           Now it is an actual field a scripted filler will populate, and its true value is sent.
+           Hidden from sight, from the tab order and from assistive technology, so no human ever
+           sees or reaches it. This is a weak signal by design — the endpoint still needs its own
+           rate limiting and validation. -->
+      <div aria-hidden="true" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap;">
+        <label for="pc-website">Website</label>
+        <input type="text" id="pc-website" name="website" tabindex="-1" autocomplete="off"
+               value="{{ leadWebsite }}" onChange="{{ onLeadWebsiteChange }}" />
       </div>
 
       <!-- SMS consent — separate from any other agreement, unchecked by default,
@@ -242,34 +703,66 @@
           <input type="checkbox" checked="{{ leadSmsConsent }}" onChange="{{ onLeadSmsConsentChange }}" style="margin-top:3px;width:16px;height:16px;flex-shrink:0;accent-color:#cda86a;" style-focus="{{ focusRing }}" />
           <span style="font-size:12.5px;line-height:1.65;color:#8a7f6d;">
             <span>{{ t.contactFormSmsConsentPrefix }}</span>
-            <a href="https://cimacove.com/privacy-policy.html" target="_blank" rel="noopener noreferrer" style="color:#cda86a;">{{ t.contactFormPrivacyLink }}</a>
+            <!-- These pointed at cimacove.com's cleaning-business policies, which do not describe
+                 this landing's data handling at all. They now point at this site's own pages. -->
+            <a href="{{ privacyHref }}" style="color:#cda86a;">{{ t.contactFormPrivacyLink }}</a>
             <span>{{ t.contactFormSmsConsentAnd }}</span>
-            <a href="https://cimacove.com/terms-and-conditions.html" target="_blank" rel="noopener noreferrer" style="color:#cda86a;">{{ t.contactFormTermsLink }}</a>.
+            <a href="{{ termsHref }}" style="color:#cda86a;">{{ t.contactFormTermsLink }}</a>.
           </span>
         </label>
       </div>
 
-      <button onClick="{{ submitLead }}" disabled="{{ submitBtnDisabled }}" style="display:block;width:100%;text-decoration:none;background:#cda86a;border:none;color:#0b0a08;padding:15px 32px;font-size:14px;letter-spacing:0.06em;border-radius:2px;cursor:pointer;font-family:'Manrope',sans-serif;font-weight:700;" style-hover="{{ closingBtnHover }}" style-focus="{{ focusRing }}">{{ submitBtnLabel }}</button>
+      <!-- Plain informational notice — NOT a mandatory "I accept the policy" checkbox, and not a
+           substitute for one. It adds no new field and collects nothing extra. The SMS consent
+           above stays separate, optional and unchecked by default. -->
+      <p style="font-size:12.5px;line-height:1.65;color:#8a7f6d;margin:0 0 18px 0;">
+        {{ t.formPrivacyNotice }}
+        <a href="{{ privacyHref }}" style="color:#cda86a;" style-focus="{{ focusRing }}">{{ t.privacyLabel }}</a>
+        {{ t.formPrivacyNoticeEnd }}
+      </p>
+
+      <button onClick="{{ submitLead }}" disabled="{{ submitBtnDisabled }}" style="display:block;width:100%;text-decoration:none;background:#cda86a;border:none;color:#0b0a08;padding:15px 32px;font-size:14px;letter-spacing:0.06em;border-radius:2px;cursor:pointer;font-family:'Manrope',sans-serif;font-weight:700;min-height:44px;" style-hover="{{ closingBtnHover }}" style-focus="{{ focusRing }}">{{ submitBtnLabel }}</button>
 
       <sc-if value="{{ leadSuccess }}" hint-placeholder-val="{{ false }}">
-        <div style="margin-top:18px;padding:14px 16px;background:rgba(75,165,126,0.12);border:1px solid #4ba57e;border-radius:6px;color:#a9d9c1;font-size:13.5px;">{{ t.contactFormSuccess }}</div>
+        <div role="status" aria-live="polite" style="margin-top:18px;padding:14px 16px;background:rgba(75,165,126,0.12);border:1px solid #4ba57e;border-radius:6px;color:#a9d9c1;font-size:13.5px;">{{ t.contactFormSuccess }}</div>
       </sc-if>
       <sc-if value="{{ leadError }}" hint-placeholder-val="{{ false }}">
-        <div style="margin-top:18px;padding:14px 16px;background:rgba(217,135,135,0.12);border:1px solid #d98787;border-radius:6px;color:#e8bcbc;font-size:13.5px;">{{ t.contactFormError }}</div>
+        <div role="alert" style="margin-top:18px;padding:14px 16px;background:rgba(217,135,135,0.12);border:1px solid #d98787;border-radius:6px;color:#e8bcbc;font-size:13.5px;">{{ contactFormErrorText }}</div>
       </sc-if>
     </div>
   </section>
 
-  <footer style="padding:32px clamp(24px,6vw,80px);background:#0b0a08;border-top:1px solid #241f16;display:flex;flex-wrap:wrap;gap:12px;justify-content:space-between;align-items:center;">
-    <span style="font-family:'Playfair Display',serif;font-size:13px;letter-spacing:0.2em;color:#8a7f6d;">PRISCILA CUEVA</span>
-    <span style="font-size:12px;color:#665c4c;">{{ t.footerNote }}</span>
+  </main>
+
+  <footer class="site-footer" style="padding:38px clamp(24px,6vw,80px);background:#0b0a08;border-top:1px solid #241f16;display:flex;flex-wrap:wrap;gap:22px;justify-content:space-between;align-items:flex-start;">
+    <div style="display:flex;flex-direction:column;gap:8px;min-width:220px;">
+      <span style="font-family:'Playfair Display',serif;font-size:13px;letter-spacing:0.2em;color:#8a7f6d;">PRISCILA CUEVA</span>
+      <span style="font-size:12px;color:#665c4c;">{{ t.footerBusiness }}</span>
+      <span style="font-size:12px;color:#665c4c;">{{ t.footerNote }}</span>
+    </div>
+    <nav aria-label="{{ t.footerLegalTitle }}" style="display:flex;flex-wrap:wrap;gap:8px 20px;align-items:center;">
+      <a href="{{ privacyHref }}" style="font-size:12.5px;color:#c6bcaa;text-decoration:none;border-bottom:1px solid rgba(221,168,147,0.34);padding:6px 0;min-height:44px;display:inline-flex;align-items:center;" style-hover="{{ footerLinkHover }}" style-focus="{{ focusRing }}">{{ t.privacyLabel }}</a>
+      <a href="{{ termsHref }}" style="font-size:12.5px;color:#c6bcaa;text-decoration:none;border-bottom:1px solid rgba(221,168,147,0.34);padding:6px 0;min-height:44px;display:inline-flex;align-items:center;" style-hover="{{ footerLinkHover }}" style-focus="{{ focusRing }}">{{ t.termsLabel }}</a>
+      <a href="{{ accessibilityHref }}" style="font-size:12.5px;color:#c6bcaa;text-decoration:none;border-bottom:1px solid rgba(221,168,147,0.34);padding:6px 0;min-height:44px;display:inline-flex;align-items:center;" style-hover="{{ footerLinkHover }}" style-focus="{{ focusRing }}">{{ t.accessibilityLabel }}</a>
+    </nav>
   </footer>
+
+  <!-- The one and only floating WhatsApp button on this landing (audited: no other fixed/floating
+       CTA exists). Official WhatsApp green so it is recognised instantly. z-index 40 keeps it
+       *under* the services backdrop (55) and panel (60), so an open panel always covers it. -->
+  <a class="wa-fab" href="{{ fabWaLink }}" target="_blank" rel="noopener noreferrer" aria-label="{{ t.waFabAria }}">
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false">
+      <path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.25-.46-2.38-1.47-.88-.78-1.48-1.75-1.65-2.05-.17-.3-.02-.46.13-.61.14-.14.3-.35.45-.53.15-.18.2-.3.3-.5.1-.2.05-.38-.02-.53-.08-.15-.67-1.62-.92-2.22-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.53.07-.8.38-.28.3-1.05 1.02-1.05 2.5s1.07 2.9 1.22 3.1c.15.2 2.1 3.2 5.08 4.49.71.3 1.27.49 1.7.63.71.23 1.36.2 1.87.12.57-.09 1.76-.72 2.01-1.41.25-.7.25-1.29.17-1.41-.07-.13-.27-.2-.57-.35z"/>
+      <path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.46 1.32 4.96L2 22l5.25-1.38a9.87 9.87 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2zm0 18.02h-.01a8.2 8.2 0 0 1-4.18-1.15l-.3-.18-3.11.82.83-3.04-.2-.31a8.17 8.17 0 0 1-1.25-4.35c0-4.54 3.7-8.23 8.24-8.23 2.2 0 4.27.86 5.82 2.42a8.18 8.18 0 0 1 2.41 5.82c0 4.54-3.69 8.2-8.25 8.2z"/>
+    </svg>
+    <span class="wa-fab-label">WhatsApp</span>
+  </a>
 
   <div style="{{ backdropStyle }}"></div>
 
   <div style="{{ panelStyle }}" role="dialog" aria-label="{{ panelSelectedTitle }}">
     <sc-if value="{{ hasSelected }}" hint-placeholder-val="{{ false }}">
-      <button onClick="{{ closePanel }}" aria-label="{{ t.close }}" style="position:absolute;top:18px;right:18px;background:none;border:1px solid #3a3122;color:#e7dfd0;width:34px;height:34px;border-radius:50%;cursor:pointer;font-size:16px;line-height:1;" style-focus="{{ focusRing }}">✕</button>
+      <button onClick="{{ closePanel }}" aria-label="{{ t.close }}" style="position:absolute;top:14px;right:14px;z-index:3;background:rgba(15,13,9,0.92);border:1px solid #3a3122;color:#e7dfd0;width:44px;height:44px;border-radius:50%;cursor:pointer;font-size:16px;line-height:1;display:flex;align-items:center;justify-content:center;" style-focus="{{ focusRing }}">✕</button>
       <div style="padding:clamp(28px,4vw,44px);height:100%;overflow-y:auto;">
         <div style="{{ explorerTabsWrapStyle }}">
           <sc-for list="{{ explorerTabs }}" as="tab" hint-placeholder-count="4">
@@ -279,10 +772,6 @@
         <div style="font-size:11px;color:#cda86a;letter-spacing:0.2em;margin-bottom:10px;">{{ selected.num }}</div>
         <h3 style="font-family:'Playfair Display',serif;font-weight:600;font-size:clamp(20px,2.2vw,28px);margin:0 0 16px 0;color:#f5efe4;padding-right:40px;">{{ selected.title }}</h3>
         <p style="font-size:14.5px;line-height:1.7;color:#c6bcaa;margin:0 0 22px 0;">{{ selected.full }}</p>
-
-        <sc-if value="{{ selected.isThird }}" hint-placeholder-val="{{ false }}">
-          <a href="/ugc" style="display:inline-block;text-decoration:none;background:transparent;border:1px solid #cda86a;color:#f0e4cc;padding:12px 22px;font-size:13px;letter-spacing:0.06em;border-radius:2px;cursor:pointer;font-family:'Manrope',sans-serif;font-weight:600;margin-bottom:26px;" style-hover="{{ ctaHover }}" style-focus="{{ focusRing }}">{{ t.viewUgcPortfolioBtn }}</a>
-        </sc-if>
 
         <sc-if value="{{ selected.isResources }}" hint-placeholder-val="{{ false }}">
           <div style="display:grid;grid-template-columns:{{ resourcesGridCols }};gap:16px;margin-bottom:20px;">
@@ -397,11 +886,49 @@ class Component extends DCLogic {
       featured: true
     }
   ];
+  // ============================ DEMO METRICS — NOT CLIENT RESULTS ============================
+  // Single central source for every number shown in the capability sequence. These are
+  // ILLUSTRATIVE INTERFACE VALUES ONLY. They are not client results, not case studies, not
+  // measured performance, and they are never presented as any of those: every metric group
+  // renders with a visible "Datos demostrativos / Demo data" badge next to it.
+  // Deliberately contains NO revenue, ROI, money, customer counts or growth figures.
+  // The numbers live here in HTML/CSS — never baked into the images.
+  // ==========================================================================================
+  demoMetrics = {
+    visits: '1,240',
+    leads: '128',
+    conversion: '18.4%',
+    bookings: '24',
+    followups: '37',
+    opportunities: '18',
+    proposals: '7',
+    projects: '4',
+    response: '32%'
+  };
+
   copy = {
     es: {
+      documentTitle: 'Priscila by CimaCove — Desarrollo Digital Estratégico',
+      metaDescription: 'Diseñamos ecosistemas digitales que conectan tu presencia, tus ventas y tu operación: landing pages, aplicaciones, automatización y sistemas inteligentes.',
+      skipToContent: 'Saltar al contenido principal',
+      navAriaLabel: 'Selector de idioma',
+      mainAriaLabel: 'Contenido principal',
+      volumeLabel: 'Volumen de la música ambiental',
       cta: 'Explorar servicios',
       heroTitle: 'Transformo tu visión en experiencias digitales que conectan, convierten y hacen crecer tu negocio.',
-      heroSub: 'Automatización inteligente, páginas web y contenido UGC con estrategia, personalidad y propósito.',
+      heroSub: 'Ecosistemas digitales que conectan tu presencia, tus ventas y tu operación, con estrategia, personalidad y propósito.',
+      metricLabels: {
+        visits: 'Visitas', leads: 'Leads', conversion: 'Conversión', bookings: 'Reservas',
+        followups: 'Seguimientos', opportunities: 'Oportunidades', proposals: 'Propuestas',
+        projects: 'Proyectos', response: 'Respuesta'
+      },
+      footerLegalTitle: 'Legal',
+      privacyLabel: 'Política de Privacidad',
+      termsLabel: 'Términos de Uso',
+      accessibilityLabel: 'Accesibilidad',
+      footerBusiness: 'CimaCove LLC — Arizona, Estados Unidos. Marca: Priscila by CimaCove.',
+      formPrivacyNotice: 'Usamos los datos de este formulario únicamente para responderte sobre tu consulta. No los vendemos. Consulta la',
+      formPrivacyNoticeEnd: 'para conocer cómo se tratan.',
       howEyebrow: 'Proceso',
       howTitle: 'Cómo trabajamos',
       tailoredTitle: 'Una solución diseñada alrededor de tu realidad',
@@ -433,11 +960,69 @@ class Component extends DCLogic {
       viewOnHotmartBtn: 'Ver en Hotmart',
       getResourceBtn: 'Obtener recurso',
       steps: ['Conocemos tu negocio', 'Identificamos la solución adecuada', 'Diseñamos y verificamos la experiencia', 'Implementamos con acompañamiento humano'],
+      // Los tres servicios anteriores (Automatización / Páginas web / UGC) ya no existen como
+      // ofertas principales independientes: se integran en "Desarrollo Digital Estratégico".
+      // "Cursos y recursos digitales" sigue siendo una oferta realmente independiente.
       services: [
-        { num: '01', title: 'Automatización Inteligente para Negocios', short: 'Flujos inteligentes que organizan y acompañan a tus clientes.', full: 'Diseñamos flujos inteligentes que ayudan a tu negocio a responder, organizar, calificar oportunidades y acompañar al cliente con mayor eficiencia, sin perder el control humano.', bullets: ['Atención inicial', 'Identificación del idioma', 'Respuestas con información aprobada', 'Clasificación de oportunidades', 'Recopilación organizada de datos', 'Preguntas frecuentes', 'Transferencia humana', 'Seguimiento', 'CRM o matriz futura', 'Solicitudes de citas', 'Recordatorios autorizados', 'Integraciones futuras evaluadas'], limitations: 'En salud, se presenta únicamente como apoyo administrativo. No sustituye diagnóstico, triaje clínico, tratamiento ni cumplimiento normativo automático.' },
-        { num: '02', title: 'Diseño de Páginas Web y Landing Pages', short: 'Experiencias digitales claras que convierten interés en acción.', full: 'Creamos experiencias digitales estratégicas, visuales y adaptables que presentan tu marca con claridad y convierten el interés en una acción concreta.', bullets: ['Landing pages', 'Páginas empresariales', 'Diseño bilingüe', 'Experiencia móvil', 'Llamados a la acción', 'Integración con WhatsApp', 'Arquitectura de contenido', 'Preparación técnica para SEO', 'Optimización de rendimiento', 'Diseño personalizado'], limitations: 'No garantizamos primera posición en buscadores ni ventas específicas. Hosting, dominio y mantenimiento no están incluidos.' },
-        { num: '03', title: 'Creación de Contenido UGC y Creativo Digital', short: 'Contenido auténtico que conecta con tu audiencia.', full: 'Transformamos ideas, productos y experiencias en contenido auténtico que comunica, conecta y fortalece la presencia digital de una marca.', bullets: ['Conceptualización creativa', 'Guiones', 'Hooks', 'Videos UGC', 'Contenido vertical', 'Fotografía creativa', 'Mensajes de marca', 'Edición', 'Contenido bilingüe', 'Adaptación para TikTok, Instagram y Facebook'], limitations: 'La cantidad de piezas, tiempos, revisiones y derechos de uso se definen caso por caso.' },
-        { num: '04', id: 'resources', title: 'Recursos digitales', short: 'Guías, plantillas y formación práctica.', full: 'Recursos creados para ayudarte a digitalizar, organizar y hacer crecer tu negocio con estrategias prácticas, tecnología e inteligencia artificial. Explora nuestras guías, plantillas y herramientas, y elige la que mejor se adapte a tus objetivos.', bullets: [], limitations: '', isResources: true }
+        { num: '01', title: 'Desarrollo Digital Estratégico', short: 'Ecosistemas digitales que conectan presencia, ventas y operación.', full: 'Diseñamos ecosistemas digitales que conectan tu presencia, tus ventas y tu operación. Desde una landing page hasta una aplicación, automatización o sistema inteligente, construimos una solución coherente y preparada para crecer contigo.', bullets: ['Presencia y conversión', 'Automatización y operación', 'Aplicaciones, plataformas y control', 'Posicionamiento digital para creadores', 'Diagnóstico de necesidades', 'Arquitectura de la solución', 'Diseño y experiencia de usuario', 'Integraciones del alcance aprobado', 'Pruebas responsive', 'Entrega documentada'], limitations: 'El alcance, los tiempos, las integraciones y las revisiones se definen por proyecto. No garantizamos resultados, ingresos, posiciones en buscadores ni automatización total. Hosting, dominio y mantenimiento se acuerdan aparte. En salud, cualquier apoyo es administrativo y no sustituye diagnóstico, triaje clínico ni tratamiento.' },
+        { num: '02', id: 'resources', title: 'Cursos y recursos digitales', short: 'Guías, plantillas y formación práctica.', full: 'Recursos creados para ayudarte a digitalizar, organizar y hacer crecer tu negocio con estrategias prácticas, tecnología e inteligencia artificial. Explora nuestras guías, plantillas y herramientas, y elige la que mejor se adapte a tus objetivos.', bullets: [], limitations: '', isResources: true }
+      ],
+      ddeEyebrow: 'Desarrollo Digital Estratégico',
+      ddeTitle: 'Tu negocio no necesita más piezas sueltas. Necesita un sistema que trabaje contigo.',
+      ddeLead: 'Diseñamos la presencia, las automatizaciones y las herramientas digitales que conectan tus clientes, tu operación y tus oportunidades de crecimiento.',
+      // Capability overview cards. Capabilities only — no revenue, clients, ROI, percentages
+      // or invented results anywhere in this section.
+      ddeCards: [
+        { num: '01', delay: '0ms',   title: 'Presencia y conversión', text: 'Landing pages, páginas web, formularios y experiencias diseñadas para convertir visitas en oportunidades.' },
+        { num: '02', delay: '70ms',  title: 'Automatización y operación', text: 'Seguimientos, reservas y flujos que reducen tareas repetitivas y mantienen el negocio organizado.' },
+        { num: '03', delay: '140ms', title: 'Aplicaciones, plataformas y control', text: 'Paneles, CRM, herramientas internas y soluciones personalizadas para administrar información y procesos.' },
+        { num: '04', delay: '210ms', title: 'Posicionamiento digital para creadores', text: 'Portafolio, media kit, propuestas y sistemas para organizar y presentar oportunidades profesionales.' }
+      ],
+      ddeCta: 'Diseñar mi sistema digital',
+      waCta: 'Hablar por WhatsApp',
+      exploreCta: 'Explorar las soluciones',
+      waFabAria: 'Hablar por WhatsApp con Priscila (se abre en una pestaña nueva)',
+      visualConceptLabel: 'Concepto visual',
+      demoDataLabel: 'Datos demostrativos',
+      capabilitiesEyebrow: 'Cuatro capacidades, un solo sistema',
+      viewPortfolioExampleBtn: 'Ver ejemplo de portafolio',
+      capabilities: [
+        {
+          key: 'presence',
+          index: 'Capacidad 01',
+          title: 'Presencia y conversión',
+          lead: 'La primera impresión de tu negocio y el camino que lleva a una persona interesada hasta convertirse en una conversación real.',
+          items: ['Landing pages', 'Embudos de conversión', 'Páginas y sitios web', 'Formularios', 'Reservas', 'Portales digitales', 'Experiencias responsive', 'Integraciones de contacto'],
+          metrics: ['visits', 'leads', 'conversion'],
+          alt: 'Concepto visual: paneles de vidrio mostrando un mismo sitio web adaptado a pantalla grande, tableta y teléfono, en un espacio de mármol negro con luz dorada.'
+        },
+        {
+          key: 'automation',
+          index: 'Capacidad 02',
+          title: 'Automatización y operación',
+          lead: 'El trabajo repetitivo que hoy consume tus horas, ordenado en procesos que registran, clasifican y dan seguimiento sin perder el control humano.',
+          items: ['Automatización de procesos', 'CRM', 'Captación y organización de prospectos', 'Seguimientos', 'Comunicaciones', 'Integraciones', 'Flujos internos', 'Reducción de tareas manuales repetitivas'],
+          metrics: ['bookings', 'followups', 'opportunities'],
+          alt: 'Concepto visual: una secuencia de paneles de vidrio unidos por una línea dorada, representando un proceso que avanza desde un contacto hasta una confirmación.'
+        },
+        {
+          key: 'apps',
+          index: 'Capacidad 03',
+          title: 'Aplicaciones, plataformas y control',
+          lead: 'Cuando el negocio necesita su propia herramienta: un lugar donde ver, decidir y operar, preparado para crecer por etapas.',
+          items: ['Aplicaciones web y móviles', 'Plataformas digitales', 'Sistemas inteligentes', 'Dashboards', 'Sistemas internos de control', 'Portales para clientes', 'Herramientas preparadas para escalar'],
+          metrics: ['visits', 'conversion', 'bookings'],
+          alt: 'Concepto visual: un panel de control oscuro con gráficas y métricas en tonos dorados, acompañado de las mismas vistas en teléfono y tableta.'
+        },
+        {
+          key: 'creator',
+          index: 'Capacidad 04',
+          title: 'Posicionamiento digital para creadores',
+          lead: 'Diseñamos cómo te presentas y cómo administras oportunidades. No grabamos, producimos ni publicamos contenido en tu nombre: construimos el sistema con el que te presentas y te organizas.',
+          items: ['Portafolios', 'Media kits', 'Página de presentación', 'Propuesta de valor', 'Posicionamiento', 'Presentación comercial', 'Sistema para conseguir, organizar y administrar oportunidades'],
+          metrics: ['proposals', 'projects', 'response'],
+          alt: 'Concepto visual: un portafolio impreso y un media kit abiertos sobre una mesa de mármol negro, junto a una tableta con una presentación editorial.'
+        }
       ],
       faq: [
         ['¿Los servicios se personalizan?', 'Sí, cada solución se adapta a las necesidades, procesos y clientes de tu negocio.'],
@@ -447,20 +1032,31 @@ class Component extends DCLogic {
         ['¿Los precios aparecen en la página?', 'No. Los precios se conversan directamente según cada proyecto.'],
         ['¿Puedo comenzar por una landing y agregar automatización después?', 'Sí, puedes iniciar con un servicio e incorporar otros más adelante.']
       ],
-      waMsg: (title) => `Hola, me interesa el servicio: ${title}. Idioma: Español. Fuente: landing page.`,
+      waMsg: (title) => `Hola, me interesa el servicio: ${title}. Idioma: Español. Fuente: landing page. Atención manual.`,
+      // Mensaje del CTA de cada capacidad: conserva idioma, página de origen, servicio principal
+      // y la capacidad elegida, y deja explícita la atención manual.
+      capWaMsg: (capability) => `Hola, Priscila. Me interesa Desarrollo Digital Estratégico, capacidad: ${capability}. Idioma: Español. Fuente: landing page (priscila.cimacove.com). Entiendo que la atención es manual.`,
+      // CTA principal del servicio: sin capacidad, porque todavía no eligió ninguna.
+      ddeWaMsg: 'Hola, Priscila. Me interesa Desarrollo Digital Estratégico. Todavía no elijo una capacidad concreta. Idioma: Español. Fuente: landing page (priscila.cimacove.com). Entiendo que la atención es manual.',
       generalWaMsg: 'Hola, Priscila. Llegué desde tu página web y todavía no sé qué servicio necesito. ¿Podrías orientarme?',
+      // Floating button. Carries language, source and service, and states that attention is
+      // manual — it never claims the reply is automated.
+      fabWaMsg: 'Hola, Priscila. Te escribo desde tu landing page. Me interesa Desarrollo Digital Estratégico. Idioma: Español. Fuente: botón flotante de WhatsApp (priscila.cimacove.com). Entiendo que la atención es manual.',
       contactFormTitle: 'Escríbeme un mensaje',
       contactFormIntro: '¿Prefieres escribir en lugar de WhatsApp? Cuéntame sobre tu proyecto y te responderé personalmente.',
       contactFormNameLabel: 'Nombre',
       contactFormEmailLabel: 'Correo electrónico',
       contactFormPhoneLabel: 'Teléfono',
       contactFormServiceLabel: 'Servicio de interés',
+      // Las ETIQUETAS se reconcilian con la nueva arquitectura; los VALORES enviados al backend
+      // (website_landing, intelligent_automation, ugc_content, digital_resources, other) se
+      // conservan intactos para no romper la validación existente de CimaCove Connect.
       contactFormServiceOptionDefault: 'Selecciona una opción',
-      contactFormServiceOptionWebsite: 'Sitio web / Landing page',
-      contactFormServiceOptionAutomation: 'Automatización inteligente',
-      contactFormServiceOptionUgc: 'Contenido UGC',
-      contactFormServiceOptionResources: 'Recursos digitales',
-      contactFormServiceOptionOther: 'Otro',
+      contactFormServiceOptionWebsite: 'Presencia y conversión (web, landing, formularios)',
+      contactFormServiceOptionAutomation: 'Automatización y operación',
+      contactFormServiceOptionUgc: 'Posicionamiento digital para creadores',
+      contactFormServiceOptionResources: 'Cursos y recursos digitales',
+      contactFormServiceOptionOther: 'Aplicaciones, plataformas u otro',
       contactFormMessageLabel: 'Mensaje (opcional)',
       contactFormSmsConsentPrefix: 'Acepto recibir mensajes de texto de CimaCove LLC relacionados con mis consultas, cotizaciones, servicios solicitados, programación, confirmaciones, atención al cliente y actualizaciones de servicios o proyectos. La frecuencia de los mensajes puede variar. Pueden aplicarse tarifas de mensajes y datos. Responde STOP para cancelar o HELP para recibir ayuda. El consentimiento no es condición para realizar una compra o contratar un servicio. Consulta nuestra',
       contactFormSmsConsentAnd: 'y',
@@ -471,12 +1067,35 @@ class Component extends DCLogic {
       contactFormSuccess: 'Gracias — tu mensaje fue enviado. Te contactaré personalmente pronto.',
       contactFormError: 'No pudimos enviar tu mensaje. Intenta de nuevo o escríbeme directamente por WhatsApp.',
       contactFormErrorValidation: 'Revisa los campos marcados e intenta de nuevo.',
+      // One message per failure mode. None of them repeats anything the server said.
+      contactFormErrorRate: 'Has enviado varios mensajes seguidos. Espera un momento e inténtalo otra vez, o escríbeme por WhatsApp.',
+      contactFormErrorTooLarge: 'Tu mensaje es demasiado largo. Acórtalo un poco e inténtalo de nuevo.',
+      contactFormErrorServer: 'El servicio no está disponible en este momento. Vuelve a intentarlo en unos minutos o escríbeme por WhatsApp.',
+      contactFormErrorNetwork: 'No hay conexión. Revisa tu internet e inténtalo de nuevo, o escríbeme por WhatsApp.',
       contactFormRequired: 'Este campo es obligatorio.'
     },
     en: {
+      documentTitle: 'Priscila by CimaCove — Strategic Digital Development',
+      metaDescription: 'We design digital ecosystems that connect your presence, sales and operations: landing pages, applications, automation and intelligent systems.',
+      skipToContent: 'Skip to main content',
+      navAriaLabel: 'Language selector',
+      mainAriaLabel: 'Main content',
+      volumeLabel: 'Ambience music volume',
       cta: 'Explore services',
       heroTitle: 'I transform your vision into digital experiences that connect, convert, and help your business grow.',
-      heroSub: 'Intelligent automation, websites, and UGC content built with strategy, personality, and purpose.',
+      heroSub: 'Digital ecosystems that connect your presence, sales and operations, built with strategy, personality, and purpose.',
+      metricLabels: {
+        visits: 'Visits', leads: 'Leads', conversion: 'Conversion', bookings: 'Bookings',
+        followups: 'Follow-ups', opportunities: 'Opportunities', proposals: 'Proposals',
+        projects: 'Projects', response: 'Response'
+      },
+      footerLegalTitle: 'Legal',
+      privacyLabel: 'Privacy Policy',
+      termsLabel: 'Terms of Use',
+      accessibilityLabel: 'Accessibility',
+      footerBusiness: 'CimaCove LLC — Arizona, United States. Brand: Priscila by CimaCove.',
+      formPrivacyNotice: 'We use the details in this form only to reply about your enquiry. We do not sell them. See the',
+      formPrivacyNoticeEnd: 'to learn how they are handled.',
       howEyebrow: 'Process',
       howTitle: 'How we work',
       tailoredTitle: 'A solution designed around your reality',
@@ -508,11 +1127,66 @@ class Component extends DCLogic {
       viewOnHotmartBtn: 'View on Hotmart',
       getResourceBtn: 'Get Resource',
       steps: ['We learn about your business', 'We identify the right solution', 'We design and verify the experience', 'We implement with human support'],
+      // The three former standalone services (Automation / Websites / UGC) are consolidated into
+      // "Strategic Digital Development". "Courses & digital resources" stays genuinely separate.
       services: [
-        { num: '01', title: 'Intelligent Business Automation', short: 'Smart workflows that organize and support your customers.', full: 'We design intelligent workflows that help your business respond, organize, qualify opportunities, and guide customers more efficiently without losing human control.', bullets: ['Initial responses', 'Language detection', 'Answers using approved information', 'Opportunity classification', 'Organized data collection', 'FAQs', 'Human handoff', 'Follow-up', 'Future CRM or matrix', 'Appointment requests', 'Authorized reminders', 'Future integrations evaluated'], limitations: 'In healthcare, presented only as administrative support. It does not provide diagnosis, clinical triage, treatment, or automatic regulatory compliance.' },
-        { num: '02', title: 'Website & Landing Page Design', short: 'Clear digital experiences that turn interest into action.', full: 'We create strategic, visual, and responsive digital experiences that present your brand clearly and turn interest into meaningful action.', bullets: ['Landing pages', 'Business pages', 'Bilingual design', 'Mobile experience', 'Calls to action', 'WhatsApp integration', 'Content architecture', 'Technical SEO readiness', 'Performance optimization', 'Custom design'], limitations: "We don't guarantee top search rankings or specific sales figures. Hosting, domain, and maintenance are not included." },
-        { num: '03', title: 'UGC & Digital Creative Content', short: 'Authentic content that connects with your audience.', full: 'We transform ideas, products, and experiences into authentic content that communicates, connects, and strengthens a brand\'s digital presence.', bullets: ['Creative concepting', 'Scripts', 'Hooks', 'UGC videos', 'Vertical content', 'Creative photography', 'Brand messaging', 'Editing', 'Bilingual content', 'Adaptation for TikTok, Instagram, and Facebook'], limitations: 'Deliverable quantities, timelines, revisions, and usage rights are defined case by case.' },
-        { num: '04', id: 'resources', title: 'Digital Resources', short: 'Guides, templates, and practical training.', full: 'Resources created to help you digitize, organize, and grow your business through practical strategies, technology, and artificial intelligence. Explore our guides, templates, and tools, and choose the one that best supports your goals.', bullets: [], limitations: '', isResources: true }
+        { num: '01', title: 'Strategic Digital Development', short: 'Digital ecosystems connecting presence, sales and operations.', full: 'We design digital ecosystems that connect your presence, sales and operations. From a landing page to an application, automation or intelligent system, we build a cohesive solution designed to grow with you.', bullets: ['Presence and conversion', 'Automation and operations', 'Apps, platforms and control', 'Digital positioning for creators', 'Needs assessment', 'Solution architecture', 'Design and user experience', 'Integrations within the approved scope', 'Responsive testing', 'Documented handover'], limitations: 'Scope, timelines, integrations and revisions are defined per project. We do not guarantee results, revenue, search rankings or full automation. Hosting, domain and maintenance are agreed separately. In healthcare, any support is administrative and does not replace diagnosis, clinical triage or treatment.' },
+        { num: '02', id: 'resources', title: 'Courses & Digital Resources', short: 'Guides, templates, and practical training.', full: 'Resources created to help you digitize, organize, and grow your business through practical strategies, technology, and artificial intelligence. Explore our guides, templates, and tools, and choose the one that best supports your goals.', bullets: [], limitations: '', isResources: true }
+      ],
+      ddeEyebrow: 'Strategic Digital Development',
+      ddeTitle: 'Your business does not need more loose pieces. It needs a system that works with you.',
+      ddeLead: 'We design the presence, the automations and the digital tools that connect your customers, your operations and your growth opportunities.',
+      ddeCards: [
+        { num: '01', delay: '0ms',   title: 'Presence and conversion', text: 'Landing pages, websites, forms and experiences designed to turn visits into opportunities.' },
+        { num: '02', delay: '70ms',  title: 'Automation and operations', text: 'Follow-ups, bookings and workflows that cut repetitive tasks and keep the business organised.' },
+        { num: '03', delay: '140ms', title: 'Apps, platforms and control', text: 'Dashboards, CRM, internal tools and custom solutions to manage information and processes.' },
+        { num: '04', delay: '210ms', title: 'Digital positioning for creators', text: 'Portfolio, media kit, proposals and systems to organise and present professional opportunities.' }
+      ],
+      ddeCta: 'Design my digital system',
+      waCta: 'Chat on WhatsApp',
+      exploreCta: 'Explore the solutions',
+      waFabAria: 'Chat with Priscila on WhatsApp (opens in a new tab)',
+      visualConceptLabel: 'Visual concept',
+      demoDataLabel: 'Demo data',
+      capabilitiesEyebrow: 'Four capabilities, one system',
+      viewPortfolioExampleBtn: 'View portfolio example',
+      capabilities: [
+        {
+          key: 'presence',
+          index: 'Capability 01',
+          title: 'Presence and conversion',
+          lead: 'Your first impression, and the path that takes an interested person all the way to a real conversation.',
+          items: ['Landing pages', 'Conversion funnels', 'Websites and pages', 'Forms', 'Bookings', 'Digital portals', 'Responsive experiences', 'Contact integrations'],
+          metrics: ['visits', 'leads', 'conversion'],
+          alt: 'Visual concept: glass panels showing one website adapted to a large screen, a tablet and a phone, in a black marble space lit in gold.'
+        },
+        {
+          key: 'automation',
+          index: 'Capability 02',
+          title: 'Automation and operations',
+          lead: 'The repetitive work that eats your hours today, arranged into processes that record, sort and follow up without losing human control.',
+          items: ['Process automation', 'CRM', 'Lead capture and organization', 'Follow-ups', 'Communications', 'Integrations', 'Internal workflows', 'Fewer repetitive manual tasks'],
+          metrics: ['bookings', 'followups', 'opportunities'],
+          alt: 'Visual concept: a sequence of glass panels joined by a golden line, representing a process moving from a first contact to a confirmation.'
+        },
+        {
+          key: 'apps',
+          index: 'Capability 03',
+          title: 'Apps, platforms and control',
+          lead: 'For when the business needs a tool of its own: somewhere to see, decide and operate, ready to grow in stages.',
+          items: ['Web and mobile applications', 'Digital platforms', 'Intelligent systems', 'Dashboards', 'Internal control systems', 'Client portals', 'Tools ready to scale'],
+          metrics: ['visits', 'conversion', 'bookings'],
+          alt: 'Visual concept: a dark control dashboard with charts and metrics in gold tones, alongside the same views on a phone and a tablet.'
+        },
+        {
+          key: 'creator',
+          index: 'Capability 04',
+          title: 'Digital positioning for creators',
+          lead: 'We design how you present yourself and how you manage opportunities. We do not film, produce or publish content on your behalf: we build the system you present and organize yourself with.',
+          items: ['Portfolios', 'Media kits', 'Presentation page', 'Value proposition', 'Positioning', 'Commercial presentation', 'A system to find, organize and manage opportunities'],
+          metrics: ['proposals', 'projects', 'response'],
+          alt: 'Visual concept: a printed portfolio and a media kit open on a black marble table, next to a tablet showing an editorial presentation.'
+        }
       ],
       faq: [
         ['Are the services customized?', 'Yes, every solution is adapted to your business needs, processes, and customers.'],
@@ -522,20 +1196,24 @@ class Component extends DCLogic {
         ['Are prices shown on the page?', 'No. Pricing is discussed directly for each project.'],
         ['Can I start with a landing page and add automation later?', 'Yes, you can start with one service and add others later.']
       ],
-      waMsg: (title) => `Hi, I'm interested in: ${title}. Language: English. Source: landing page.`,
+      waMsg: (title) => `Hi, I'm interested in: ${title}. Language: English. Source: landing page. Manual support.`,
+      capWaMsg: (capability) => `Hi Priscila. I'm interested in Strategic Digital Development, capability: ${capability}. Language: English. Source: landing page (priscila.cimacove.com). I understand support is handled manually.`,
+      ddeWaMsg: "Hi Priscila. I'm interested in Strategic Digital Development. I haven't picked a specific capability yet. Language: English. Source: landing page (priscila.cimacove.com). I understand support is handled manually.",
       generalWaMsg: "Hi Priscila. I came from your website and I'm not sure which service I need yet. Could you guide me?",
+      fabWaMsg: "Hi Priscila. I'm writing from your landing page. I'm interested in Strategic Digital Development. Language: English. Source: floating WhatsApp button (priscila.cimacove.com). I understand support is handled manually.",
       contactFormTitle: 'Send me a message',
       contactFormIntro: "Prefer to write instead of WhatsApp? Tell me about your project and I'll get back to you personally.",
       contactFormNameLabel: 'Name',
       contactFormEmailLabel: 'Email',
       contactFormPhoneLabel: 'Phone',
       contactFormServiceLabel: 'Service of interest',
+      // LABELS follow the new architecture; the VALUES posted to the backend are unchanged.
       contactFormServiceOptionDefault: 'Select an option',
-      contactFormServiceOptionWebsite: 'Website / Landing page',
-      contactFormServiceOptionAutomation: 'Intelligent automation',
-      contactFormServiceOptionUgc: 'UGC content',
-      contactFormServiceOptionResources: 'Digital resources',
-      contactFormServiceOptionOther: 'Other',
+      contactFormServiceOptionWebsite: 'Presence and conversion (web, landing, forms)',
+      contactFormServiceOptionAutomation: 'Automation and operations',
+      contactFormServiceOptionUgc: 'Digital positioning for creators',
+      contactFormServiceOptionResources: 'Courses & digital resources',
+      contactFormServiceOptionOther: 'Apps, platforms or other',
       contactFormMessageLabel: 'Message (optional)',
       contactFormSmsConsentPrefix: 'I agree to receive text messages from CimaCove LLC regarding my inquiries, quotes, requested services, scheduling, confirmations, customer support, and service or project updates. Message frequency varies. Message and data rates may apply. Reply STOP to opt out or HELP for help. Consent is not a condition of purchase. See our',
       contactFormSmsConsentAnd: 'and',
@@ -546,32 +1224,53 @@ class Component extends DCLogic {
       contactFormSuccess: "Thanks — your message was sent. I'll get back to you personally soon.",
       contactFormError: "We couldn't send your message. Please try again or message me directly on WhatsApp.",
       contactFormErrorValidation: 'Please check the highlighted fields and try again.',
+      contactFormErrorRate: "You've sent several messages in a row. Please wait a moment and try again, or message me on WhatsApp.",
+      contactFormErrorTooLarge: 'Your message is too long. Please shorten it and try again.',
+      contactFormErrorServer: 'The service is unavailable right now. Please try again in a few minutes, or message me on WhatsApp.',
+      contactFormErrorNetwork: 'No connection. Please check your internet and try again, or message me on WhatsApp.',
       contactFormRequired: 'This field is required.'
     }
   };
 
   state = {
-    lang: 'es', heroPhase: 'initial', selectedIndex: null, panelOpen: false, requested: false, isMobile: false, reducedMotion: false, openFaq: null, servicesClosedByUser: false, volume: 0.32, mobileVideoFailed: false,
+    lang: 'es', heroPhase: 'initial', selectedIndex: null, panelOpen: false, requested: false, isMobile: false, reducedMotion: false, openFaq: null, servicesClosedByUser: false, volume: 0.32,
+    // Hero media state. `heroVideoFailed` is the only flag that can retire the video, and only
+    // a real media error sets it. `soundOn` is declared explicitly (it used to be an implicit
+    // undefined) so the ambience track can never be assumed to be already playing.
+    heroVideoFailed: false, soundOn: false,
     // Fase D-real.8 — priscila.cimacove.com contact/lead form. `leadSmsConsent`
     // starts false and is never pre-checked; `leadStatus` drives the
     // idle/sending/success/error UI (see renderVals() below).
     leadName: '', leadPhone: '', leadEmail: '', leadService: '', leadMessage: '', leadSmsConsent: false,
-    leadStatus: 'idle', leadFieldErrors: {}
+    leadStatus: 'idle', leadFieldErrors: {}, leadWebsite: '', leadErrorKind: null
   };
 
   constructor(props) {
     super(props);
-    this.videoRef = React.createRef();
     this.audioRef = React.createRef();
     this.aboutVideoRef = React.createRef();
     this.aboutSectionRef = React.createRef();
+    // The hero video is held by a callback ref (setHeroVideoEl), not React.createRef, because it
+    // needs mount-scoped media listeners the template engine cannot express.
+    this.heroVideoEl = null;
+    this.heroVideoCleanup = null;
   }
 
   componentDidMount() {
     this.updateViewport = () => this.setState({ isMobile: window.innerWidth < 780 });
     this.updateViewport();
     window.addEventListener('resize', this.updateViewport);
-    this.state.reducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    // Reduced motion goes through setState (it used to mutate this.state directly, which only
+    // happened to render because the setState above followed it) and stays live: if the visitor
+    // flips the OS setting, the hero swaps to its still poster without a reload.
+    this.motionQuery = window.matchMedia ? window.matchMedia('(prefers-reduced-motion: reduce)') : null;
+    if (this.motionQuery) {
+      this.setState({ reducedMotion: this.motionQuery.matches });
+      this.onMotionChange = (e) => this.setState({ reducedMotion: e.matches });
+      if (this.motionQuery.addEventListener) this.motionQuery.addEventListener('change', this.onMotionChange);
+      else if (this.motionQuery.addListener) this.motionQuery.addListener(this.onMotionChange);
+    }
+    this.syncDocumentLang();
     this.onKeydown = (e) => {
       if (e.key !== 'Escape') return;
       if (this.state.panelOpen) this.closePanel();
@@ -589,6 +1288,8 @@ class Component extends DCLogic {
       this.aboutObserver = new IntersectionObserver((entries) => {
         entries.forEach((entry) => {
           if (!entry.isIntersecting) return;
+          // Scoped to aboutVideoRef only — this observer can never see or touch the hero video.
+          if (this.state.reducedMotion) { this.aboutObserver.disconnect(); return; }
           const v = this.aboutVideoRef.current;
           if (v) v.play().catch(() => {});
           this.aboutObserver.disconnect();
@@ -596,6 +1297,8 @@ class Component extends DCLogic {
       }, { rootMargin: '300px 0px' });
       this.aboutObserver.observe(this.aboutSectionRef.current);
     }
+
+    this.initDecorFx();
   }
   componentWillUnmount() {
     document.removeEventListener('visibilitychange', this.onVis);
@@ -603,44 +1306,262 @@ class Component extends DCLogic {
     document.removeEventListener('keydown', this.onKeydown);
     if (this.aboutObserver) this.aboutObserver.disconnect();
     if (this.heroTimer) clearTimeout(this.heroTimer);
+    if (this.heroVideoCleanup) { this.heroVideoCleanup(); this.heroVideoCleanup = null; }
+    if (this.motionQuery && this.onMotionChange) {
+      if (this.motionQuery.removeEventListener) this.motionQuery.removeEventListener('change', this.onMotionChange);
+      else if (this.motionQuery.removeListener) this.motionQuery.removeListener(this.onMotionChange);
+    }
+    this.destroyDecorFx();
   }
-  // Mobile-only safety net: the mobile <video> mounts AFTER the first paint
-  // (only once componentDidMount resolves isMobile), and unlike desktop's
-  // video — present from the very first render — a video element inserted
-  // later doesn't reliably honor the `autoplay` attribute alone in every
-  // browser. Calling .play() explicitly (same pattern already used by
-  // toggleSound() elsewhere in this file) is a no-op when already playing,
-  // so this is safe to run on every update. Strictly scoped to
-  // `isMobile` — never touches or affects desktop's video or behavior.
-  componentDidUpdate() {
-    if (!this.state.isMobile) return;
-    const v = this.videoRef.current;
-    if (v && v.paused) v.play().catch(() => {});
-  }
+
+  // =========================================================================================
+  // DECORATIVE FX — depth, tilt, parallax and scroll reveal.
+  //
+  // Deliberate design constraints:
+  //   * Zero React state. Nothing here calls setState, so nothing here can ever trigger a
+  //     re-render, a remount, or a second play() on any <video>. The hero is untouchable from
+  //     this module — every handler bails out early on anything inside #hero.
+  //   * Everything is written to CSS custom properties on the element itself; CSS does the
+  //     rest. Pointer maths is throttled to one requestAnimationFrame per frame.
+  //   * Two delegated document listeners instead of per-card listeners: React re-renders this
+  //     tree on every language switch, so per-node listeners would have to be torn down and
+  //     re-attached constantly. Delegation survives re-render for free and is strictly fewer
+  //     listeners, not more.
+  //   * Content is visible by default. The hidden reveal state only exists under html.fx-on,
+  //     which this module adds only after it has confirmed it can also remove it again.
+  // =========================================================================================
+  initDecorFx = () => {
+    if (typeof window === 'undefined' || typeof document === 'undefined') return;
+    this.fxCleanup = [];
+    const reduce = !!(this.motionQuery && this.motionQuery.matches);
+    const finePointer = !!(window.matchMedia && window.matchMedia('(hover: hover) and (pointer: fine)').matches);
+
+    // ---- Scroll reveal: once per element, never replayed on scroll back up ----
+    if (!reduce && typeof IntersectionObserver !== 'undefined') {
+      const root = document.documentElement;
+      root.classList.add('fx-on');
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          // Attribute, not class — see the CSS comment on [data-revealed].
+          entry.target.setAttribute('data-revealed', '');
+          io.unobserve(entry.target); // one-way: revealed stays revealed
+        });
+      }, { rootMargin: '0px 0px -6% 0px', threshold: 0.06 });
+
+      const scan = () => {
+        document.querySelectorAll('[data-reveal]:not([data-fx-seen])').forEach((el) => {
+          el.setAttribute('data-fx-seen', '');
+          io.observe(el);
+        });
+      };
+      scan();
+
+      // React can insert reveal targets after mount (viewport swap, language switch). One
+      // rAF-debounced MutationObserver keeps them covered; the scan itself only ever touches
+      // nodes it has not already bound.
+      let scanQueued = false;
+      const mo = new MutationObserver(() => {
+        if (scanQueued) return;
+        scanQueued = true;
+        requestAnimationFrame(() => { scanQueued = false; scan(); queueSweep(); });
+      });
+      mo.observe(document.body, { childList: true, subtree: true });
+
+      // Geometry fallback. The observer stays the primary mechanism; this is the safety net
+      // that guarantees nothing can ever be stranded at opacity 0.
+      //
+      // It is deliberately NOT time-based. An earlier version disabled the whole effect if
+      // nothing had been revealed after a fixed delay — which was wrong: the hero fills the
+      // first screen and contains no reveal targets, so a visitor who simply reads the hero
+      // for a few seconds would have had every reveal switched off before scrolling.
+      //
+      // Instead: on scroll and resize, rAF-throttled, reveal anything that is actually inside
+      // the viewport. Elements still below the fold stay hidden — they are off-screen anyway,
+      // and they get revealed the moment they come into view, by the observer or by this.
+      let sweepQueued = false;
+      const sweep = () => {
+        sweepQueued = false;
+        const vh = window.innerHeight || document.documentElement.clientHeight;
+        document.querySelectorAll('[data-reveal]:not([data-revealed])').forEach((el) => {
+          const r = el.getBoundingClientRect();
+          if (r.top < vh * 0.98 && r.bottom > 0) el.setAttribute('data-revealed', '');
+        });
+      };
+      const queueSweep = () => {
+        if (sweepQueued) return;
+        sweepQueued = true;
+        requestAnimationFrame(sweep);
+      };
+      window.addEventListener('scroll', queueSweep, { passive: true });
+      window.addEventListener('resize', queueSweep, { passive: true });
+      queueSweep(); // catch whatever is already on screen at load
+
+      this.fxCleanup.push(() => {
+        io.disconnect();
+        mo.disconnect();
+        window.removeEventListener('scroll', queueSweep);
+        window.removeEventListener('resize', queueSweep);
+        root.classList.remove('fx-on');
+      });
+    }
+
+    // ---- Pointer tilt + media parallax. Pointer devices only; never on touch, never with
+    //      reduced motion. Touch gets the discreet :active states defined in CSS instead. ----
+    if (reduce || !finePointer) return;
+
+    let frame = 0;
+    let pending = null;
+    const paint = () => {
+      frame = 0;
+      if (!pending) return;
+      const { el, x, y, tilt } = pending;
+      const r = el.getBoundingClientRect();
+      if (!r.width || !r.height) return;
+      const px = (x - r.left) / r.width;
+      const py = (y - r.top) / r.height;
+      if (tilt) {
+        // ±3.5deg — refined, not a novelty flip.
+        el.style.setProperty('--ry', ((px - 0.5) * 7).toFixed(2) + 'deg');
+        el.style.setProperty('--rx', ((0.5 - py) * 7).toFixed(2) + 'deg');
+        el.style.setProperty('--mx', (px * 100).toFixed(1) + '%');
+        el.style.setProperty('--my', (py * 100).toFixed(1) + '%');
+      } else {
+        el.style.setProperty('--px', ((0.5 - px) * 10).toFixed(1) + 'px');
+        el.style.setProperty('--py', ((0.5 - py) * 8).toFixed(1) + 'px');
+      }
+    };
+
+    const clear = (el) => {
+      el.classList.remove('is-tilting', 'is-hover');
+      ['--rx', '--ry', '--mx', '--my', '--px', '--py'].forEach((p) => el.style.removeProperty(p));
+    };
+
+    const onMove = (e) => {
+      const target = e.target;
+      if (!target || typeof target.closest !== 'function') return;
+      const el = target.closest('[data-fx-tilt], [data-fx-media]');
+      if (!el) return;
+      if (el.closest('#hero')) return; // the hero is never decorated by this module
+      const tilt = el.hasAttribute('data-fx-tilt');
+      el.classList.add(tilt ? 'is-tilting' : 'is-hover');
+      pending = { el, x: e.clientX, y: e.clientY, tilt };
+      if (!frame) frame = requestAnimationFrame(paint);
+    };
+
+    const onOut = (e) => {
+      const target = e.target;
+      if (!target || typeof target.closest !== 'function') return;
+      const el = target.closest('[data-fx-tilt], [data-fx-media]');
+      if (!el) return;
+      if (e.relatedTarget && el.contains(e.relatedTarget)) return; // still inside the card
+      clear(el);
+      if (pending && pending.el === el) pending = null;
+    };
+
+    document.addEventListener('pointermove', onMove, { passive: true });
+    document.addEventListener('pointerout', onOut, { passive: true });
+    this.fxCleanup.push(() => {
+      document.removeEventListener('pointermove', onMove);
+      document.removeEventListener('pointerout', onOut);
+      if (frame) cancelAnimationFrame(frame);
+      document.querySelectorAll('.is-tilting, .is-hover').forEach(clear);
+    });
+  };
+
+  destroyDecorFx = () => {
+    if (!this.fxCleanup) return;
+    this.fxCleanup.forEach((fn) => { try { fn(); } catch (e) {} });
+    this.fxCleanup = null;
+  };
+
+  // ---------------------------------------------------------------------------------------
+  // THE HERO REGRESSION, AND WHY THERE IS NO componentDidUpdate HERE ANY MORE.
+  //
+  // A componentDidUpdate() used to live at this exact spot:
+  //
+  //     componentDidUpdate() {
+  //       if (!this.state.isMobile) return;
+  //       const v = this.videoRef.current;
+  //       if (v && v.paused) v.play().catch(() => {});
+  //     }
+  //
+  // React runs componentDidUpdate after EVERY setState. It was written as a mobile autoplay
+  // safety net, but it was unguarded, so on a phone it turned literally any state change into
+  // a programmatic play() on the hero video. selectService() calls setState -> re-render ->
+  // componentDidUpdate -> the video the visitor had just dismissed is paused -> play() ->
+  // iOS re-presents the player and the visitor is thrown out of the services flow. That is
+  // the exact reported sequence: video opens, she closes it, she picks a service, it reopens.
+  //
+  // The UGC page's lightbox (ugc.dc.html) does the same job correctly, guarding on a
+  // __lastVideoSrc sentinel so play() only fires when the asset actually changes. The landing
+  // never had that guard. That asymmetry was the whole bug.
+  //
+  // The replacement below is bound to the ELEMENT's own `canplay` event and latches on the
+  // element itself, so: it fires at most once per media element, it can only ever run because
+  // the media became ready, and no amount of selecting services, switching language, typing in
+  // the form, scrolling, rotating or tab-switching can reach it.
+  // ---------------------------------------------------------------------------------------
+  // IMPLEMENTATION NOTE: the template engine's EVENT_MAP (support.js) is a fixed allow-list of
+  // mouse/keyboard/pointer/touch/drag/animation events. It contains NO media events — no
+  // `oncanplay`, and no `onerror`. The hero's previous `onError="{{ onMobileVideoError }}"`
+  // therefore compiled to a dead literal DOM attribute and never fired once, which is why the
+  // "video failed -> fall back to the poster" path never actually worked on a phone.
+  // So media listeners are attached here through a callback ref instead. React calls this with
+  // the element on mount and with null on unmount, so every listener is scoped to exactly one
+  // element's lifetime and is torn down with it.
+  setHeroVideoEl = (el) => {
+    if (this.heroVideoCleanup) { this.heroVideoCleanup(); this.heroVideoCleanup = null; }
+    this.heroVideoEl = el || null;
+    if (!el) return;
+    let tried = false;
+    const tryPlay = () => {
+      if (tried) return;
+      tried = true;
+      if (el.paused) el.play().catch(() => {});
+    };
+    // `error` from a child <source> does not bubble, so listen in the capture phase.
+    const onErr = () => this.setState({ heroVideoFailed: true });
+    el.addEventListener('canplay', tryPlay);
+    el.addEventListener('error', onErr, true);
+    this.heroVideoCleanup = () => {
+      el.removeEventListener('canplay', tryPlay);
+      el.removeEventListener('error', onErr, true);
+    };
+    // Already buffered before the listener landed (fast cache hit).
+    if (el.readyState >= 3) tryPlay();
+  };
 
   // "Explorar servicios" always opens the permanent explorer panel, independent of the hand-capsule automation
   // and independent of whether the capsules are currently visible.
   activate = () => {
+    // Remember what opened the panel so focus can return there on close, instead of being
+    // dropped at the top of the document.
+    this.panelOpener = (typeof document !== 'undefined' && document.activeElement) || null;
     this.setState(s => ({ panelOpen: true, selectedIndex: s.selectedIndex !== null ? s.selectedIndex : 0, requested: false }));
   };
-  // Mobile-only fallback: if the hero video errors out, keep the static poster image and never touch desktop's video.
-  onMobileVideoError = () => {
-    this.setState({ mobileVideoFailed: true });
+  // If the hero video errors out on any viewport, fall back to the static poster still.
+  onHeroVideoError = () => {
+    this.setState({ heroVideoFailed: true });
   };
   onAudioEnded = () => {
     const a = this.audioRef.current;
     if (a) { a.currentTime = 0; a.play().catch(() => {}); }
   };
+  // Ambience music toggle. It drives ONLY the <audio> element — it deliberately no longer
+  // touches this.videoRef. It used to run `v.currentTime = 0; v.play()` on the hero video,
+  // which was the second path by which a user gesture elsewhere on the page could restart or
+  // re-present the hero media. The hero video is decorative and muted, so the music track is
+  // independent of it in every direction.
   toggleSound = () => {
     const on = !this.state.soundOn;
-    sessionStorage.setItem('pc_sound', on ? 'on' : 'off');
+    try { sessionStorage.setItem('pc_sound', on ? 'on' : 'off'); } catch (e) {}
     const a = this.audioRef.current;
-    const v = this.videoRef.current;
     if (on) {
       const vol = this.state.volume || 0.32;
-      if (v) { try { v.currentTime = 0; v.play().catch(() => {}); } catch (e) {} }
-      // Single-audio-source guarantee: the About video never has its own audio track, but re-assert
-      // muted here defensively so the Hero's music is always the only audio source on screen.
+      // Single-audio-source guarantee: neither hero nor About video ever contributes audio.
+      const heroV = this.heroVideoEl;
+      if (heroV) heroV.muted = true;
       const aboutV = this.aboutVideoRef.current;
       if (aboutV) aboutV.muted = true;
       if (a) {
@@ -659,12 +1580,31 @@ class Component extends DCLogic {
     const a = this.audioRef.current;
     if (a) a.volume = v;
   };
-  setLang = (l) => this.setState({ lang: l });
+  // Keeps <html lang> and the document title in step with the ES/EN switch so screen readers
+  // announce the right language and the tab title matches what is on screen. The static <head>
+  // ships the Spanish values for crawlers; this only reconciles them after a real user switch.
+  syncDocumentLang = () => {
+    const l = this.state.lang;
+    try {
+      document.documentElement.setAttribute('lang', l);
+      document.title = this.copy[l].documentTitle;
+      const desc = document.querySelector('meta[name="description"]');
+      if (desc) desc.setAttribute('content', this.copy[l].metaDescription);
+    } catch (e) {}
+  };
+  setLang = (l) => this.setState({ lang: l }, this.syncDocumentLang);
   // Selecting a service — from a hand capsule or from the in-panel tab list — always opens/updates the explorer.
   selectService = (i) => {
     this.setState({ selectedIndex: i, panelOpen: true, requested: false });
   };
-  closePanel = () => this.setState({ panelOpen: false, requested: false, selectedIndex: null });
+  closePanel = () => this.setState({ panelOpen: false, requested: false, selectedIndex: null }, () => {
+    const opener = this.panelOpener;
+    this.panelOpener = null;
+    // Only restore if the opener is still in the document and still focusable.
+    if (opener && document.contains(opener) && typeof opener.focus === 'function') {
+      try { opener.focus({ preventScroll: true }); } catch (e) { try { opener.focus(); } catch (e2) {} }
+    }
+  });
   requestService = () => this.setState({ requested: true });
   toggleFaq = (i) => this.setState(s => ({ openFaq: s.openFaq === i ? null : i }));
   scrollToHero = () => { const el = document.getElementById('hero'); if (el) el.scrollIntoView({ behavior: this.state.reducedMotion ? 'auto' : 'smooth' }); this.activate(); };
@@ -684,7 +1624,10 @@ class Component extends DCLogic {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          website: '', // honeypot — always blank from a real visitor
+          // The honeypot's REAL value, straight from the hidden field. A human never sees or
+          // tabs into it, so anything non-empty here came from an automated filler. Hard-coding
+          // '' here — as this did before — made the field decorative.
+          website: s.leadWebsite || '',
           customerName: s.leadName,
           customerPhone: s.leadPhone,
           customerEmail: s.leadEmail,
@@ -702,16 +1645,25 @@ class Component extends DCLogic {
       const json = await res.json().catch(() => null);
       if (res.ok && json && json.ok) {
         this.setState({
-          leadStatus: 'success',
-          leadName: '', leadPhone: '', leadEmail: '', leadService: '', leadMessage: '', leadSmsConsent: false,
+          leadStatus: 'success', leadErrorKind: null,
+          leadName: '', leadPhone: '', leadEmail: '', leadService: '', leadMessage: '',
+          leadSmsConsent: false, leadWebsite: '',
         });
       } else if (res.status === 422 && json && json.error && json.error.fields) {
-        this.setState({ leadStatus: 'error', leadFieldErrors: json.error.fields });
+        this.setState({ leadStatus: 'error', leadErrorKind: 'fields', leadFieldErrors: json.error.fields });
       } else {
-        this.setState({ leadStatus: 'error', leadFieldErrors: {} });
+        // Map the status to one of a fixed set of visitor-facing messages. The server's own
+        // error text is never rendered — it could leak internal detail — and each branch says
+        // only what the person can act on.
+        const kind = res.status === 429 ? 'rate'
+          : res.status === 413 ? 'tooLarge'
+          : res.status >= 500 ? 'server'
+          : 'generic';
+        this.setState({ leadStatus: 'error', leadErrorKind: kind, leadFieldErrors: {} });
       }
     } catch (err) {
-      this.setState({ leadStatus: 'error', leadFieldErrors: {} });
+      // fetch() itself rejected: offline, DNS, TLS or CORS. Never surface the raw reason.
+      this.setState({ leadStatus: 'error', leadErrorKind: 'network', leadFieldErrors: {} });
     }
   };
 
@@ -721,14 +1673,15 @@ class Component extends DCLogic {
     const isMobile = s.isMobile;
     const focusRing = { outline: '2px solid #6f93c9', outlineOffset: '2px' };
 
-    const howSteps = t.steps.map((text, i) => ({ n: i + 1, text }));
+    // `delay` only feeds the CSS reveal stagger (--rd). It is presentation data, not state.
+    const howSteps = t.steps.map((text, i) => ({ n: i + 1, text, delay: (i * 70) + 'ms' }));
 
     const services = t.services.map((svc, i) => {
       const selected = s.selectedIndex === i;
       return {
         num: svc.num, title: svc.title, short: svc.short, full: svc.full, bullets: svc.bullets, limitations: svc.limitations,
         isResources: !!svc.isResources, isServicePanel: !svc.isResources,
-        selected, isFirst: i === 0, isSecond: i === 1, isThird: i === 2, isFourth: i === 3,
+        selected, isFirst: i === 0, isSecond: i === 1,
         descDisplay: '-webkit-box',
         onSelect: () => this.selectService(i)
       };
@@ -745,9 +1698,10 @@ class Component extends DCLogic {
         background: svc.selected ? '#1c1710' : 'transparent',
         border: `1px solid ${svc.selected ? '#cda86a' : '#3a3122'}`,
         color: svc.selected ? '#f2d9ad' : '#8a7f6d',
-        borderRadius: '20px', padding: '7px 13px', fontSize: '12px', fontWeight: 700,
+        borderRadius: '20px', padding: '7px 16px', fontSize: '12px', fontWeight: 700,
         fontFamily: "'Manrope',sans-serif", letterSpacing: '0.03em', cursor: 'pointer',
-        transition: 'all .25s ease'
+        minHeight: '44px', minWidth: '44px',
+        transition: s.reducedMotion ? 'none' : 'all .25s ease'
       }
     }));
 
@@ -790,11 +1744,43 @@ class Component extends DCLogic {
       };
     });
 
-    // Mobile hero media fallback: prefers-reduced-motion, Save-Data, or a video error all fall back to the
-    // existing static poster image. Desktop's video is completely untouched by this check.
+    // Hero media fallback, now applied to BOTH viewports (it used to skip desktop entirely, so a
+    // desktop visitor with prefers-reduced-motion still got a looping video). prefers-reduced-motion,
+    // Save-Data, or a real media error each fall back to the existing static poster still.
     const dataSaverOn = typeof navigator !== 'undefined' && !!(navigator.connection && navigator.connection.saveData);
-    const showMobileVideo = isMobile && !s.reducedMotion && !dataSaverOn && !s.mobileVideoFailed;
+    const heroVideoAllowed = !s.reducedMotion && !dataSaverOn && !s.heroVideoFailed;
+    const showMobileVideo = isMobile && heroVideoAllowed;
     const showMobileImage = isMobile && !showMobileVideo;
+    const showHeroVideo = !isMobile && heroVideoAllowed;
+    const showHeroPoster = !isMobile && !showHeroVideo;
+    // "Sobre mí" resolves its own fallback from its own flags — never from the hero's.
+    const showAboutVideo = !s.reducedMotion && !dataSaverOn;
+    const showAboutPoster = !showAboutVideo;
+
+    // ---- Editorial capability sequence view-model ----------------------------------------
+    // Each block is fully self-contained: a static image, real HTML copy, its own demo-metric
+    // group and its own plain <a href> WhatsApp CTA. There is deliberately NO selection state
+    // here — nothing a visitor does in this sequence writes to component state, so it cannot
+    // remount the hero video, cannot touch the explorer panel, and cannot scroll the page.
+    const capabilityBlocks = t.capabilities.map((cap, i) => ({
+      key: cap.key,
+      index: cap.index,
+      title: cap.title,
+      lead: cap.lead,
+      items: cap.items,
+      alt: cap.alt,
+      isCreator: cap.key === 'creator',
+      reverseClass: i % 2 === 1 ? 'cap cap-reverse' : 'cap',
+      // Every image is below the first viewport, so all of them lazy-load and decode async.
+      imgWebp: `uploads/capabilities/0${i + 1}-${['presence-conversion', 'automation-operations', 'apps-platforms-control', 'creator-positioning'][i]}.webp`,
+      imgWebpSmall: `uploads/capabilities/0${i + 1}-${['presence-conversion', 'automation-operations', 'apps-platforms-control', 'creator-positioning'][i]}-768.webp`,
+      imgPng: `uploads/capabilities/0${i + 1}-${['presence-conversion', 'automation-operations', 'apps-platforms-control', 'creator-positioning'][i]}.png`,
+      metrics: cap.metrics.map((m) => ({ key: m, value: this.demoMetrics[m], label: t.metricLabels[m] })),
+      waHref: `https://wa.me/16027720124?text=${encodeURIComponent(t.capWaMsg(cap.title))}`
+    }));
+    const ddeWaLink = `https://wa.me/16027720124?text=${encodeURIComponent(t.ddeWaMsg)}`;
+    // Same verified number as every other WhatsApp CTA on this landing.
+    const fabWaLink = `https://wa.me/16027720124?text=${encodeURIComponent(t.fabWaMsg)}`;
 
     const hasSelected = s.selectedIndex !== null && s.panelOpen;
     const selected = s.selectedIndex !== null ? services[s.selectedIndex] : { num: '', title: '', full: '', bullets: [], limitations: '' };
@@ -815,8 +1801,9 @@ class Component extends DCLogic {
       navStyle: { position: 'fixed', top: 0, left: 0, right: 0, zIndex: 50, display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '20px clamp(20px,4vw,48px)', background: 'linear-gradient(180deg, rgba(9,7,5,0.75), transparent)' },
       isEs: s.lang === 'es', isEn: s.lang === 'en',
       setLangEs: () => this.setLang('es'), setLangEn: () => this.setLang('en'),
-      btnEsStyle: { background: 'none', border: 'none', color: s.lang === 'es' ? '#cda86a' : '#8a7f6d', fontSize: '13px', letterSpacing: '0.1em', cursor: 'pointer', fontWeight: 700, padding: '4px' },
-      btnEnStyle: { background: 'none', border: 'none', color: s.lang === 'en' ? '#cda86a' : '#8a7f6d', fontSize: '13px', letterSpacing: '0.1em', cursor: 'pointer', fontWeight: 700, padding: '4px' },
+      // Language buttons carry a 44x44 hit area (they were 23px tall) without changing their look.
+      btnEsStyle: { background: 'none', border: 'none', color: s.lang === 'es' ? '#cda86a' : '#8a7f6d', fontSize: '13px', letterSpacing: '0.1em', cursor: 'pointer', fontWeight: 700, padding: '4px 10px', minHeight: '44px', minWidth: '44px' },
+      btnEnStyle: { background: 'none', border: 'none', color: s.lang === 'en' ? '#cda86a' : '#8a7f6d', fontSize: '13px', letterSpacing: '0.1em', cursor: 'pointer', fontWeight: 700, padding: '4px 10px', minHeight: '44px', minWidth: '44px' },
       focusRing,
       t, howSteps, faqItems, services, resourceCards, resourcesGridCols,
       notMobile: !isMobile, isMobile,
@@ -826,10 +1813,14 @@ class Component extends DCLogic {
       heroTextStyle: { opacity: s.heroPhase === 'initial' ? 1 : 0.55, transform: s.heroPhase === 'initial' ? 'scale(1)' : 'scale(0.97)', transition: 'opacity .6s ease, transform .6s ease' },
       showExploreBtn: s.heroPhase === 'initial',
       ctaHover: { background: '#cda86a', color: '#0b0a08' },
+      footerLinkHover: { color: '#f2d9ad', borderBottomColor: '#dda893' },
       closingBtnHover: { background: '#e0bb80' },
       waHover: { background: '#4ba57e' },
-      videoRef: this.videoRef,
-      onMobileVideoError: this.onMobileVideoError, showMobileVideo, showMobileImage,
+      setHeroVideoEl: this.setHeroVideoEl,
+      showMobileVideo, showMobileImage, showHeroVideo, showHeroPoster,
+      showAboutVideo, showAboutPoster,
+      capabilityBlocks, ddeWaLink, fabWaLink,
+      privacyHref: '/privacy', termsHref: '/terms', accessibilityHref: '/accessibility',
       aboutVideoRef: this.aboutVideoRef, aboutSectionRef: this.aboutSectionRef,
       audioRef: this.audioRef, toggleSound: this.toggleSound, soundOn: s.soundOn,
       soundIcon: s.soundOn ? '🔊' : '🔈',
@@ -854,7 +1845,18 @@ class Component extends DCLogic {
       onLeadMessageChange: this.setLeadField('leadMessage'),
       onLeadServiceChange: this.setLeadField('leadService'),
       onLeadSmsConsentChange: this.setLeadSmsConsent,
+      leadWebsite: s.leadWebsite,
+      onLeadWebsiteChange: this.setLeadField('leadWebsite'),
       submitLead: this.submitLead,
+      // Resolve the single visitor-facing error string. Anything unrecognised falls back to
+      // the generic message, so an unexpected status can never render raw server output.
+      contactFormErrorText: ({
+        rate: t.contactFormErrorRate,
+        tooLarge: t.contactFormErrorTooLarge,
+        server: t.contactFormErrorServer,
+        network: t.contactFormErrorNetwork,
+        fields: t.contactFormErrorValidation
+      })[s.leadErrorKind] || t.contactFormError,
       leadServiceOptions: [
         { value: '', label: t.contactFormServiceOptionDefault },
         { value: 'website_landing', label: t.contactFormServiceOptionWebsite },

@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Términos de Uso — Priscila by CimaCove</title>
+<meta name="description" content="Condiciones de uso del sitio priscila.cimacove.com, operado por CimaCove LLC bajo la marca Priscila by CimaCove.">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://priscila.cimacove.com/terms">
+<script src="/vendor-map.js"></script>
+<script src="/support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="preconnect" href="https://fonts.googleapis.com"></link>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet"></link>
+  <style>
+    :root{
+      --obsidian:#0b0a08;--surface:#111009;--champagne:#cda86a;--ivory:#f5efe4;
+      --text-secondary:#c6bcaa;--text-muted:#8a7f6d;--rose-gold:#dda893;
+      --rose-gold-line:rgba(221,168,147,0.34);--border-subtle:#241f16;--focus-ring:#6f93c9;
+    }
+    *{box-sizing:border-box;}
+    body{margin:0;background:#0b0a08;}
+    ::selection{background:#cda86a;color:#0b0a08;}
+    .skip-link{position:absolute;left:-9999px;top:0;z-index:100;background:var(--champagne);color:var(--obsidian);padding:12px 20px;font-family:'Manrope',sans-serif;font-size:14px;font-weight:700;text-decoration:none;}
+    .skip-link:focus{left:0;}
+    .legal{max-width:74ch;margin:0 auto;padding:clamp(90px,11vw,130px) clamp(22px,6vw,48px) clamp(60px,8vw,100px);}
+    .legal h1{font-family:'Playfair Display',serif;font-weight:600;font-size:clamp(27px,4vw,42px);line-height:1.18;color:var(--ivory);margin:0 0 14px 0;text-wrap:balance;}
+    .legal h2{font-family:'Playfair Display',serif;font-weight:600;font-size:clamp(19px,2.3vw,26px);line-height:1.3;color:var(--ivory);margin:44px 0 14px 0;padding-top:22px;border-top:1px solid var(--border-subtle);text-wrap:balance;}
+    .legal p{font-size:clamp(14.5px,1.05vw,16px);line-height:1.8;color:var(--text-secondary);margin:0 0 16px 0;text-wrap:pretty;}
+    .legal ul{margin:0 0 18px 0;padding:0;list-style:none;}
+    .legal li{font-size:clamp(14px,1vw,15.5px);line-height:1.72;color:var(--text-secondary);padding:7px 0 7px 20px;position:relative;border-bottom:1px solid #1c1810;}
+    .legal li::before{content:"·";position:absolute;left:4px;top:7px;color:var(--rose-gold);}
+    .legal a{color:var(--champagne);}
+    .legal a:focus-visible,.skip-link:focus-visible{outline:2px solid var(--focus-ring);outline-offset:2px;}
+    .eyebrow{font-size:11px;letter-spacing:0.3em;color:var(--champagne);text-transform:uppercase;margin-bottom:16px;}
+    .effective{font-size:12.5px;color:var(--text-muted);margin:0 0 30px 0;letter-spacing:0.04em;}
+    .callout{background:var(--surface);border:1px solid var(--border-subtle);border-top:1px solid var(--rose-gold-line);border-radius:8px;padding:clamp(20px,3vw,28px);margin:0 0 20px 0;}
+    .callout p:last-child{margin-bottom:0;}
+    .topnav{position:sticky;top:0;z-index:50;display:flex;justify-content:space-between;align-items:center;gap:14px;padding:14px clamp(20px,4vw,44px);background:rgba(9,7,5,0.94);border-bottom:1px solid var(--border-subtle);}
+    .home{font-family:'Playfair Display',serif;font-size:13px;letter-spacing:0.18em;color:var(--text-muted);text-decoration:none;min-height:44px;display:inline-flex;align-items:center;}
+    .home:hover{color:var(--champagne);}
+    .langbtn{background:none;border:none;font-size:13px;letter-spacing:0.1em;cursor:pointer;font-weight:700;font-family:'Manrope',sans-serif;padding:4px 10px;min-height:44px;min-width:44px;}
+    footer{padding:34px clamp(22px,6vw,48px);border-top:1px solid var(--border-subtle);display:flex;flex-wrap:wrap;gap:14px 22px;justify-content:space-between;align-items:center;}
+    footer a{font-size:12.5px;color:var(--text-secondary);text-decoration:none;border-bottom:1px solid var(--rose-gold-line);min-height:44px;display:inline-flex;align-items:center;}
+    footer a:hover{color:#f2d9ad;}
+    @media (prefers-reduced-motion: reduce){*{animation-duration:0.001ms !important;animation-iteration-count:1 !important;}}
+  </style>
+</helmet>
+<div style="font-family:'Manrope',sans-serif;background:#0b0a08;color:#f2ece1;width:100%;overflow-x:hidden;">
+  <a href="#main" class="skip-link">{{ t.skip }}</a>
+  <nav class="topnav" aria-label="{{ t.navLabel }}">
+    <a href="/" class="home">← {{ t.backHome }}</a>
+    <div style="display:flex;gap:4px;align-items:center;">
+      <button class="langbtn" aria-pressed="{{ isEs }}" onClick="{{ setLangEs }}" lang="es" style="{{ esStyle }}">ES</button>
+      <span style="color:#584f43;" aria-hidden="true">|</span>
+      <button class="langbtn" aria-pressed="{{ isEn }}" onClick="{{ setLangEn }}" lang="en" style="{{ enStyle }}">EN</button>
+    </div>
+  </nav>
+
+  <main id="main" tabindex="-1" class="legal" style="outline:none;">
+    <div class="eyebrow">{{ t.eyebrow }}</div>
+    <h1>{{ t.title }}</h1>
+    <p class="effective">{{ t.effective }}</p>
+
+    <div class="callout">
+      <sc-for list="{{ t.intro }}" as="p" hint-placeholder-count="2">
+        <p>{{ p }}</p>
+      </sc-for>
+    </div>
+
+    <sc-for list="{{ t.sections }}" as="sec" hint-placeholder-count="13">
+      <section>
+        <h2>{{ sec.h }}</h2>
+        <sc-for list="{{ sec.p }}" as="para" hint-placeholder-count="2">
+          <p>{{ para }}</p>
+        </sc-for>
+        <sc-if value="{{ sec.hasList }}" hint-placeholder-val="{{ false }}">
+          <ul>
+            <sc-for list="{{ sec.list }}" as="li" hint-placeholder-count="4">
+              <li>{{ li }}</li>
+            </sc-for>
+          </ul>
+        </sc-if>
+      </section>
+    </sc-for>
+
+    <h2>{{ t.contactTitle }}</h2>
+    <sc-for list="{{ t.contactBody }}" as="p" hint-placeholder-count="1">
+      <p>{{ p }}</p>
+    </sc-for>
+    <p>
+      <a href="{{ waLink }}" target="_blank" rel="noopener noreferrer">{{ t.waLabel }}</a>
+      · <a href="/#contact-form">{{ t.formLabel }}</a>
+    </p>
+  </main>
+
+  <footer>
+    <span style="font-size:12px;color:#665c4c;">{{ t.footerBusiness }}</span>
+    <nav aria-label="{{ t.legalNavLabel }}" style="display:flex;flex-wrap:wrap;gap:8px 20px;">
+      <a href="/privacy">{{ t.privacyLabel }}</a>
+      <a href="/terms" aria-current="page">{{ t.termsLabel }}</a>
+      <a href="/accessibility">{{ t.accessibilityLabel }}</a>
+    </nav>
+  </footer>
+</div>
+</x-dc>
+
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  // No arbitration clause, no class-action waiver, no jury-trial waiver and no aggressive
+  // one-sided terms are asserted here — none of those were agreed, so none are invented.
+  state = { lang: 'es' };
+
+  copy = {
+    es: {
+      skip: 'Saltar al contenido principal',
+      navLabel: 'Navegación',
+      legalNavLabel: 'Enlaces legales',
+      backHome: 'Volver al inicio',
+      eyebrow: 'Legal',
+      title: 'Términos de Uso',
+      effective: 'Fecha efectiva: 14 de agosto de 2026',
+      intro: [
+        'Este sitio (priscila.cimacove.com) es operado por CimaCove LLC, sociedad constituida en Arizona, Estados Unidos, bajo la marca “Priscila by CimaCove”.',
+        'Al usar el sitio aceptas estos términos. Si no estás de acuerdo, te pedimos que no lo utilices.'
+      ],
+      sections: [
+        {
+          h: '1. Naturaleza informativa del sitio',
+          p: ['Este sitio es una página de presentación. Su finalidad es explicar los servicios disponibles y facilitar el contacto. No es una tienda, no procesa pagos, no genera contratos automáticamente y nada de lo publicado aquí constituye una oferta vinculante ni una propuesta cerrada.']
+        },
+        {
+          h: '2. Alcance general de los servicios',
+          p: ['Las descripciones de “Desarrollo Digital Estratégico” y de sus capacidades, así como de los cursos y recursos digitales, son descripciones generales. Indican el tipo de trabajo que puede realizarse, no un paquete fijo, un precio, un plazo ni un entregable concreto.']
+        },
+        {
+          h: '3. Propuestas y contratos separados',
+          p: ['Cualquier trabajo específico se acuerda por separado. El alcance, los entregables, los plazos, las revisiones, las integraciones, los costes y las condiciones de pago se definen en una propuesta o contrato independiente firmado o aceptado por ambas partes. En caso de discrepancia entre esa propuesta y lo publicado en este sitio, prevalece la propuesta.']
+        },
+        {
+          h: '4. Sin resultados garantizados',
+          p: ['No garantizamos ingresos, ventas, número de clientes, posiciones en buscadores, alcance, conversiones, automatización total ni crecimiento de ningún tipo. Los resultados dependen de factores que no controlamos, como tu mercado, tu oferta, tu presupuesto, tu operación y el comportamiento de terceros.']
+        },
+        {
+          h: '5. Conceptos visuales y datos demostrativos',
+          p: [
+            'Las imágenes que acompañan a las capacidades del servicio están rotuladas como “Concepto visual” y lo son: representan ideas de diseño, no proyectos entregados a clientes reales.',
+            'Las cifras que aparecen junto a esas imágenes están rotuladas como “Datos demostrativos” y son valores de ejemplo creados para ilustrar una interfaz. No son resultados de clientes, no son métricas medidas y no deben interpretarse como prueba de rendimiento.',
+            'Este sitio no publica testimonios, casos de éxito, marcas de clientes ni métricas comerciales.'
+          ]
+        },
+        {
+          h: '6. Propiedad intelectual',
+          p: ['Los textos, el diseño, la identidad visual, el monograma, las imágenes, los vídeos y el código de este sitio pertenecen a CimaCove LLC o se utilizan con autorización. No se concede ninguna licencia sobre ellos por el mero hecho de visitar el sitio.']
+        },
+        {
+          h: '7. Uso permitido',
+          p: ['Puedes consultar el sitio, compartir sus enlaces y contactarnos. No puedes:'],
+          list: [
+            'Copiar, reproducir o redistribuir el contenido con fines comerciales sin autorización escrita.',
+            'Presentar el contenido, los conceptos visuales o los datos demostrativos como propios o como resultados reales.',
+            'Intentar acceder sin autorización a sistemas, interferir en el funcionamiento del sitio o realizar envíos automatizados al formulario.',
+            'Utilizar el sitio para actividades ilícitas o para enviar contenido ilegal, difamatorio o dañino.'
+          ]
+        },
+        {
+          h: '8. Formulario de contacto y comunicaciones',
+          p: ['Al enviar el formulario nos autorizas a responderte por los medios que indiques. La atención es manual: no existe actualmente una respuesta automática por WhatsApp ni un sistema de ventas automatizado en este sitio. El consentimiento para mensajes de texto es opcional, separado y revocable, y no condiciona ninguna contratación.']
+        },
+        {
+          h: '9. Enlaces y servicios de terceros',
+          p: ['El sitio enlaza a servicios de terceros, entre ellos WhatsApp y Hotmart. No controlamos su contenido, su disponibilidad, sus precios ni sus condiciones. Las compras de recursos digitales se realizan en la plataforma del tercero y se rigen por sus términos, incluidas sus políticas de reembolso.']
+        },
+        {
+          h: '10. Disponibilidad del sitio',
+          p: ['Procuramos mantener el sitio disponible y actualizado, pero puede haber interrupciones por mantenimiento, fallos técnicos o causas ajenas. Podemos modificar o retirar contenidos en cualquier momento.']
+        },
+        {
+          h: '11. Limitación de responsabilidad',
+          p: ['En la medida máxima permitida por la ley aplicable, CimaCove LLC no responde por daños indirectos, incidentales o consecuentes derivados del uso o de la imposibilidad de uso de este sitio. Nada en estos términos limita responsabilidades que no puedan limitarse legalmente, como las derivadas de dolo o fraude. Algunas jurisdicciones no permiten ciertas limitaciones, por lo que es posible que no te sean aplicables.']
+        },
+        {
+          h: '12. Privacidad',
+          p: ['El tratamiento de datos personales se describe en la Política de Privacidad, que forma parte de estos términos.']
+        },
+        {
+          h: '13. Ley aplicable',
+          p: ['Estos términos se rigen por las leyes del Estado de Arizona, Estados Unidos, sin aplicar sus normas de conflicto de leyes. Esto no te priva de la protección de las normas imperativas de tu país de residencia habitual cuando dichas normas resulten aplicables.']
+        },
+        {
+          h: '14. Cambios en estos términos',
+          p: ['Podemos actualizar estos términos. La versión vigente es siempre la publicada en esta página, con su fecha efectiva actualizada en la parte superior.']
+        }
+      ],
+      contactTitle: '15. Contacto',
+      contactBody: ['Para cualquier duda sobre estos términos puedes escribirnos por WhatsApp o mediante el formulario de contacto del sitio.'],
+      waLabel: 'Escribir por WhatsApp',
+      formLabel: 'Usar el formulario de contacto',
+      footerBusiness: 'CimaCove LLC — Arizona, Estados Unidos. Marca: Priscila by CimaCove.',
+      privacyLabel: 'Política de Privacidad',
+      termsLabel: 'Términos de Uso',
+      accessibilityLabel: 'Accesibilidad',
+      waMsg: 'Hola. Escribo sobre los Términos de Uso de priscila.cimacove.com.'
+    },
+    en: {
+      skip: 'Skip to main content',
+      navLabel: 'Navigation',
+      legalNavLabel: 'Legal links',
+      backHome: 'Back to home',
+      eyebrow: 'Legal',
+      title: 'Terms of Use',
+      effective: 'Effective date: 14 August 2026',
+      intro: [
+        'This site (priscila.cimacove.com) is operated by CimaCove LLC, a company formed in Arizona, United States, under the brand “Priscila by CimaCove”.',
+        'By using the site you accept these terms. If you do not agree with them, please do not use it.'
+      ],
+      sections: [
+        {
+          h: '1. The site is informational',
+          p: ['This site is a presentation page. Its purpose is to explain the services available and make contact easy. It is not a shop, it processes no payments, it creates no contracts automatically, and nothing published here is a binding offer or a fixed proposal.']
+        },
+        {
+          h: '2. General scope of the services',
+          p: ['The descriptions of “Strategic Digital Development” and its capabilities, and of the courses and digital resources, are general descriptions. They indicate the kind of work that can be done — not a fixed package, price, timeline or deliverable.']
+        },
+        {
+          h: '3. Separate proposals and contracts',
+          p: ['Any specific engagement is agreed separately. Scope, deliverables, timelines, revisions, integrations, costs and payment terms are defined in a separate proposal or contract signed or accepted by both parties. Where that proposal and this site differ, the proposal prevails.']
+        },
+        {
+          h: '4. No guaranteed results',
+          p: ['We do not guarantee revenue, sales, customer numbers, search rankings, reach, conversions, full automation or growth of any kind. Results depend on factors we do not control, such as your market, your offer, your budget, your operations and the behaviour of third parties.']
+        },
+        {
+          h: '5. Visual concepts and demo data',
+          p: [
+            'The images shown alongside the service capabilities are labelled “Visual concept” and that is what they are: design ideas, not projects delivered to real clients.',
+            'The figures shown next to those images are labelled “Demo data” and are example values created to illustrate an interface. They are not client results, they are not measured metrics, and they must not be read as proof of performance.',
+            'This site publishes no testimonials, case studies, client brands or commercial metrics.'
+          ]
+        },
+        {
+          h: '6. Intellectual property',
+          p: ['The text, design, visual identity, monogram, images, video and code of this site belong to CimaCove LLC or are used with permission. Merely visiting the site grants no licence over them.']
+        },
+        {
+          h: '7. Permitted use',
+          p: ['You may read the site, share its links and contact us. You may not:'],
+          list: [
+            'Copy, reproduce or redistribute the content for commercial purposes without written permission.',
+            'Present the content, visual concepts or demo data as your own or as real results.',
+            'Attempt unauthorised access to systems, interfere with the site’s operation, or submit automated form submissions.',
+            'Use the site for unlawful activity or to send illegal, defamatory or harmful content.'
+          ]
+        },
+        {
+          h: '8. Contact form and communications',
+          p: ['By submitting the form you authorise us to reply through the means you provide. Support is manual: there is currently no automatic WhatsApp reply and no automated sales system on this site. Text-message consent is optional, separate and revocable, and is never a condition of any engagement.']
+        },
+        {
+          h: '9. Third-party links and services',
+          p: ['The site links to third-party services, including WhatsApp and Hotmart. We do not control their content, availability, pricing or terms. Purchases of digital resources happen on the third party’s platform and are governed by its terms, including its refund policy.']
+        },
+        {
+          h: '10. Site availability',
+          p: ['We aim to keep the site available and up to date, but there may be interruptions due to maintenance, technical faults or causes beyond our control. We may change or withdraw content at any time.']
+        },
+        {
+          h: '11. Limitation of liability',
+          p: ['To the fullest extent permitted by applicable law, CimaCove LLC is not liable for indirect, incidental or consequential damages arising from the use of, or inability to use, this site. Nothing in these terms limits liability that cannot lawfully be limited, such as liability for wilful misconduct or fraud. Some jurisdictions do not allow certain limitations, so they may not apply to you.']
+        },
+        {
+          h: '12. Privacy',
+          p: ['The handling of personal data is described in the Privacy Policy, which forms part of these terms.']
+        },
+        {
+          h: '13. Governing law',
+          p: ['These terms are governed by the laws of the State of Arizona, United States, without regard to its conflict-of-laws rules. This does not deprive you of the protection of mandatory rules of your country of habitual residence where those rules apply.']
+        },
+        {
+          h: '14. Changes to these terms',
+          p: ['We may update these terms. The version in force is always the one published on this page, with its effective date updated at the top.']
+        }
+      ],
+      contactTitle: '15. Contact',
+      contactBody: ['For any question about these terms you can write to us on WhatsApp or through the contact form on the site.'],
+      waLabel: 'Message on WhatsApp',
+      formLabel: 'Use the contact form',
+      footerBusiness: 'CimaCove LLC — Arizona, United States. Brand: Priscila by CimaCove.',
+      privacyLabel: 'Privacy Policy',
+      termsLabel: 'Terms of Use',
+      accessibilityLabel: 'Accessibility',
+      waMsg: 'Hello. I am writing about the Terms of Use of priscila.cimacove.com.'
+    }
+  };
+
+  syncLang = () => {
+    try {
+      document.documentElement.setAttribute('lang', this.state.lang);
+      document.title = this.copy[this.state.lang].title + ' — Priscila by CimaCove';
+    } catch (e) {}
+  };
+  setLang = (l) => this.setState({ lang: l }, this.syncLang);
+
+  renderVals() {
+    const s = this.state;
+    const t = this.copy[s.lang];
+    const sections = t.sections.map((sec) => ({
+      h: sec.h,
+      p: sec.p || [],
+      list: sec.list || [],
+      hasList: !!(sec.list && sec.list.length)
+    }));
+    return {
+      t: { ...t, sections },
+      isEs: s.lang === 'es', isEn: s.lang === 'en',
+      setLangEs: () => this.setLang('es'), setLangEn: () => this.setLang('en'),
+      esStyle: { color: s.lang === 'es' ? '#cda86a' : '#8a7f6d' },
+      enStyle: { color: s.lang === 'en' ? '#cda86a' : '#8a7f6d' },
+      waLink: `https://wa.me/16027720124?text=${encodeURIComponent(t.waMsg)}`
+    };
+  }
+}
+</script>
+</body>
+</html>

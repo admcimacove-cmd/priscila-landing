@@ -14,7 +14,18 @@ Emprendedores, dueños de pequeños y medianos negocios, profesionales independi
 
 ## Product Purpose
 
-La landing personal de Priscila Cueva presenta tres líneas de servicio (automatización inteligente, diseño de páginas web, contenido UGC) más un recurso educativo futuro, y convierte el interés del visitante en una conversación directa. Priscila combina visión empresarial, experiencia en salud, estrategia digital y creatividad; el sitio existe para comunicar esa combinación con claridad y abrir la puerta a un primer contacto sin fricción. Éxito significa que el visitante inicia una conversación por WhatsApp.
+La landing personal de Priscila Cueva presenta **una oferta principal — Desarrollo Digital Estratégico** — más **Cursos y recursos digitales** como oferta independiente, y convierte el interés del visitante en una conversación directa. Priscila combina visión empresarial, experiencia en salud, estrategia digital y creatividad; el sitio existe para comunicar esa combinación con claridad y abrir la puerta a un primer contacto sin fricción. Éxito significa que el visitante inicia una conversación por WhatsApp.
+
+Desarrollo Digital Estratégico se articula en cuatro capacidades, que son partes de un mismo sistema y nunca se presentan como servicios independientes:
+
+1. **Presencia y conversión** — landing pages, embudos, sitios, formularios, reservas, portales.
+2. **Automatización y operación** — procesos, CRM, prospectos, seguimientos, integraciones.
+3. **Aplicaciones, plataformas y control** — apps, plataformas, dashboards, portales de cliente.
+4. **Posicionamiento digital para creadores** — portafolio, media kit, propuesta de valor, sistema de oportunidades.
+
+Concepto rector: «No construimos piezas digitales aisladas. Diseñamos ecosistemas que conectan tu presencia, tus ventas, tu operación y tu crecimiento.»
+
+**Alcance de UGC (importante).** Priscila by CimaCove **no** graba, produce ni publica contenido UGC en nombre del creador. Lo que se ofrece es diseñar su portafolio, media kit, posicionamiento, propuesta de valor, presentación comercial y el sistema digital para conseguir y administrar oportunidades. Ninguna imagen ni copy debe sugerir producción de contenido (cámaras, aros de luz, rodajes).
 
 ## Positioning
 
@@ -27,6 +38,7 @@ Soluciones diseñadas 100% a la medida de cada negocio — nunca una plantilla g
 - La línea que un visitante debe recordar a los 10 segundos: "Transformo tu visión en experiencias digitales que conectan, convierten y hacen crecer tu negocio." / EN: "I transform your vision into digital experiences that connect, convert, and help your business grow."
 - Escalera de creencias: entiende mi negocio → la solución es a medida, no genérica → hay acompañamiento humano real detrás de cualquier automatización → conversar por WhatsApp no compromete a nada.
 - Prueba en mano: ninguna todavía — negocio nuevo. La página se apoya en la claridad del proceso y la propuesta de valor, no en testimonios o logos. Revisar esta sección cuando haya casos reales que sumar.
+- Evidencia visual: las cuatro capacidades usan imágenes rotuladas **«Concepto visual / Visual concept»**. No son proyectos entregados a clientes. Las cifras que las acompañan están rotuladas **«Datos demostrativos / Demo data»**, viven en `demoMetrics` dentro de `Priscila Cueva.dc.html` y nunca van incrustadas en la imagen. Prohibido: «nuestro cliente», «caso de éxito», «proyecto realizado», testimonios ficticios, métricas inventadas, marcas falsas, y cualquier cifra de ingresos, ROI, dinero, clientes o crecimiento.
 
 ## Brand Personality
 

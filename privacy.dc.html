@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Política de Privacidad — Priscila by CimaCove</title>
+<meta name="description" content="Cómo CimaCove LLC, operando la marca Priscila by CimaCove, trata los datos recogidos en priscila.cimacove.com.">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://priscila.cimacove.com/privacy">
+<script src="/vendor-map.js"></script>
+<script src="/support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="preconnect" href="https://fonts.googleapis.com"></link>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet"></link>
+  <style>
+    :root{
+      --obsidian:#0b0a08;--surface:#111009;--surface-raised:#17140d;--champagne:#cda86a;
+      --ivory:#f5efe4;--text-secondary:#c6bcaa;--text-muted:#8a7f6d;--rose-gold:#dda893;
+      --rose-gold-line:rgba(221,168,147,0.34);--border:#3a3122;--border-subtle:#241f16;--focus-ring:#6f93c9;
+    }
+    *{box-sizing:border-box;}
+    body{margin:0;background:#0b0a08;}
+    ::selection{background:#cda86a;color:#0b0a08;}
+    .skip-link{position:absolute;left:-9999px;top:0;z-index:100;background:var(--champagne);color:var(--obsidian);padding:12px 20px;font-family:'Manrope',sans-serif;font-size:14px;font-weight:700;text-decoration:none;}
+    .skip-link:focus{left:0;}
+    .legal{max-width:74ch;margin:0 auto;padding:clamp(90px,11vw,130px) clamp(22px,6vw,48px) clamp(60px,8vw,100px);}
+    .legal h1{font-family:'Playfair Display',serif;font-weight:600;font-size:clamp(27px,4vw,42px);line-height:1.18;color:var(--ivory);margin:0 0 14px 0;text-wrap:balance;}
+    .legal h2{font-family:'Playfair Display',serif;font-weight:600;font-size:clamp(19px,2.3vw,26px);line-height:1.3;color:var(--ivory);margin:44px 0 14px 0;padding-top:22px;border-top:1px solid var(--border-subtle);text-wrap:balance;}
+    .legal p{font-size:clamp(14.5px,1.05vw,16px);line-height:1.8;color:var(--text-secondary);margin:0 0 16px 0;text-wrap:pretty;}
+    .legal ul{margin:0 0 18px 0;padding:0;list-style:none;}
+    .legal li{font-size:clamp(14px,1vw,15.5px);line-height:1.72;color:var(--text-secondary);padding:7px 0 7px 20px;position:relative;border-bottom:1px solid #1c1810;}
+    .legal li::before{content:"·";position:absolute;left:4px;top:7px;color:var(--rose-gold);}
+    .legal a{color:var(--champagne);}
+    .legal a:focus-visible,.skip-link:focus-visible{outline:2px solid var(--focus-ring);outline-offset:2px;}
+    .eyebrow{font-size:11px;letter-spacing:0.3em;color:var(--champagne);text-transform:uppercase;margin-bottom:16px;}
+    .effective{font-size:12.5px;color:var(--text-muted);margin:0 0 30px 0;letter-spacing:0.04em;}
+    .callout{background:var(--surface);border:1px solid var(--border-subtle);border-top:1px solid var(--rose-gold-line);border-radius:8px;padding:clamp(20px,3vw,28px);margin:0 0 20px 0;}
+    .callout p:last-child{margin-bottom:0;}
+    .topnav{position:sticky;top:0;z-index:50;display:flex;justify-content:space-between;align-items:center;gap:14px;padding:14px clamp(20px,4vw,44px);background:rgba(9,7,5,0.94);border-bottom:1px solid var(--border-subtle);}
+    .home{font-family:'Playfair Display',serif;font-size:13px;letter-spacing:0.18em;color:var(--text-muted);text-decoration:none;min-height:44px;display:inline-flex;align-items:center;}
+    .home:hover{color:var(--champagne);}
+    .langbtn{background:none;border:none;font-size:13px;letter-spacing:0.1em;cursor:pointer;font-weight:700;font-family:'Manrope',sans-serif;padding:4px 10px;min-height:44px;min-width:44px;}
+    footer{padding:34px clamp(22px,6vw,48px);border-top:1px solid var(--border-subtle);display:flex;flex-wrap:wrap;gap:14px 22px;justify-content:space-between;align-items:center;}
+    footer a{font-size:12.5px;color:var(--text-secondary);text-decoration:none;border-bottom:1px solid var(--rose-gold-line);min-height:44px;display:inline-flex;align-items:center;}
+    footer a:hover{color:#f2d9ad;}
+    @media (prefers-reduced-motion: reduce){*{animation-duration:0.001ms !important;animation-iteration-count:1 !important;}}
+  </style>
+</helmet>
+<div style="font-family:'Manrope',sans-serif;background:#0b0a08;color:#f2ece1;width:100%;overflow-x:hidden;">
+  <a href="#main" class="skip-link">{{ t.skip }}</a>
+  <nav class="topnav" aria-label="{{ t.navLabel }}">
+    <a href="/" class="home">← {{ t.backHome }}</a>
+    <div style="display:flex;gap:4px;align-items:center;">
+      <button class="langbtn" aria-pressed="{{ isEs }}" onClick="{{ setLangEs }}" lang="es" style="{{ esStyle }}">ES</button>
+      <span style="color:#584f43;" aria-hidden="true">|</span>
+      <button class="langbtn" aria-pressed="{{ isEn }}" onClick="{{ setLangEn }}" lang="en" style="{{ enStyle }}">EN</button>
+    </div>
+  </nav>
+
+  <main id="main" tabindex="-1" class="legal" style="outline:none;">
+    <div class="eyebrow">{{ t.eyebrow }}</div>
+    <h1>{{ t.title }}</h1>
+    <p class="effective">{{ t.effective }}</p>
+
+    <div class="callout">
+      <sc-for list="{{ t.intro }}" as="p" hint-placeholder-count="2">
+        <p>{{ p }}</p>
+      </sc-for>
+    </div>
+
+    <sc-for list="{{ t.sections }}" as="sec" hint-placeholder-count="16">
+      <section>
+        <h2>{{ sec.h }}</h2>
+        <sc-for list="{{ sec.p }}" as="para" hint-placeholder-count="2">
+          <p>{{ para }}</p>
+        </sc-for>
+        <sc-if value="{{ sec.hasList }}" hint-placeholder-val="{{ false }}">
+          <ul>
+            <sc-for list="{{ sec.list }}" as="li" hint-placeholder-count="4">
+              <li>{{ li }}</li>
+            </sc-for>
+          </ul>
+        </sc-if>
+      </section>
+    </sc-for>
+
+    <h2>{{ t.contactTitle }}</h2>
+    <sc-for list="{{ t.contactBody }}" as="p" hint-placeholder-count="2">
+      <p>{{ p }}</p>
+    </sc-for>
+    <p>
+      <a href="{{ waLink }}" target="_blank" rel="noopener noreferrer">{{ t.waLabel }}</a>
+      · <a href="/#contact-form">{{ t.formLabel }}</a>
+    </p>
+  </main>
+
+  <footer>
+    <span style="font-size:12px;color:#665c4c;">{{ t.footerBusiness }}</span>
+    <nav aria-label="{{ t.legalNavLabel }}" style="display:flex;flex-wrap:wrap;gap:8px 20px;">
+      <a href="/privacy" aria-current="page">{{ t.privacyLabel }}</a>
+      <a href="/terms">{{ t.termsLabel }}</a>
+      <a href="/accessibility">{{ t.accessibilityLabel }}</a>
+    </nav>
+  </footer>
+</div>
+</x-dc>
+
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  // Every statement below is derived from what this repository actually does. No provider,
+  // purpose, retention period, sale of data or legal certification is asserted that could not
+  // be verified in the source: the form fields and endpoint in "Priscila Cueva.dc.html", the
+  // CSP/security headers in "_headers", and the external hosts referenced anywhere in the code
+  // (Google Fonts, wa.me, go.hotmart.com, connect.cimacove.com). React is served from this
+  // origin under /vendor/, so no CDN is contacted at runtime. This site sets no
+  // cookies and runs no analytics, pixels or trackers — verified by search across all sources.
+  state = { lang: 'es' };
+
+  copy = {
+    es: {
+      skip: 'Saltar al contenido principal',
+      navLabel: 'Navegación',
+      legalNavLabel: 'Enlaces legales',
+      backHome: 'Volver al inicio',
+      eyebrow: 'Legal',
+      title: 'Política de Privacidad',
+      effective: 'Fecha efectiva: 14 de agosto de 2026',
+      intro: [
+        'CimaCove LLC, sociedad constituida en Arizona (Estados Unidos), que opera la marca “Priscila by CimaCove”, es la responsable del tratamiento de los datos personales recogidos a través de este sitio.',
+        'Esta política describe únicamente lo que este sitio hace en realidad. No describe otros sitios, productos ni servicios de CimaCove LLC.'
+      ],
+      sections: [
+        {
+          h: '1. Qué datos recogemos',
+          p: ['Recogemos dos tipos de datos:'],
+          list: [
+            'Datos que nos entregas voluntariamente en el formulario de contacto: nombre, teléfono, correo electrónico, servicio de interés (opcional), mensaje (opcional) y si marcaste o no la casilla de consentimiento para recibir mensajes de texto.',
+            'Datos técnicos que tu navegador transmite automáticamente al visitar cualquier sitio web, como dirección IP, tipo de navegador y dispositivo, y fecha y hora de la solicitud. Estos datos los procesan nuestros proveedores de alojamiento y distribución de contenido.',
+            'Registramos también el idioma que estabas usando y la página de origen, para poder responderte en tu idioma.'
+          ]
+        },
+        {
+          h: '2. De dónde provienen',
+          p: ['Los datos del formulario provienen directamente de ti. Los datos técnicos provienen automáticamente de tu navegador. No compramos datos, no los obtenemos de intermediarios y no combinamos tu información con bases de datos externas.']
+        },
+        {
+          h: '3. Para qué los usamos',
+          p: ['Usamos los datos exclusivamente para:'],
+          list: [
+            'Responder a tu consulta y mantener esa conversación.',
+            'Preparar y conversar una propuesta si la solicitas.',
+            'Comunicarnos contigo sobre el proyecto o servicio que hayas pedido.',
+            'Enviarte mensajes de texto únicamente si marcaste la casilla de consentimiento, que es opcional, está desmarcada por defecto y no es condición para contratar.'
+          ]
+        },
+        {
+          h: '4. No vendemos tu información',
+          p: ['No vendemos, alquilamos ni intercambiamos datos personales. No hacemos publicidad dirigida con tus datos y no los compartimos con intermediarios publicitarios.']
+        },
+        {
+          h: '5. Bases para el tratamiento',
+          p: [
+            'La base legal aplicable depende de dónde residas, y no afirmamos que una sola jurisdicción se aplique universalmente. Según el caso, el tratamiento se apoya en tu consentimiento, en la ejecución de medidas precontractuales solicitadas por ti, o en nuestro interés legítimo en responder a quien nos escribe.',
+            'El consentimiento para mensajes de texto es siempre separado, específico y revocable.'
+          ]
+        },
+        {
+          h: '6. Destinatarios y proveedores',
+          p: ['Para que este sitio funcione intervienen los siguientes terceros, todos verificables en el código fuente de la página:'],
+          list: [
+            'Cloudflare, Inc. — alojamiento y distribución del sitio (Cloudflare Pages).',
+            'CimaCove Connect (connect.cimacove.com) — infraestructura propia de CimaCove LLC que recibe y almacena los mensajes enviados desde el formulario.',
+            'Google LLC — entrega de las tipografías del sitio (Google Fonts). Tu navegador solicita los archivos a fonts.googleapis.com y fonts.gstatic.com.',
+            'WhatsApp / Meta Platforms — únicamente si tú decides pulsar un enlace de WhatsApp. En ese momento la conversación se rige por las condiciones de WhatsApp, no por este sitio.',
+            'Hotmart — únicamente si tú decides abrir un recurso digital. La compra ocurre en Hotmart y se rige por sus propias condiciones.'
+          ]
+        },
+        {
+          h: '7. Cookies y almacenamiento en tu navegador',
+          p: [
+            'Este sitio no instala cookies y no utiliza analítica, píxeles de seguimiento ni herramientas de publicidad.',
+            'Utilizamos únicamente una entrada de almacenamiento de sesión estrictamente necesaria, llamada “pc_sound”, que recuerda si activaste o silenciaste la música ambiental mientras dura la pestaña. Se borra al cerrar la pestaña, no identifica a nadie y no se transmite a ningún servidor.',
+            'Por eso no mostramos un banner de cookies: no hay tecnologías no esenciales que requieran tu consentimiento previo.'
+          ]
+        },
+        {
+          h: '8. Cuánto tiempo conservamos los datos',
+          p: ['Conservamos los mensajes del formulario mientras sean necesarios para atender tu consulta y para el seguimiento comercial derivado de ella, y después durante el plazo que exijan las obligaciones contables, fiscales o legales aplicables. No fijamos aquí un plazo cerrado porque depende de si tu consulta se convierte en un proyecto contratado. Puedes pedirnos la eliminación en cualquier momento.']
+        },
+        {
+          h: '9. Seguridad',
+          p: ['El sitio se sirve por HTTPS y aplica cabeceras de seguridad, incluidas una Política de Seguridad de Contenido, HSTS y restricciones de permisos del navegador. El formulario incluye protección contra envíos automatizados. Ninguna medida de seguridad es absoluta y no podemos garantizar seguridad total en ninguna transmisión por Internet.']
+        },
+        {
+          h: '10. Transferencias internacionales',
+          p: ['CimaCove LLC opera desde Estados Unidos y sus proveedores procesan datos en Estados Unidos y en otras ubicaciones de sus redes globales. Si nos escribes desde Ecuador, la Unión Europea, el Reino Unido u otro país, tus datos se transferirán a Estados Unidos, cuyo marco de protección de datos puede diferir del de tu país de residencia.']
+        },
+        {
+          h: '11. Tus derechos',
+          p: ['Según tu jurisdicción, puedes tener derecho a solicitar acceso a tus datos, su corrección, su eliminación, la limitación de su uso, oponerte al tratamiento y retirar tu consentimiento en cualquier momento. Atenderemos toda solicitud legítima que recibamos por los canales indicados al final, sin cobrarte por ejercer estos derechos y sin darte un trato distinto por haberlos ejercido.']
+        },
+        {
+          h: '12. Residentes de California',
+          p: [
+            'Conforme a CalOPPA, indicamos que no vendemos información personal y que puedes solicitar la revisión y corrección de los datos que nos hayas enviado escribiéndonos por los canales de contacto.',
+            'La CCPA/CPRA sólo se aplica a empresas que superan determinados umbrales de ingresos o volumen de datos. No afirmamos estar sujetos a ella. Si en algún momento lo estuviéramos, respetaríamos los derechos que reconoce, incluidos el de conocer, eliminar, corregir y no sufrir discriminación por ejercerlos. En todo caso, no vendemos ni compartimos información personal para publicidad conductual entre sitios.',
+            'Señal “Do Not Track”: no existe un estándar común sobre cómo responder a esta señal. Este sitio no rastrea a sus visitantes a través del tiempo ni a través de sitios de terceros, por lo que no hay seguimiento que desactivar.'
+          ]
+        },
+        {
+          h: '13. Residentes de Ecuador',
+          p: ['Cuando atendemos a personas residentes en Ecuador, tratamos sus datos conforme a los principios de la Ley Orgánica de Protección de Datos Personales (LOPDP), incluidos los derechos de acceso, rectificación, actualización, eliminación, oposición, portabilidad y anulación. Puedes ejercerlos por los canales de contacto indicados.']
+        },
+        {
+          h: '14. Espacio Económico Europeo y Reino Unido',
+          p: ['No dirigimos activamente nuestros servicios al EEE ni al Reino Unido, y no monitorizamos el comportamiento de personas situadas allí. Si aun así nos escribes desde esos territorios y el RGPD o el UK GDPR resultan aplicables a ese tratamiento, atenderemos los derechos que dichas normas reconocen. No afirmamos cumplir íntegramente con el RGPD.']
+        },
+        {
+          h: '15. Privacidad de menores',
+          p: ['Este sitio está dirigido a personas adultas y a negocios. No solicitamos ni recogemos conscientemente datos de menores de 13 años, ni de menores de edad según la legislación de su país. Si detectamos que hemos recibido datos de un menor, los eliminaremos.']
+        },
+        {
+          h: '16. Enlaces y servicios externos',
+          p: ['Este sitio enlaza a servicios externos como WhatsApp y Hotmart. Cuando sigues uno de esos enlaces, sales de este sitio y pasas a regirte por las políticas de privacidad y condiciones de esos terceros. No controlamos ni respondemos por sus prácticas de datos.']
+        },
+        {
+          h: '17. Cambios en esta política',
+          p: ['Podemos actualizar esta política cuando cambie el funcionamiento del sitio o la normativa aplicable. La versión vigente es siempre la publicada en esta página, con su fecha efectiva actualizada en la parte superior.']
+        }
+      ],
+      contactTitle: '18. Cómo ejercer tus derechos y contactarnos',
+      contactBody: [
+        'Puedes escribirnos por WhatsApp o mediante el formulario de contacto del sitio. Atendemos las solicitudes de forma manual y personal.',
+        'Indícanos qué derecho quieres ejercer y desde qué país nos escribes, para poder responderte correctamente.'
+      ],
+      waLabel: 'Escribir por WhatsApp',
+      formLabel: 'Usar el formulario de contacto',
+      footerBusiness: 'CimaCove LLC — Arizona, Estados Unidos. Marca: Priscila by CimaCove.',
+      privacyLabel: 'Política de Privacidad',
+      termsLabel: 'Términos de Uso',
+      accessibilityLabel: 'Accesibilidad',
+      waMsg: 'Hola. Escribo sobre la Política de Privacidad de priscila.cimacove.com.'
+    },
+    en: {
+      skip: 'Skip to main content',
+      navLabel: 'Navigation',
+      legalNavLabel: 'Legal links',
+      backHome: 'Back to home',
+      eyebrow: 'Legal',
+      title: 'Privacy Policy',
+      effective: 'Effective date: 14 August 2026',
+      intro: [
+        'CimaCove LLC, a company formed in Arizona, United States, operating the brand “Priscila by CimaCove”, is the controller of the personal data collected through this site.',
+        'This policy describes only what this site actually does. It does not describe other CimaCove LLC sites, products or services.'
+      ],
+      sections: [
+        {
+          h: '1. What we collect',
+          p: ['We collect two kinds of data:'],
+          list: [
+            'Data you give us voluntarily in the contact form: name, phone, email, service of interest (optional), message (optional), and whether you ticked the text-message consent box.',
+            'Technical data your browser transmits automatically when visiting any website, such as IP address, browser and device type, and the date and time of the request. This data is processed by our hosting and content delivery providers.',
+            'We also record the language you were using and the originating page, so we can reply in your language.'
+          ]
+        },
+        {
+          h: '2. Where it comes from',
+          p: ['Form data comes directly from you. Technical data comes automatically from your browser. We do not buy data, obtain it from brokers, or combine your information with external databases.']
+        },
+        {
+          h: '3. Why we use it',
+          p: ['We use the data solely to:'],
+          list: [
+            'Reply to your enquiry and continue that conversation.',
+            'Prepare and discuss a proposal if you ask for one.',
+            'Communicate with you about the project or service you requested.',
+            'Send you text messages only if you ticked the consent box, which is optional, unchecked by default, and never a condition of purchase.'
+          ]
+        },
+        {
+          h: '4. We do not sell your information',
+          p: ['We do not sell, rent or trade personal data. We do not run targeted advertising with your data and we do not share it with advertising intermediaries.']
+        },
+        {
+          h: '5. Grounds for processing',
+          p: [
+            'The applicable legal basis depends on where you live, and we do not claim any single jurisdiction applies universally. Depending on the case, processing rests on your consent, on pre-contractual steps you requested, or on our legitimate interest in replying to people who contact us.',
+            'Consent for text messages is always separate, specific and revocable.'
+          ]
+        },
+        {
+          h: '6. Recipients and providers',
+          p: ['The following third parties are involved in running this site, all verifiable in the page source:'],
+          list: [
+            'Cloudflare, Inc. — hosting and delivery of the site (Cloudflare Pages).',
+            'CimaCove Connect (connect.cimacove.com) — CimaCove LLC’s own infrastructure, which receives and stores messages sent from the form.',
+            'Google LLC — delivery of the site typefaces (Google Fonts). Your browser requests the files from fonts.googleapis.com and fonts.gstatic.com.',
+            'WhatsApp / Meta Platforms — only if you choose to tap a WhatsApp link. From that point the conversation is governed by WhatsApp’s terms, not by this site.',
+            'Hotmart — only if you choose to open a digital resource. The purchase happens on Hotmart under its own terms.'
+          ]
+        },
+        {
+          h: '7. Cookies and browser storage',
+          p: [
+            'This site sets no cookies and uses no analytics, tracking pixels or advertising tools.',
+            'We use only one strictly necessary session storage entry, named “pc_sound”, which remembers whether you enabled or muted the ambience music for the life of the tab. It is cleared when you close the tab, identifies no one, and is never sent to any server.',
+            'That is why we show no cookie banner: there are no non-essential technologies requiring your prior consent.'
+          ]
+        },
+        {
+          h: '8. How long we keep data',
+          p: ['We keep form messages for as long as they are needed to handle your enquiry and any commercial follow-up arising from it, and afterwards for whatever period applicable accounting, tax or legal obligations require. We do not state a fixed period here because it depends on whether your enquiry becomes a contracted project. You can ask us to delete it at any time.']
+        },
+        {
+          h: '9. Security',
+          p: ['The site is served over HTTPS and applies security headers, including a Content Security Policy, HSTS and browser permission restrictions. The form includes protection against automated submissions. No security measure is absolute and we cannot guarantee complete security for any transmission over the internet.']
+        },
+        {
+          h: '10. International transfers',
+          p: ['CimaCove LLC operates from the United States and its providers process data in the United States and other locations on their global networks. If you write to us from Ecuador, the European Union, the United Kingdom or elsewhere, your data will be transferred to the United States, whose data protection framework may differ from that of your country of residence.']
+        },
+        {
+          h: '11. Your rights',
+          p: ['Depending on your jurisdiction, you may have the right to request access to your data, its correction, its deletion, restriction of its use, to object to processing, and to withdraw consent at any time. We will handle any legitimate request received through the channels below, free of charge, and we will not treat you differently for exercising these rights.']
+        },
+        {
+          h: '12. California residents',
+          p: [
+            'Under CalOPPA, we state that we do not sell personal information and that you may request review and correction of the data you sent us by contacting us through the channels below.',
+            'The CCPA/CPRA applies only to businesses meeting certain revenue or data-volume thresholds. We do not claim to be subject to it. If we ever were, we would honour the rights it grants, including the rights to know, delete, correct, and not be discriminated against for exercising them. In any case, we do not sell or share personal information for cross-context behavioural advertising.',
+            '“Do Not Track” signals: there is no common standard for responding to this signal. This site does not track visitors over time or across third-party sites, so there is no tracking to switch off.'
+          ]
+        },
+        {
+          h: '13. Ecuador residents',
+          p: ['When we serve people resident in Ecuador, we handle their data in line with the principles of the Organic Law on Personal Data Protection (LOPDP), including the rights of access, rectification, updating, deletion, objection, portability and cancellation. You can exercise them through the contact channels below.']
+        },
+        {
+          h: '14. European Economic Area and United Kingdom',
+          p: ['We do not actively target our services at the EEA or the United Kingdom, and we do not monitor the behaviour of people located there. If you nonetheless write to us from those territories and the GDPR or UK GDPR apply to that processing, we will honour the rights those laws grant. We do not claim full GDPR compliance.']
+        },
+        {
+          h: '15. Children’s privacy',
+          p: ['This site is directed at adults and businesses. We do not knowingly request or collect data from children under 13, or from minors as defined by the law of their country. If we find we have received a minor’s data, we will delete it.']
+        },
+        {
+          h: '16. External links and services',
+          p: ['This site links to external services such as WhatsApp and Hotmart. When you follow one of those links you leave this site and become subject to those third parties’ privacy policies and terms. We do not control or answer for their data practices.']
+        },
+        {
+          h: '17. Changes to this policy',
+          p: ['We may update this policy when the way the site works, or the applicable law, changes. The version in force is always the one published on this page, with its effective date updated at the top.']
+        }
+      ],
+      contactTitle: '18. Exercising your rights and contacting us',
+      contactBody: [
+        'You can write to us on WhatsApp or through the contact form on the site. Requests are handled manually and personally.',
+        'Tell us which right you wish to exercise and which country you are writing from, so we can respond correctly.'
+      ],
+      waLabel: 'Message on WhatsApp',
+      formLabel: 'Use the contact form',
+      footerBusiness: 'CimaCove LLC — Arizona, United States. Brand: Priscila by CimaCove.',
+      privacyLabel: 'Privacy Policy',
+      termsLabel: 'Terms of Use',
+      accessibilityLabel: 'Accessibility',
+      waMsg: 'Hello. I am writing about the Privacy Policy of priscila.cimacove.com.'
+    }
+  };
+
+  syncLang = () => {
+    try {
+      document.documentElement.setAttribute('lang', this.state.lang);
+      document.title = this.copy[this.state.lang].title + ' — Priscila by CimaCove';
+    } catch (e) {}
+  };
+  setLang = (l) => this.setState({ lang: l }, this.syncLang);
+
+  renderVals() {
+    const s = this.state;
+    const t = this.copy[s.lang];
+    const sections = t.sections.map((sec) => ({
+      h: sec.h,
+      p: sec.p || [],
+      list: sec.list || [],
+      hasList: !!(sec.list && sec.list.length)
+    }));
+    return {
+      t: { ...t, sections },
+      isEs: s.lang === 'es', isEn: s.lang === 'en',
+      setLangEs: () => this.setLang('es'), setLangEn: () => this.setLang('en'),
+      esStyle: { color: s.lang === 'es' ? '#cda86a' : '#8a7f6d' },
+      enStyle: { color: s.lang === 'en' ? '#cda86a' : '#8a7f6d' },
+      waLink: `https://wa.me/16027720124?text=${encodeURIComponent(t.waMsg)}`
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -22,6 +22,9 @@ colors:
   whatsapp-verde: "#3f8f6b"
   whatsapp-verde-hover: "#4ba57e"
   focus-azul: "#6f93c9"
+  rose-gold: "#dda893"
+  rose-gold-linea: "rgba(221,168,147,0.34)"
+  rose-gold-resplandor: "rgba(221,168,147,0.13)"
 typography:
   display:
     fontFamily: "'Playfair Display', Georgia, serif"
@@ -138,6 +141,11 @@ Paleta "Committed": el dorado envejecido carga la identidad visual sobre un fond
 - **Borde Divisor / Borde Sutil** (#241f16 / #3a3122 / #2c2618): únicos separadores del sistema — líneas de 1px, nunca stripes de color.
 - **Panel / Chip** (#0f0d09 / #17140d): fondos de superficies elevadas (panel lateral, chips informativos dentro del panel).
 
+### Accent (secundario del dorado, nunca superficie)
+- **Rose Gold** (#dda893): acento cálido secundario introducido con la secuencia editorial de capacidades. Vive en numerales de capacidad, viñetas, el rótulo "Concepto visual", el badge "Datos demostrativos", el borde superior de las tarjetas de métrica y los subrayados de los enlaces legales del footer.
+- **Rose Gold Línea** (rgba(221,168,147,0.34)): separadores de 1px y bordes superiores de tarjeta.
+- **Rose Gold Resplandor** (rgba(221,168,147,0.13)): halo de hover en los CTA de capacidad. Nunca un glow fuerte.
+
 ### Functional (fuera del rol Primary/Neutral, con propósito único)
 - **Verde WhatsApp** (#3f8f6b, hover #4ba57e): reservado exclusivamente para el botón de continuar por WhatsApp — es el único verde en todo el sistema, y por eso señala inequívocamente "este es el paso de conversión".
 - **Azul de Foco** (#6f93c9): anillo de foco de teclado en todos los elementos interactivos — nunca se usa como color decorativo.
@@ -146,6 +154,10 @@ Paleta "Committed": el dorado envejecido carga la identidad visual sobre un fond
 **La Regla del Único Verde.** El verde WhatsApp aparece en un solo lugar: el botón de continuar la conversación tras solicitar un servicio. Si aparece en cualquier otro contexto, deja de significar "acción de conversión" y pierde su fuerza.
 
 **La Regla de la Escasez Dorada.** El dorado envejecido nunca cubre una superficie grande. Vive en bordes de 1px, texto de acento y brillos sutiles — nunca como fondo sólido de una sección completa.
+
+**La Regla del Rose Gold Contenido.** El rose gold es un acento del dorado, no un segundo color de marca. Sólo aparece como línea de 1px, numeral, viñeta, iconografía, rótulo pequeño o resplandor muy tenue. Nunca es fondo de una tarjeta, de una sección ni de un botón, y nunca compite en superficie con el dorado. Si una vista empieza a leerse como "rosa", la regla está rota.
+
+**Tokens centralizados.** Desde esta iteración las variables viven en `:root` dentro del bloque `<style>` de cada página (`--obsidian`, `--surface`, `--champagne`, `--ivory`, `--rose-gold`, `--focus-ring`, …). Todo lo nuevo lee de ahí; los estilos inline preexistentes conservan sus hex literales, que son exactamente los mismos valores.
 
 ## 3. Typography
 
