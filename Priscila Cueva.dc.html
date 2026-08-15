@@ -142,6 +142,15 @@
     html{scroll-behavior:smooth;}
     @media (prefers-reduced-motion: reduce){ html{scroll-behavior:auto;} }
 
+    /* ---- Hero height ----------------------------------------------------------------
+       Desktop's inner hero block is exactly 100vh, so this min-height matches it and does
+       nothing visible. Mobile's inner block is 64vh, so the same min-height was leaving
+       ~36vh (304px at 390x844) of empty black between the CTA and the Proceso section.
+       Below the mobile breakpoint the hero is simply sized by its content. No negative
+       margins, no overflow tricks — the section just stops where its content stops. ---- */
+    #hero{min-height:100vh;}
+    @media (max-width:779px){ #hero{min-height:0;} }
+
     /* ---- Ambient atmosphere: kills flat pure black without adding any asset ---- */
     .atmo{position:relative;isolation:isolate;}
     .atmo::before{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;
@@ -344,7 +353,9 @@
 
   <main id="main" tabindex="-1" aria-label="{{ t.mainAriaLabel }}" style="display:block;outline:none;">
 
-  <section id="hero" style="position:relative;width:100%;min-height:100vh;background:#0b0a08;">
+  <!-- min-height now lives in the stylesheet instead of inline, so the mobile breakpoint can
+       override it without needing !important. See the #hero rules in <helmet>. -->
+  <section id="hero" style="position:relative;width:100%;background:#0b0a08;">
 
     <!-- HERO MEDIA — DECORATIVE BACKGROUND ONLY.
          Contract enforced here and in the script below:
