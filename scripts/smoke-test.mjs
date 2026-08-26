@@ -171,13 +171,24 @@ assert(privateMedia.length === 0, "dist/ contains no private identity media",
   privateMedia.map(rel).join(", "));
 
 // ---------------------------------------------------------------------------------------
-section("5. All five routes built");
+section("5. All public routes built");
 // ---------------------------------------------------------------------------------------
 for (const route of ["index.html", "ugc/index.html", "privacy/index.html",
-                     "terms/index.html", "accessibility/index.html"]) {
+                     "terms/index.html", "accessibility/index.html", "project/index.html"]) {
   const f = path.join(dist, route);
   const exists = existsSync(f);
   assert(exists && statSync(f).size > 1000, `dist/${route} built and non-trivial`);
+}
+
+const projectPage = path.join(dist, "project", "index.html");
+if (existsSync(projectPage)) {
+  const project = readText(projectPage);
+  assert(/CimaCove Digital/.test(project), "Project Builder uses the official Digital brand");
+  assert(/rel="canonical" href="https:\/\/digital\.cimacove\.com\/project"/.test(project), "Project Builder canonical is digital.cimacove.com/project");
+  assert(/project_builder_started/.test(project) && /project_builder_submitted/.test(project), "commercial analytics events are instrumented");
+  assert(!/customerEmail.*track|customerPhone.*track|problem.*track/.test(project), "analytics calls do not include PII or project content");
+  assert(/localStorage/.test(project), "Project Builder preserves safe local progress");
+  assert(/\/api\/digital-intakes/.test(project), "Project Builder submits to the existing Business Core");
 }
 
 // ---------------------------------------------------------------------------------------

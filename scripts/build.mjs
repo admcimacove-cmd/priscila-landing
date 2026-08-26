@@ -21,6 +21,7 @@ const SUBPAGES = [
   { source: "privacy.dc.html", route: "privacy" },
   { source: "terms.dc.html", route: "terms" },
   { source: "accessibility.dc.html", route: "accessibility" }
+  ,{ source: "project.dc.html", route: "project" }
 ];
 
 function log(message) {

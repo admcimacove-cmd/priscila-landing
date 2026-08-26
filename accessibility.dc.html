@@ -3,10 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Accesibilidad — Priscila by CimaCove</title>
-<meta name="description" content="Compromiso de accesibilidad del sitio priscila.cimacove.com, medidas aplicadas, limitaciones conocidas y canales para reportar barreras.">
+<title>Accesibilidad — CimaCove Digital</title>
+<meta name="description" content="Compromiso de accesibilidad de digital.cimacove.com, medidas aplicadas, limitaciones conocidas y canales para reportar barreras.">
 <meta name="robots" content="index,follow">
-<link rel="canonical" href="https://priscila.cimacove.com/accessibility">
+<link rel="canonical" href="https://digital.cimacove.com/accessibility">
 <script src="/vendor-map.js"></script>
 <script src="/support.js"></script>
 </head>
@@ -173,11 +173,11 @@ class Component extends DCLogic {
       ],
       waLabel: 'Escribir por WhatsApp',
       formLabel: 'Usar el formulario de contacto',
-      footerBusiness: 'CimaCove LLC — Arizona, Estados Unidos. Marca: Priscila by CimaCove.',
+      footerBusiness: 'CimaCove LLC — Arizona, Estados Unidos. Unidad: CimaCove Digital.',
       privacyLabel: 'Política de Privacidad',
       termsLabel: 'Términos de Uso',
       accessibilityLabel: 'Accesibilidad',
-      waMsg: 'Hola. Quiero reportar una barrera de accesibilidad en priscila.cimacove.com.'
+      waMsg: 'Hola. Quiero reportar una barrera de accesibilidad en digital.cimacove.com.'
     },
     en: {
       skip: 'Skip to main content',
@@ -237,18 +237,18 @@ class Component extends DCLogic {
       ],
       waLabel: 'Message on WhatsApp',
       formLabel: 'Use the contact form',
-      footerBusiness: 'CimaCove LLC — Arizona, United States. Brand: Priscila by CimaCove.',
+      footerBusiness: 'CimaCove LLC — Arizona, United States. Business unit: CimaCove Digital.',
       privacyLabel: 'Privacy Policy',
       termsLabel: 'Terms of Use',
       accessibilityLabel: 'Accessibility',
-      waMsg: 'Hello. I would like to report an accessibility barrier on priscila.cimacove.com.'
+      waMsg: 'Hello. I would like to report an accessibility barrier on digital.cimacove.com.'
     }
   };
 
   syncLang = () => {
     try {
       document.documentElement.setAttribute('lang', this.state.lang);
-      document.title = this.copy[this.state.lang].title + ' — Priscila by CimaCove';
+      document.title = this.copy[this.state.lang].title + ' — CimaCove Digital';
     } catch (e) {}
   };
   setLang = (l) => this.setState({ lang: l }, this.syncLang);

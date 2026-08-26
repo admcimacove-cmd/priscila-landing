@@ -3,10 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Política de Privacidad — Priscila by CimaCove</title>
-<meta name="description" content="Cómo CimaCove LLC, operando la marca Priscila by CimaCove, trata los datos recogidos en priscila.cimacove.com.">
+<title>Política de Privacidad — CimaCove Digital</title>
+<meta name="description" content="Cómo CimaCove LLC, operando CimaCove Digital, trata los datos recogidos en digital.cimacove.com.">
 <meta name="robots" content="index,follow">
-<link rel="canonical" href="https://priscila.cimacove.com/privacy">
+<link rel="canonical" href="https://digital.cimacove.com/privacy">
 <script src="/vendor-map.js"></script>
 <script src="/support.js"></script>
 </head>
@@ -129,7 +129,7 @@ class Component extends DCLogic {
       title: 'Política de Privacidad',
       effective: 'Fecha efectiva: 14 de agosto de 2026',
       intro: [
-        'CimaCove LLC, sociedad constituida en Arizona (Estados Unidos), que opera la marca “Priscila by CimaCove”, es la responsable del tratamiento de los datos personales recogidos a través de este sitio.',
+        'CimaCove LLC, sociedad constituida en Arizona (Estados Unidos), que opera CimaCove Digital, es la responsable del tratamiento de los datos personales recogidos a través de este sitio.',
         'Esta política describe únicamente lo que este sitio hace en realidad. No describe otros sitios, productos ni servicios de CimaCove LLC.'
       ],
       sections: [
@@ -238,11 +238,11 @@ class Component extends DCLogic {
       ],
       waLabel: 'Escribir por WhatsApp',
       formLabel: 'Usar el formulario de contacto',
-      footerBusiness: 'CimaCove LLC — Arizona, Estados Unidos. Marca: Priscila by CimaCove.',
+      footerBusiness: 'CimaCove LLC — Arizona, Estados Unidos. Unidad: CimaCove Digital.',
       privacyLabel: 'Política de Privacidad',
       termsLabel: 'Términos de Uso',
       accessibilityLabel: 'Accesibilidad',
-      waMsg: 'Hola. Escribo sobre la Política de Privacidad de priscila.cimacove.com.'
+      waMsg: 'Hola. Escribo sobre la Política de Privacidad de digital.cimacove.com.'
     },
     en: {
       skip: 'Skip to main content',
@@ -253,7 +253,7 @@ class Component extends DCLogic {
       title: 'Privacy Policy',
       effective: 'Effective date: 14 August 2026',
       intro: [
-        'CimaCove LLC, a company formed in Arizona, United States, operating the brand “Priscila by CimaCove”, is the controller of the personal data collected through this site.',
+        'CimaCove LLC, a company formed in Arizona, United States, operating CimaCove Digital, is the controller of the personal data collected through this site.',
         'This policy describes only what this site actually does. It does not describe other CimaCove LLC sites, products or services.'
       ],
       sections: [
@@ -362,18 +362,18 @@ class Component extends DCLogic {
       ],
       waLabel: 'Message on WhatsApp',
       formLabel: 'Use the contact form',
-      footerBusiness: 'CimaCove LLC — Arizona, United States. Brand: Priscila by CimaCove.',
+      footerBusiness: 'CimaCove LLC — Arizona, United States. Business unit: CimaCove Digital.',
       privacyLabel: 'Privacy Policy',
       termsLabel: 'Terms of Use',
       accessibilityLabel: 'Accessibility',
-      waMsg: 'Hello. I am writing about the Privacy Policy of priscila.cimacove.com.'
+      waMsg: 'Hello. I am writing about the Privacy Policy of digital.cimacove.com.'
     }
   };
 
   syncLang = () => {
     try {
       document.documentElement.setAttribute('lang', this.state.lang);
-      document.title = this.copy[this.state.lang].title + ' — Priscila by CimaCove';
+      document.title = this.copy[this.state.lang].title + ' — CimaCove Digital';
     } catch (e) {}
   };
   setLang = (l) => this.setState({ lang: l }, this.syncLang);

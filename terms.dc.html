@@ -3,10 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Términos de Uso — Priscila by CimaCove</title>
-<meta name="description" content="Condiciones de uso del sitio priscila.cimacove.com, operado por CimaCove LLC bajo la marca Priscila by CimaCove.">
+<title>Términos de Uso — CimaCove Digital</title>
+<meta name="description" content="Condiciones de uso de digital.cimacove.com, operado por CimaCove LLC como CimaCove Digital.">
 <meta name="robots" content="index,follow">
-<link rel="canonical" href="https://priscila.cimacove.com/terms">
+<link rel="canonical" href="https://digital.cimacove.com/terms">
 <script src="/vendor-map.js"></script>
 <script src="/support.js"></script>
 </head>
@@ -124,7 +124,7 @@ class Component extends DCLogic {
       title: 'Términos de Uso',
       effective: 'Fecha efectiva: 14 de agosto de 2026',
       intro: [
-        'Este sitio (priscila.cimacove.com) es operado por CimaCove LLC, sociedad constituida en Arizona, Estados Unidos, bajo la marca “Priscila by CimaCove”.',
+        'Este sitio (digital.cimacove.com) es operado por CimaCove LLC como CimaCove Digital.',
         'Al usar el sitio aceptas estos términos. Si no estás de acuerdo, te pedimos que no lo utilices.'
       ],
       sections: [
@@ -199,11 +199,11 @@ class Component extends DCLogic {
       contactBody: ['Para cualquier duda sobre estos términos puedes escribirnos por WhatsApp o mediante el formulario de contacto del sitio.'],
       waLabel: 'Escribir por WhatsApp',
       formLabel: 'Usar el formulario de contacto',
-      footerBusiness: 'CimaCove LLC — Arizona, Estados Unidos. Marca: Priscila by CimaCove.',
+      footerBusiness: 'CimaCove LLC — Arizona, Estados Unidos. Unidad: CimaCove Digital.',
       privacyLabel: 'Política de Privacidad',
       termsLabel: 'Términos de Uso',
       accessibilityLabel: 'Accesibilidad',
-      waMsg: 'Hola. Escribo sobre los Términos de Uso de priscila.cimacove.com.'
+      waMsg: 'Hola. Escribo sobre los Términos de Uso de digital.cimacove.com.'
     },
     en: {
       skip: 'Skip to main content',
@@ -214,7 +214,7 @@ class Component extends DCLogic {
       title: 'Terms of Use',
       effective: 'Effective date: 14 August 2026',
       intro: [
-        'This site (priscila.cimacove.com) is operated by CimaCove LLC, a company formed in Arizona, United States, under the brand “Priscila by CimaCove”.',
+        'This site (digital.cimacove.com) is operated by CimaCove LLC as CimaCove Digital.',
         'By using the site you accept these terms. If you do not agree with them, please do not use it.'
       ],
       sections: [
@@ -289,18 +289,18 @@ class Component extends DCLogic {
       contactBody: ['For any question about these terms you can write to us on WhatsApp or through the contact form on the site.'],
       waLabel: 'Message on WhatsApp',
       formLabel: 'Use the contact form',
-      footerBusiness: 'CimaCove LLC — Arizona, United States. Brand: Priscila by CimaCove.',
+      footerBusiness: 'CimaCove LLC — Arizona, United States. Business unit: CimaCove Digital.',
       privacyLabel: 'Privacy Policy',
       termsLabel: 'Terms of Use',
       accessibilityLabel: 'Accessibility',
-      waMsg: 'Hello. I am writing about the Terms of Use of priscila.cimacove.com.'
+      waMsg: 'Hello. I am writing about the Terms of Use of digital.cimacove.com.'
     }
   };
 
   syncLang = () => {
     try {
       document.documentElement.setAttribute('lang', this.state.lang);
-      document.title = this.copy[this.state.lang].title + ' — Priscila by CimaCove';
+      document.title = this.copy[this.state.lang].title + ' — CimaCove Digital';
     } catch (e) {}
   };
   setLang = (l) => this.setState({ lang: l }, this.syncLang);
