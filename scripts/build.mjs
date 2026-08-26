@@ -11,6 +11,7 @@ const distDir = path.join(root, "dist");
 const SOURCE_HTML = "Priscila Cueva.dc.html";
 const SOURCE_SCRIPT = "support.js";
 const PROJECT_SCRIPT = "project-builder.js";
+const PROPOSAL_SCRIPT = "proposal.js";
 const SOURCE_UPLOADS = "uploads";
 const SOURCE_HEADERS = "_headers";
 
@@ -23,6 +24,7 @@ const SUBPAGES = [
   { source: "terms.dc.html", route: "terms" },
   { source: "accessibility.dc.html", route: "accessibility" }
   ,{ source: "project.dc.html", route: "project" }
+  ,{ source: "proposal.dc.html", route: "proposal" }
 ];
 
 function log(message) {
@@ -71,6 +73,7 @@ const projectScriptSrc = path.join(root, PROJECT_SCRIPT);
 requireSource(projectScriptSrc, PROJECT_SCRIPT);
 cpSync(projectScriptSrc, path.join(distDir, PROJECT_SCRIPT));
 log(`Copied "${PROJECT_SCRIPT}" -> dist/${PROJECT_SCRIPT}`);
+const proposalScriptSrc=path.join(root,PROPOSAL_SCRIPT);requireSource(proposalScriptSrc,PROPOSAL_SCRIPT);cpSync(proposalScriptSrc,path.join(distDir,PROPOSAL_SCRIPT));log(`Copied "${PROPOSAL_SCRIPT}" -> dist/${PROPOSAL_SCRIPT}`);
 
 // 4b. Copy the local React vendor bundle and the resource map that points the runtime at it.
 // Both must ship: vendor-map.js sets window.__resources before support.js loads, so React is

@@ -183,6 +183,7 @@ for (const route of ["index.html", "ugc/index.html", "privacy/index.html",
 const PROJECT_OPTION_LABELS = ["Landing page", "Página web", "Tienda online", "Automatización", "Sistema digital", "Asistente con IA", "JARVIS personalizado", "Integraciones", "Otro", "No estoy seguro / Necesito orientación"];
 const landing = path.join(dist, "index.html");
 const projectPage = path.join(dist, "project", "index.html");
+const proposalPage = path.join(dist, "proposal", "index.html");
 if (existsSync(projectPage)) {
   const project = readText(projectPage);
   const projectRuntimePath = path.join(dist, "project-builder.js");
@@ -205,6 +206,18 @@ if (existsSync(projectPage)) {
   assert(/BUDGET_LABELS/.test(projectRuntime) && /TIMELINE_LABELS/.test(projectRuntime), "Steps 5 and 6 expose budget, timeline and readable review data");
   assert(/submitButton\.hidden = step !== 6/.test(projectRuntime) && /step !== 6 \|\| submitted/.test(projectRuntime), "Submit stays hidden and inert until Step 6");
   assert(/\/api\/digital-intakes/.test(projectRuntime), "Project Builder submits to the existing Business Core");
+}
+
+assert(existsSync(proposalPage), "secure Digital proposal route is built");
+if (existsSync(proposalPage)) {
+  const proposal = readText(proposalPage);
+  const runtime = readText(path.join(dist, "proposal.js"));
+  assert(/noindex/.test(proposal), "proposal route is excluded from search indexing");
+  assert(/<script src="\/proposal\.js" defer><\/script>/.test(proposal), "proposal UI uses a same-origin CSP-compatible runtime");
+  assert(/Aceptar propuesta/.test(proposal) && /Solicitar cambios/.test(proposal) && /No continuar/.test(proposal), "proposal UI exposes all explicit customer decisions");
+  assert(/confirm/.test(runtime) && /decision/.test(runtime), "proposal decisions send explicit confirmation");
+  assert(/textContent/.test(runtime) && !/innerHTML/.test(runtime), "proposal content is rendered without HTML injection");
+  assert(!/token[^\n]*(whatsapp|wa\.me)/i.test(runtime), "secure proposal token is never copied into WhatsApp");
 }
 
 if (existsSync(landing)) {
