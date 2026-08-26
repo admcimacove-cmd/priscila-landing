@@ -180,15 +180,41 @@ for (const route of ["index.html", "ugc/index.html", "privacy/index.html",
   assert(exists && statSync(f).size > 1000, `dist/${route} built and non-trivial`);
 }
 
+const PROJECT_OPTION_LABELS = ["Landing page", "Página web", "Tienda online", "Automatización", "Sistema digital", "Asistente con IA", "JARVIS personalizado", "Integraciones", "Otro", "No estoy seguro / Necesito orientación"];
+const landing = path.join(dist, "index.html");
 const projectPage = path.join(dist, "project", "index.html");
 if (existsSync(projectPage)) {
   const project = readText(projectPage);
+  const projectRuntimePath = path.join(dist, "project-builder.js");
+  const projectRuntime = existsSync(projectRuntimePath) ? readText(projectRuntimePath) : "";
   assert(/CimaCove Digital/.test(project), "Project Builder uses the official Digital brand");
   assert(/rel="canonical" href="https:\/\/digital\.cimacove\.com\/project"/.test(project), "Project Builder canonical is digital.cimacove.com/project");
-  assert(/project_builder_started/.test(project) && /project_builder_submitted/.test(project), "commercial analytics events are instrumented");
-  assert(!/customerEmail.*track|customerPhone.*track|problem.*track/.test(project), "analytics calls do not include PII or project content");
-  assert(/localStorage/.test(project), "Project Builder preserves safe local progress");
-  assert(/\/api\/digital-intakes/.test(project), "Project Builder submits to the existing Business Core");
+  assert(existsSync(projectRuntimePath), "Project Builder runtime is emitted as a same-origin asset");
+  assert(/<script src="\/project-builder\.js" defer><\/script>/.test(project), "Project Builder executes through a CSP-compatible external script");
+  assert(!/<script>(?:.|\n)*?<\/script>/.test(project), "Project Builder has no executable inline script blocked by CSP");
+  assert((project.match(/class="step" data-step="[1-6]"/g) || []).length === 6, "Project Builder ships six non-empty step panels");
+  assert(PROJECT_OPTION_LABELS.every((label) => projectRuntime.includes(label)), "Step 1 ships every legitimate Digital service option");
+  assert(/project_builder_started/.test(projectRuntime) && /project_builder_submitted/.test(projectRuntime), "commercial analytics events are instrumented in the executable runtime");
+  assert(!/track\([^\n]*(customerEmail|customerPhone|problem|desiredOutcome)/.test(projectRuntime), "analytics calls do not include PII or project content");
+  assert(/try \{ localStorage\.setItem/.test(projectRuntime) && /JSON\.parse/.test(projectRuntime) && /schemaVersion/.test(projectRuntime), "saved progress is versioned and malformed storage recovers safely");
+  assert(/currentStep >= 1 && saved\.currentStep <= 6/.test(projectRuntime), "invalid saved steps normalize safely");
+  assert(/nextButton\.addEventListener/.test(projectRuntime) && /step \+= 1/.test(projectRuntime), "Next has an executable advance handler");
+  assert(/Selecciona al menos una opción para continuar/.test(projectRuntime), "missing Step 1 input produces visible validation");
+  assert(/backButton\.addEventListener/.test(projectRuntime) && /step -= 1/.test(projectRuntime), "Back has an executable navigation handler");
+  assert(/renderDynamic/.test(projectRuntime) && /website_scope/.test(projectRuntime) && /automation_scope/.test(projectRuntime) && /system_scope/.test(projectRuntime), "Step 4 renders project-specific dynamic questions");
+  assert(/BUDGET_LABELS/.test(projectRuntime) && /TIMELINE_LABELS/.test(projectRuntime), "Steps 5 and 6 expose budget, timeline and readable review data");
+  assert(/submitButton\.hidden = step !== 6/.test(projectRuntime) && /step !== 6 \|\| submitted/.test(projectRuntime), "Submit stays hidden and inert until Step 6");
+  assert(/\/api\/digital-intakes/.test(projectRuntime), "Project Builder submits to the existing Business Core");
+}
+
+if (existsSync(landing)) {
+  const html = readText(landing);
+  const projectCtas = [...html.matchAll(/<a\b(?=[^>]*data-cta="project")[^>]*>([\s\S]*?)<\/a>/g)];
+  const whatsappCtas = [...html.matchAll(/<a\b(?=[^>]*data-cta="whatsapp")[^>]*>([\s\S]*?)<\/a>/g)];
+  assert(projectCtas.length >= 5, "every known primary CTA source (including the repeated capability template) is explicitly marked for Project Builder");
+  assert(projectCtas.every((match) => /href="\/project\/"/.test(match[0]) && !/<svg\b/.test(match[1])), "every Diseña tu proyecto CTA routes to /project/ without a WhatsApp icon");
+  assert(whatsappCtas.length >= 2, "paired secondary WhatsApp CTAs are explicitly marked");
+  assert(whatsappCtas.every((match) => /waLink|WaLink/.test(match[0]) && /<svg\b/.test(match[1])), "every paired WhatsApp CTA preserves its configured URL and icon");
 }
 
 // ---------------------------------------------------------------------------------------
@@ -218,7 +244,6 @@ if (existsSync(headersPath)) {
 // ---------------------------------------------------------------------------------------
 section("7. Form honeypot and client-side limits");
 // ---------------------------------------------------------------------------------------
-const landing = path.join(dist, "index.html");
 if (existsSync(landing)) {
   const html = readText(landing);
   assert(/name="website"/.test(html), "honeypot field `website` is present in the markup");

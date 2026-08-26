@@ -10,6 +10,7 @@ const distDir = path.join(root, "dist");
 
 const SOURCE_HTML = "Priscila Cueva.dc.html";
 const SOURCE_SCRIPT = "support.js";
+const PROJECT_SCRIPT = "project-builder.js";
 const SOURCE_UPLOADS = "uploads";
 const SOURCE_HEADERS = "_headers";
 
@@ -65,6 +66,11 @@ const scriptDest = path.join(distDir, SOURCE_SCRIPT);
 requireSource(scriptSrc, SOURCE_SCRIPT);
 cpSync(scriptSrc, scriptDest);
 log(`Copied "${SOURCE_SCRIPT}" -> dist/${SOURCE_SCRIPT}`);
+
+const projectScriptSrc = path.join(root, PROJECT_SCRIPT);
+requireSource(projectScriptSrc, PROJECT_SCRIPT);
+cpSync(projectScriptSrc, path.join(distDir, PROJECT_SCRIPT));
+log(`Copied "${PROJECT_SCRIPT}" -> dist/${PROJECT_SCRIPT}`);
 
 // 4b. Copy the local React vendor bundle and the resource map that points the runtime at it.
 // Both must ship: vendor-map.js sets window.__resources before support.js loads, so React is
