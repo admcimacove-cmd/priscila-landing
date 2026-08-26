@@ -152,6 +152,7 @@
     if (step === 3 && !form.elements.desiredOutcome.value.trim()) return fail("Cuéntanos qué resultado quieres conseguir.", form.elements.desiredOutcome);
     if (step === 5 && !form.elements.budgetRange.value) return fail("Selecciona un rango de presupuesto.", form.elements.budgetRange);
     if (step === 5 && !form.elements.timeline.value) return fail("Selecciona un plazo.", form.elements.timeline);
+    if (step === 6 && !form.elements.privacyAcknowledged.checked) return fail("Confirma que leíste el Aviso de Privacidad para enviar.", form.elements.privacyAcknowledged);
     return true;
   }
 
@@ -191,7 +192,7 @@
       ...state, currentStep: undefined, schemaVersion: undefined, projectTypes: selected(), scopeAnswers: state.scopeAnswers,
       referenceLinks: form.elements.references.value.split(/\n/).map((value) => value.trim()).filter(Boolean),
       attribution: { utmSource: params.get("utm_source"), utmMedium: params.get("utm_medium"), utmCampaign: params.get("utm_campaign"), utmContent: params.get("utm_content"), utmTerm: params.get("utm_term"), referrer: document.referrer || null, landingPath: location.pathname },
-      website: form.elements.website.value, language: "es", isTest: params.get("qa") === "1",
+      website: form.elements.website.value, language: "es", privacyAcknowledged: form.elements.privacyAcknowledged.checked, privacyPolicyVersion: "2026-08-26",
     };
     try {
       const response = await fetch("https://connect.cimacove.com/api/digital-intakes", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body) });

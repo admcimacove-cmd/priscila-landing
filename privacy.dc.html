@@ -115,8 +115,7 @@ class Component extends DCLogic {
   // be verified in the source: the form fields and endpoint in "Priscila Cueva.dc.html", the
   // CSP/security headers in "_headers", and the external hosts referenced anywhere in the code
   // (Google Fonts, wa.me, go.hotmart.com, connect.cimacove.com). React is served from this
-  // origin under /vendor/, so no CDN is contacted at runtime. This site sets no
-  // cookies and runs no analytics, pixels or trackers — verified by search across all sources.
+  // origin under /vendor/. Cloudflare provides hosting, security and cookie-free Web Analytics.
   state = { lang: 'es' };
 
   copy = {
@@ -127,7 +126,7 @@ class Component extends DCLogic {
       backHome: 'Volver al inicio',
       eyebrow: 'Legal',
       title: 'Política de Privacidad',
-      effective: 'Fecha efectiva: 14 de agosto de 2026',
+      effective: 'Fecha efectiva y versión: 26 de agosto de 2026 (2026-08-26)',
       intro: [
         'CimaCove LLC, sociedad constituida en Arizona (Estados Unidos), que opera CimaCove Digital, es la responsable del tratamiento de los datos personales recogidos a través de este sitio.',
         'Esta política describe únicamente lo que este sitio hace en realidad. No describe otros sitios, productos ni servicios de CimaCove LLC.'
@@ -137,9 +136,9 @@ class Component extends DCLogic {
           h: '1. Qué datos recogemos',
           p: ['Recogemos dos tipos de datos:'],
           list: [
-            'Datos que nos entregas voluntariamente en el formulario de contacto: nombre, teléfono, correo electrónico, servicio de interés (opcional), mensaje (opcional) y si marcaste o no la casilla de consentimiento para recibir mensajes de texto.',
+            'Datos que entregas en el formulario de contacto o Project Builder: nombre, teléfono, correo electrónico, negocio, ciudad/país, sitio web, tipo, problema, resultado, alcance, presupuesto, plazo y enlaces de referencia, según los campos que completes.',
             'Datos técnicos que tu navegador transmite automáticamente al visitar cualquier sitio web, como dirección IP, tipo de navegador y dispositivo, y fecha y hora de la solicitud. Estos datos los procesan nuestros proveedores de alojamiento y distribución de contenido.',
-            'Registramos también el idioma que estabas usando y la página de origen, para poder responderte en tu idioma.'
+            'Registramos la referencia DIG, atribución UTM disponible, página y referente de origen, y evidencia de aceptación del Aviso (fecha/hora y versión).'
           ]
         },
         {
@@ -153,7 +152,7 @@ class Component extends DCLogic {
             'Responder a tu consulta y mantener esa conversación.',
             'Preparar y conversar una propuesta si la solicitas.',
             'Comunicarnos contigo sobre el proyecto o servicio que hayas pedido.',
-            'Enviarte mensajes de texto únicamente si marcaste la casilla de consentimiento, que es opcional, está desmarcada por defecto y no es condición para contratar.'
+            'Crear y revisar una oportunidad comercial solicitada por ti. El Project Builder no solicita consentimiento promocional ni te suscribe a marketing.'
           ]
         },
         {
@@ -171,8 +170,8 @@ class Component extends DCLogic {
           h: '6. Destinatarios y proveedores',
           p: ['Para que este sitio funcione intervienen los siguientes terceros, todos verificables en el código fuente de la página:'],
           list: [
-            'Cloudflare, Inc. — alojamiento y distribución del sitio (Cloudflare Pages).',
-            'CimaCove Connect (connect.cimacove.com) — infraestructura propia de CimaCove LLC que recibe y almacena los mensajes enviados desde el formulario.',
+             'Cloudflare, Inc. — alojamiento, distribución, seguridad, Worker, base de datos D1 y Web Analytics sin cookies.',
+             'CimaCove Connect (connect.cimacove.com) — infraestructura de CimaCove LLC que valida, recibe y almacena los envíos.',
             'Google LLC — entrega de las tipografías del sitio (Google Fonts). Tu navegador solicita los archivos a fonts.googleapis.com y fonts.gstatic.com.',
             'WhatsApp / Meta Platforms — únicamente si tú decides pulsar un enlace de WhatsApp. En ese momento la conversación se rige por las condiciones de WhatsApp, no por este sitio.',
             'Hotmart — únicamente si tú decides abrir un recurso digital. La compra ocurre en Hotmart y se rige por sus propias condiciones.'
@@ -181,9 +180,9 @@ class Component extends DCLogic {
         {
           h: '7. Cookies y almacenamiento en tu navegador',
           p: [
-            'Este sitio no instala cookies y no utiliza analítica, píxeles de seguimiento ni herramientas de publicidad.',
-            'Utilizamos únicamente una entrada de almacenamiento de sesión estrictamente necesaria, llamada “pc_sound”, que recuerda si activaste o silenciaste la música ambiental mientras dura la pestaña. Se borra al cerrar la pestaña, no identifica a nadie y no se transmite a ningún servidor.',
-            'Por eso no mostramos un banner de cookies: no hay tecnologías no esenciales que requieran tu consentimiento previo.'
+             'No usamos cookies publicitarias. Cloudflare Web Analytics mide uso y rendimiento sin cookies ni almacenamiento local y no registra los parámetros de consulta.',
+             'El Project Builder guarda temporalmente en localStorage un borrador de los campos y una clave opaca para conservar tu progreso. Permanece en ese navegador, se elimina tras un envío correcto y también puedes borrarlo eliminando los datos del sitio.',
+             'No mostramos un banner ficticio: actualmente no desplegamos tecnologías no esenciales que requieran una elección. Si eso cambia, se añadirá un control previo antes de activarlas.'
           ]
         },
         {
@@ -251,7 +250,7 @@ class Component extends DCLogic {
       backHome: 'Back to home',
       eyebrow: 'Legal',
       title: 'Privacy Policy',
-      effective: 'Effective date: 14 August 2026',
+      effective: 'Effective date and version: 26 August 2026 (2026-08-26)',
       intro: [
         'CimaCove LLC, a company formed in Arizona, United States, operating CimaCove Digital, is the controller of the personal data collected through this site.',
         'This policy describes only what this site actually does. It does not describe other CimaCove LLC sites, products or services.'
@@ -261,9 +260,9 @@ class Component extends DCLogic {
           h: '1. What we collect',
           p: ['We collect two kinds of data:'],
           list: [
-            'Data you give us voluntarily in the contact form: name, phone, email, service of interest (optional), message (optional), and whether you ticked the text-message consent box.',
+             'Data you provide in the contact form or Project Builder: name, phone, email, business, city/country, website, project type, problem, outcome, scope, budget, timeline and reference links, depending on the fields you complete.',
             'Technical data your browser transmits automatically when visiting any website, such as IP address, browser and device type, and the date and time of the request. This data is processed by our hosting and content delivery providers.',
-            'We also record the language you were using and the originating page, so we can reply in your language.'
+             'We also record the DIG reference, available UTM attribution, landing page and referrer, and privacy acknowledgement evidence (time and policy version).'
           ]
         },
         {
@@ -277,7 +276,7 @@ class Component extends DCLogic {
             'Reply to your enquiry and continue that conversation.',
             'Prepare and discuss a proposal if you ask for one.',
             'Communicate with you about the project or service you requested.',
-            'Send you text messages only if you ticked the consent box, which is optional, unchecked by default, and never a condition of purchase.'
+             'Create and review the commercial opportunity you requested. The Project Builder does not request promotional consent or subscribe you to marketing.'
           ]
         },
         {
@@ -295,8 +294,8 @@ class Component extends DCLogic {
           h: '6. Recipients and providers',
           p: ['The following third parties are involved in running this site, all verifiable in the page source:'],
           list: [
-            'Cloudflare, Inc. — hosting and delivery of the site (Cloudflare Pages).',
-            'CimaCove Connect (connect.cimacove.com) — CimaCove LLC’s own infrastructure, which receives and stores messages sent from the form.',
+             'Cloudflare, Inc. — hosting, delivery, security, Worker, D1 database and cookie-free Web Analytics.',
+             'CimaCove Connect (connect.cimacove.com) — CimaCove LLC infrastructure that validates, receives and stores submissions.',
             'Google LLC — delivery of the site typefaces (Google Fonts). Your browser requests the files from fonts.googleapis.com and fonts.gstatic.com.',
             'WhatsApp / Meta Platforms — only if you choose to tap a WhatsApp link. From that point the conversation is governed by WhatsApp’s terms, not by this site.',
             'Hotmart — only if you choose to open a digital resource. The purchase happens on Hotmart under its own terms.'
@@ -305,9 +304,9 @@ class Component extends DCLogic {
         {
           h: '7. Cookies and browser storage',
           p: [
-            'This site sets no cookies and uses no analytics, tracking pixels or advertising tools.',
-            'We use only one strictly necessary session storage entry, named “pc_sound”, which remembers whether you enabled or muted the ambience music for the life of the tab. It is cleared when you close the tab, identifies no one, and is never sent to any server.',
-            'That is why we show no cookie banner: there are no non-essential technologies requiring your prior consent.'
+             'We use no advertising cookies. Cloudflare Web Analytics measures use and performance without cookies or local storage and does not log query parameters.',
+             'The Project Builder temporarily stores a draft of its fields and an opaque idempotency key in localStorage to preserve progress. It remains in that browser, is removed after a successful submission, and can also be removed by clearing site data.',
+             'We do not show a fake banner: we currently deploy no non-essential technology requiring a choice. If that changes, a prior consent control will be added before activation.'
           ]
         },
         {
